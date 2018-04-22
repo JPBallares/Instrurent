@@ -105,3 +105,4 @@ if ($conn->query($query) === true) {
 }
 
 CloseCon($conn);
+?>
