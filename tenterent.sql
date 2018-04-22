@@ -40,6 +40,8 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`admin_id`, `admin_name`, `username`, `password`) VALUES
 (1, 'Jan Rei Sibaen', 'JRSibaen', 'something');
 
+
+
 -- --------------------------------------------------------
 
 --
@@ -89,6 +91,24 @@ CREATE TABLE `items` (
 INSERT INTO `items` (`item_id`, `item_name`, `price`, `renting_fee`, `stock`, `availability`, `provider_id`) VALUES
 (1, 'tent', 10, 30, 10, 1, 1);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE `item_type` (
+  `item_type_id` int(11) NOT NULL,
+  `item_type_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`item_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item_type`
+--
+
+INSERT INTO `item_type` (`item_type_id`, `item_type_name`) VALUES
+(1, 'backpack');
 -- --------------------------------------------------------
 
 --
@@ -165,6 +185,13 @@ ALTER TABLE `items`
   ADD KEY `provider_id_idx` (`provider_id`);
 
 --
+-- Indexes for table `items`
+--
+ALTER TABLE `tenterent`.`items` 
+  ADD COLUMN `item_image` BLOB NOT NULL AFTER `provider_id`,
+  ADD COLUMN `item_type_id` INT(11) NOT NULL AFTER `item_image`;
+
+--
 -- Indexes for table `service_provider`
 --
 ALTER TABLE `service_provider`
@@ -215,6 +242,12 @@ ALTER TABLE `service_provider`
 --
 ALTER TABLE `items`
   ADD CONSTRAINT `provider_id` FOREIGN KEY (`provider_id`) REFERENCES `service_provider` (`provider_id`) ON UPDATE CASCADE;
+
+--
+-- AUTO_INCREMENT for table `item_type`
+--
+ALTER TABLE `tenterent`.`item_type` 
+  CHANGE COLUMN `item_type_id` `item_type_id` INT(11) NOT NULL AUTO_INCREMENT ;
 
 --
 -- Constraints for table `transaction`
