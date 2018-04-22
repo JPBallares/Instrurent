@@ -9,7 +9,7 @@ $password = sha1($_POST['password']);
 $username = mysqli_real_escape_string($conn, $username);
 $password = mysqli_real_escape_string($conn, $password);
 
-$sql = "SELECT * FROM users where user_email = '$username'";
+$sql = "SELECT * FROM admin where user_email = '$username'";
 $result = $conn->query($sql);
 if(isSet($_POST['login'])) {
 
