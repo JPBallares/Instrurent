@@ -2,27 +2,25 @@
 include 'access_db.php';
 $conn = OpenCon();
 
-$item_name = $_POST['first_name'];
-$last_name = $_POST['first_name'];
-$address1 = $_POST['address1'];
-$address2 = $_POST['address2'];
-$email = $_POST['email'];
-$username = $_POST['username'];
-$password = $_POST['password'];
-$contact_number = $_POST['contact_number'];
+$item_name = $_POST['item_name'];
+$price = $_POST['price'];
+$renting_fee = $_POST['renting_fee'];
+$stock = $_POST['stock'];
+$item_image = $_FILES['file']['tmp_name'];
+$item_image = file_get_contents($item_image);
+$provider_id = $_POST['provider_id'];
+$item_type_id = $_POST['item_type_id'];
 
-$first_name = mysqli_real_escape_string($conn, $first_name);
-$last_name = mysqli_real_escape_string($conn, $last_name);
-$address1 = mysqli_real_escape_string($conn, $address1);
-$address2 = mysqli_real_escape_string($conn, $address2);
-$email = mysqli_real_escape_string($conn, $email);
-$username = mysqli_real_escape_string($conn, $username);
-$password = mysqli_real_escape_string($conn, $password);
-$contact_number = mysqli_real_escape_string($conn, $contact_number);
-$password = mysqli_real_escape_string($conn, $registered);
+$item_name = mysqli_real_escape_string($conn, $item_name);
+$price = mysqli_real_escape_string($conn, $price);
+$renting_fee = mysqli_real_escape_string($conn, $renting_fee);
+$stock = mysqli_real_escape_string($conn, $stock);
+$item_image = mysqli_real_escape_string($conn, $item_image);
+$provider_id = mysqli_real_escape_string($conn, $provider_id);
+$item_type_id = mysqli_real_escape_string($conn, $item_type_id);
 
-if (empty($first_name) || empty($last_name) || empty($address1) || empty($email) || empty($username)
-    || empty($password) || empty($contact_number)) {
+if (empty($item_name) || empty($price) || empty($renting_fee) || empty($stock) || empty($item_image)
+    || empty($provider_id) || empty($item_type_id)) {
     echo "
         <script>
             alert('You must fill up all neccessary fields.');
