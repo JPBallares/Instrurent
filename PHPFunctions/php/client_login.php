@@ -17,7 +17,7 @@ if(isSet($_POST['login'])) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
             if ($row['password'] == $password){
-                $_SESSION['loggedin'] = true;
+                $_SESSION['client_loggedin'] = true;
                 $_SESSION['first_name'] = $row['first_name'];
                 $_SESSION['last_name'] = $row['last_name'];
                 $_SESSION['address1'] = $row['address1'];
