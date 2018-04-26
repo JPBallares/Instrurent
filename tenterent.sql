@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2018 at 12:21 PM
+-- Generation Time: Apr 26, 2018 at 11:37 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `tenterent`
 --
+CREATE DATABASE IF NOT EXISTS `tenterent` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `tenterent`;
 
 -- --------------------------------------------------------
 
@@ -39,8 +41,6 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`admin_id`, `admin_name`, `username`, `password`) VALUES
 (1, 'Jan Rei Sibaen', 'JRSibaen', 'something');
-
-
 
 -- --------------------------------------------------------
 
@@ -80,27 +80,27 @@ CREATE TABLE `items` (
   `price` double NOT NULL,
   `renting_fee` double NOT NULL,
   `stock` int(11) NOT NULL,
-  `availability` tinyint(4) NOT NULL,
-  `provider_id` int(11) NOT NULL
+  `provider_id` int(11) NOT NULL,
+  `item_image` blob NOT NULL,
+  `item_type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`item_id`, `item_name`, `price`, `renting_fee`, `stock`, `availability`, `provider_id`) VALUES
-(1, 'tent', 10, 30, 10, 1, 1);
+INSERT INTO `items` (`item_id`, `item_name`, `price`, `renting_fee`, `stock`, `provider_id`, `item_image`, `item_type_id`) VALUES
+(1, 'tent', 10, 30, 10, 1, '', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `items`
+-- Table structure for table `item_type`
 --
 
 CREATE TABLE `item_type` (
   `item_type_id` int(11) NOT NULL,
-  `item_type_name` varchar(45) NOT NULL,
-  PRIMARY KEY (`item_type_id`)
+  `item_type_name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -109,6 +109,7 @@ CREATE TABLE `item_type` (
 
 INSERT INTO `item_type` (`item_type_id`, `item_type_name`) VALUES
 (1, 'backpack');
+
 -- --------------------------------------------------------
 
 --
@@ -185,11 +186,10 @@ ALTER TABLE `items`
   ADD KEY `provider_id_idx` (`provider_id`);
 
 --
--- Indexes for table `items`
+-- Indexes for table `item_type`
 --
-ALTER TABLE `tenterent`.`items` 
-  ADD COLUMN `item_image` BLOB NOT NULL AFTER `provider_id`,
-  ADD COLUMN `item_type_id` INT(11) NOT NULL AFTER `item_image`;
+ALTER TABLE `item_type`
+  ADD PRIMARY KEY (`item_type_id`);
 
 --
 -- Indexes for table `service_provider`
@@ -229,6 +229,11 @@ ALTER TABLE `client`
 ALTER TABLE `items`
   MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `item_type`
+--
+ALTER TABLE `item_type`
+  MODIFY `item_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `service_provider`
 --
 ALTER TABLE `service_provider`
@@ -242,12 +247,6 @@ ALTER TABLE `service_provider`
 --
 ALTER TABLE `items`
   ADD CONSTRAINT `provider_id` FOREIGN KEY (`provider_id`) REFERENCES `service_provider` (`provider_id`) ON UPDATE CASCADE;
-
---
--- AUTO_INCREMENT for table `item_type`
---
-ALTER TABLE `tenterent`.`item_type` 
-  CHANGE COLUMN `item_type_id` `item_type_id` INT(11) NOT NULL AUTO_INCREMENT ;
 
 --
 -- Constraints for table `transaction`
