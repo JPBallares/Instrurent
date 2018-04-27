@@ -1,6 +1,6 @@
 .logo_s {
     height: 40px;
-    padding-right: 20px;
+    padding-right: 5px;
 }
 
 /* Fonts */
@@ -18,6 +18,8 @@
 /* Navbar */
 .navbar-brand {
     font-family: nature;
+    padding-left: 30px;
+    padding-right: 50px;
 }
 /* Navbar */
 
@@ -43,4 +45,20 @@
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
+
+.carousel-caption img {
+    width: 30%;
+}
 /* Slider */
+
+/* Intro */
+#intro img {
+    width: 450px;
+    margin-right: 35px;
+}
+
+#intro h1{
+    font-family: nature;
+    font-size: 90px;
+}
+/* Intro */
