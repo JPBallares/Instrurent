@@ -19,12 +19,28 @@
 .navbar-brand {
     font-family: nature;
 }
-
-.border-bottom { 
-    border-bottom: 1px solid #e5e5e5; 
-}
-
-.box-shadow { 
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
-}
 /* Navbar */
+
+/* Slider */
+.carousel-item {
+    height: 60vh;
+}
+
+#slide_1 {
+    background-image: url(../img/slider_1.png);
+}
+
+#slide_2 {
+    background-image: url(../img/slider_2.png);
+}
+
+#slide_3 {
+    background-image: url(../img/slider_3.png);
+}
+
+#slide_1, #slide_2, #slide_3 {
+    background-position: top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+/* Slider */
