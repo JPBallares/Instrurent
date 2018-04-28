@@ -38,11 +38,7 @@
                 </li>
             </ul>
 
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            </form>
-
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" id="login_and_sign_up">
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#login">Login</a>
                 </li>
@@ -55,6 +51,63 @@
     </nav>
     <!-- Navbar -->
 
+    <!-- Login -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email Address</label>
+                      <input type="email" class="form-control" id="log_email" placeholder="Enter email">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="log_pass" placeholder="Password">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary btn_cc">Login</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Login -->
+
+    <!-- Sign-up -->
+    <div class="modal fade" id="sign_up" tabindex="-1" role="dialog" aria-labelledby="sign_up" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Sign-up</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary btn_cc">Sign-up</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Sign-up -->
+
+    <!-- Slider -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -70,14 +123,14 @@
                 </div>
             </div>
 
-            <div class="carousel-item" id="slide_2">
+            <div class="carousel-item" id="slide_2" style="background-position: bottom;">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>...</h5>
                     <p>...</p>
                 </div>
             </div>
 
-            <div class="carousel-item" id="slide_3">
+            <div class="carousel-item" id="slide_3" style="background-position: bottom;">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>...</h5>
                     <p>...</p>
@@ -95,7 +148,9 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+    <!-- Slider -->
 
+    <!-- Intro -->
     <div class="jumbotron jumbotron-fluid" id="intro">
         <div class="container">
             <img src="css/img/Logo.png" class="float-left" alt="Website Logo">
@@ -103,5 +158,7 @@
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
     </div>
+    <!-- Intro -->
+
 </body>
 </html>
