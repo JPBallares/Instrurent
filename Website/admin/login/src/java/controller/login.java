@@ -16,7 +16,20 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+            String _username = request.getParameter("username");
+            String _password = request.getParameter("password");
+            if(_username != null && _password != null){
+                /**
+                if(_username.equals(dbasetable) && _password.equals(dbasetable)) {
+                * response.sendRedirect(html file);
+               * }else{
+               *  out.println("Invalid username or password")
+               * }
+                **/
+            }else{
+                out.println("Empty Username or Password");
+            }
+            }
         }
     }
     @Override
