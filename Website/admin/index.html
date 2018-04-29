@@ -20,11 +20,21 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-  
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#sign_up">Admin</a>
+                    <a class="nav-link" href="">Profile</a>
+                </li>
+  
+                <li class="nav-item">
+                    <a class="nav-link" href="">Settings</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav" id="login_and_sign_up">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#sign_up">Logout</a>
                 </li>
             </ul>
         </div>
@@ -33,7 +43,7 @@
         <div class="content client-sp">
             <div id="chooseuser">
                 <form action="">
-                    <select name="users">
+                    <select  class="selectpicker" multiple title="Choose one of the following...">
                         <option value="Clients">Clients</option>
                         <option value="Service Provider">Service Provider</option>
                     </select>
