@@ -24,11 +24,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="">Profile</a>
+                    <a class="nav-link" href="../index.html">Admin</a>
                 </li>
-  
                 <li class="nav-item">
-                    <a class="nav-link" href="">Settings</a>
+                    <a class="nav-link" href="profile.html">Profile</a>
                 </li>
             </ul>
 
@@ -41,10 +40,27 @@
     </nav>
     <div class="content main">
         <div id="heading">
-            <h1>PROFILE SETTINGS</h1>
             <div id="admininfo">
-                <label>Username</label>
-                <input type="text">
+            <h1 id="header">PROFILE SETTINGS</h1>
+            <br>
+                <form action="">
+                    <label for="defaultFormLoginEmailEx" class="grey-text">First Name</label>
+                    <input type="text" id="defaultFormLoginEmailEx" class="form-control" placeholder="iquery yung name firstname ng admin sa database">
+                    <br>
+                    <label for="defaultFormLoginPasswordEx" class="grey-text">Last Name</label>
+                    <input type="text" id="defaultFormLoginPasswordEx" class="form-control" placeholder="iquery yung name lastname ng admin sa database">
+                    <br>
+                    <label for="defaultFormLoginPasswordEx" class="grey-text">Username</label>
+                    <input type="text" id="defaultFormLoginPasswordEx" class="form-control" placeholder="dito rin pero username">
+                    <br>
+                    <label for="defaultFormLoginPasswordEx" class="grey-text">Email</label>
+                    <input type="email" id="defaultFormLoginPasswordEx" class="form-control" placeholder="dito rin pero yung email">
+                    <br>
+                    <a href="">Change password</a>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-indigo" type="submit">Save Changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
