@@ -26,7 +26,7 @@ $result = $conn->query($sql);
                 $_SESSION['account_id'] = $row['account_id'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $row['password'];
-                header('Location: /home.php');
+                header('Location: items.html');
                 exit;
 
             } else {
@@ -50,6 +50,6 @@ $result = $conn->query($sql);
     }
 
 
-    
+
 
 CloseCon($conn);
