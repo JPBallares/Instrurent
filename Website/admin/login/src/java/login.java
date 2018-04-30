@@ -30,35 +30,43 @@ public class login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        PrintWriter out = response.getWriter();
             /* TODO output your page here. You may use following sample code. */
             String _username=request.getParameter("uname");
             String _password=request.getParameter("pass");
           try{
               if(_username !=null ){
                   
-                  Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
-                  conn=DriverManager.getConnection("jdbc:derby://localhost:1527/sample","root","");
-                  String Query="select username,password from accounts where type= admin and username=? and password=?";
+                  String url = "jdbc:mysql://localhost/tenterent?useSSL=false";
+		Class.forName("com.mysql.jdbc.Driver");
+                 conn = DriverManager.getConnection(url, "root", null);
+                  String Query="select username,password from accounts where account_type = 'a' and username=? and password=?";
                   ps = conn.prepareStatement(sql);
                   ps.setString(1, _username);
                   ps.setString(2, _password);
                   ResultSet rs = ps.executeQuery();
                   if(rs.next()){
-                      
-                      response.sendRedirect("index.html");
+                      out.println("fuck");
+                      response.sendRedirect("Welcome.jsp");
                   }else{
                       
                       out.println("username or password incorrect");
                   }
+              } else {
+                  out.println("faaack");
               }
               
           }catch(Exception ex){
-              out.println("Exception :"+ex.getMessage());
+              out.println("fgdfgdfgfgfdg");
           }
         
         }
         
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
+
     
 }
