@@ -21,12 +21,17 @@
 }
 /* Navbar */
 
-#content {
-    margin-top: 56px;
+#main {
     width: auto;
     height: auto;
 }
-
+.client-sp {
+    margin-top: 60px;
+    margin-left: 15px;
+}
+#useroptions {
+    width: 710px;
+}
 table {
     margin: auto;
 }
