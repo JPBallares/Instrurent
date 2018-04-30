@@ -42,7 +42,7 @@ if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/", $user_emai
     exit;
 }
 
-if (!preg_match("^\+639[0-9]{9}$|^09[0-9]{9}$")) {
+if (!preg_match("^\+639[0-9]{9}$|^09[0-9]{9}$", $contact_number)) {
     echo "
         <script>
             alert('Invalid Contact Number');
