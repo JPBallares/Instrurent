@@ -9,35 +9,35 @@ $password = sha1($_POST['password']);
 $username = mysqli_real_escape_string($conn, $username);
 $password = mysqli_real_escape_string($conn, $password);
 
-$sql = "SELECT * FROM admin where username = '$username'";
+$sql = "SELECT * FROM service_provider INNER JOIN accounts
+        ON service_provider.accountid=accounts.account_id
+        WHERE username = '$username';";
 $result = $conn->query($sql);
-if(isSet($_POST['login'])) {
 
     if ($result->num_rows > 0) {
         // output data of each row
-        while($row = $result->fetch_assoc()) {
-            if ($row['password'] == $password){
+        while ($row = $result->fetch_assoc()) {
+            if ($row['password'] == $password) {
                 $_SESSION['client_loggedin'] = true;
-                $_SESSION['first_name'] = $row['first_name'];
-                $_SESSION['last_name'] = $row['last_name'];
-                $_SESSION['address1'] = $row['address1'];
-                $_SESSION['address2'] = $row['address2'];   
+                $_SESSION['provider_id'] = $row['provider_id'];
+                $_SESSION['name'] = $row['provider_name'];
+                $_SESSION['contact'] = $row['provider_contact'];
+                $_SESSION['address'] = $row['provider_address'];
+                $_SESSION['account_id'] = $row['account_id'];
                 $_SESSION['email'] = $row['email'];
-                $_SESSION['contact_number'] = $row['contact_number'];
-                $_SESSION['registered'] = $row['registered'];
                 $_SESSION['password'] = $row['password'];
                 header('Location: /home.php');
                 exit;
-    
+
             } else {
-            
+
                 echo "
                     <script>
                         alert('Wrong password.');
                         window.history.back();
                     </script>
                 ";
-    
+
             }
         }
     } else {
@@ -48,11 +48,8 @@ if(isSet($_POST['login'])) {
             </script>
         ";
     }
+
+
     
-} else {
-    echo "Failed";
-}
 
 CloseCon($conn);
- 
-?>
