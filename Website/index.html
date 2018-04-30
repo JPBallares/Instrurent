@@ -90,14 +90,105 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">Sign-up</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Sign-up</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
             </div>
+
             <div class="modal-body">
-              ...
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#menu1">Client</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu2">Service provider</a>
+                    </li>
+                </ul>
+      
+                <div class="tab-content">
+                    <div class="tab-pane active container" id="menu1">
+                        <form>
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="first_name">First name</label>
+                                        <input name="first_name" type="text" class="form-control" id="first_name" placeholder="First name" required>
+                                    </div>
+                
+                                    <div class="col-md-4 mb-3">
+                                        <label for="last_name">Last name</label>
+                                        <input name="last_name" type="text" class="form-control" id="last_name" placeholder="Last name" required>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="signup_address">Address</label>
+                                        <input name="address" type="text" class="form-control" id="signup_address" placeholder="Address" required>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="signup_email">Email Address</label>
+                                        <input name="email" type="text" class="form-control" id="signup_email" placeholder="Email Address" required>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="signup_password">Password</label>
+                                        <input name="password" type="password" class="form-control" id="signup_password" placeholder="Password" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane container" id="menu2">
+                        <form>
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="first_name">First name</label>
+                                        <input name="first_name" type="text" class="form-control" id="first_name" placeholder="First name" required>
+                                    </div>
+                
+                                    <div class="col-md-4 mb-3">
+                                        <label for="last_name">Last name</label>
+                                        <input name="last_name" type="text" class="form-control" id="last_name" placeholder="Last name" required>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="signup_address">Address</label>
+                                        <input name="address" type="text" class="form-control" id="signup_address" placeholder="Address" required>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="signup_email">Email Address</label>
+                                        <input name="email" type="text" class="form-control" id="signup_email" placeholder="Email Address" required>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="signup_password">Password</label>
+                                        <input name="password" type="password" class="form-control" id="signup_password" placeholder="Password" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary btn_cc">Sign-up</button>
