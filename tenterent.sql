@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: tenterent
+-- Host: 127.0.0.1    Database: tenterent
 -- ------------------------------------------------------
--- Server version	5.7.14
+-- Server version	5.7.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,32 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `account`
+-- Table structure for table `accounts`
 --
 
-DROP TABLE IF EXISTS `account`;
+DROP TABLE IF EXISTS `accounts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `account` (
-  `account_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `accounts` (
+  `account_id` int(11) NOT NULL,
   `email` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `account_type` enum('a','c','sa','sp') NOT NULL,
   PRIMARY KEY (`account_id`),
+  UNIQUE KEY `type_id_UNIQUE` (`account_id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
-  UNIQUE KEY `password_UNIQUE` (`password`)
+  UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `account`
+-- Dumping data for table `accounts`
 --
 
-LOCK TABLES `account` WRITE;
-/*!40000 ALTER TABLE `account` DISABLE KEYS */;
-/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+LOCK TABLES `accounts` WRITE;
+/*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -52,14 +52,16 @@ DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admin` (
-  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_id` int(11) NOT NULL,
   `admin_name` varchar(45) NOT NULL,
-  `account_type` int(11) NOT NULL,
+  `admin_contact` varchar(45) NOT NULL,
   `account_id` int(11) NOT NULL,
   PRIMARY KEY (`admin_id`),
+  UNIQUE KEY `admin_id_UNIQUE` (`admin_id`),
   UNIQUE KEY `admin_name_UNIQUE` (`admin_name`),
-  KEY `admin_account_idx` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `admin_contact_UNIQUE` (`admin_contact`),
+  CONSTRAINT `account_id` FOREIGN KEY (`admin_id`) REFERENCES `accounts` (`account_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,39 +70,45 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'Jan Rei Sibaen',0,0);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `client`
+-- Table structure for table `customer`
 --
 
-DROP TABLE IF EXISTS `client`;
+DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `client` (
-  `client_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `customer` (
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `address1` varchar(45) NOT NULL,
   `address2` varchar(45) DEFAULT NULL,
   `contact_number` varchar(45) NOT NULL,
-  `accepted` tinyint(1) NOT NULL,
-  `account_id` int(11) NOT NULL,
-  PRIMARY KEY (`client_id`),
-  UNIQUE KEY `contact_number_UNIQUE` (`contact_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `email` varchar(45) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `accepted` tinyint(4) NOT NULL,
+  `accounts_id` int(11) NOT NULL,
+  PRIMARY KEY (`customer_id`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
+  UNIQUE KEY `contact_number_UNIQUE` (`contact_number`),
+  KEY `accounts_id_idx` (`accounts_id`),
+  CONSTRAINT `accounts_id` FOREIGN KEY (`accounts_id`) REFERENCES `accounts` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `client`
+-- Dumping data for table `customer`
 --
 
-LOCK TABLES `client` WRITE;
-/*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (1,'Jan','Sib','Baguio',NULL,'555',1,0);
-/*!40000 ALTER TABLE `client` ENABLE KEYS */;
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -111,10 +119,11 @@ DROP TABLE IF EXISTS `item_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item_type` (
-  `item_type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_type_name` varchar(45) NOT NULL,
-  PRIMARY KEY (`item_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `type_id` int(11) NOT NULL,
+  `type_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`type_id`),
+  UNIQUE KEY `type_id_UNIQUE` (`type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +132,6 @@ CREATE TABLE `item_type` (
 
 LOCK TABLES `item_type` WRITE;
 /*!40000 ALTER TABLE `item_type` DISABLE KEYS */;
-INSERT INTO `item_type` VALUES (1,'backpack');
 /*!40000 ALTER TABLE `item_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,18 +143,21 @@ DROP TABLE IF EXISTS `items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `items` (
-  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
   `item_name` varchar(45) NOT NULL,
   `price` double NOT NULL,
   `renting_fee` double NOT NULL,
   `stock` int(11) NOT NULL,
-  `provider_id` int(11) NOT NULL,
   `item_image` blob NOT NULL,
-  `item_type_id` int(11) NOT NULL,
+  `provider_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  PRIMARY KEY (`item_id`),
+  UNIQUE KEY `item_id_UNIQUE` (`item_id`),
   KEY `provider_id_idx` (`provider_id`),
-  KEY `type_id_idx1` (`item_id`),
-  CONSTRAINT `provider_id` FOREIGN KEY (`provider_id`) REFERENCES `service_provider` (`provider_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  KEY `type_id_idx` (`type_id`),
+  CONSTRAINT `provider_id` FOREIGN KEY (`provider_id`) REFERENCES `service_provider` (`provider_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `type_id` FOREIGN KEY (`type_id`) REFERENCES `item_type` (`type_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +166,6 @@ CREATE TABLE `items` (
 
 LOCK TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (1,'tent',10,30,10,1,'',0);
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,17 +177,19 @@ DROP TABLE IF EXISTS `service_provider`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `service_provider` (
-  `provider_id` int(11) NOT NULL AUTO_INCREMENT,
-  `provider_name` varchar(45) NOT NULL,
-  `contact_number` varchar(45) NOT NULL,
-  `account_id` int(11) NOT NULL,
+  `provider_id` int(11) NOT NULL,
+  `provider_name` varchar(45) CHARACTER SET koi8r NOT NULL,
+  `provider_contact` varchar(45) CHARACTER SET koi8r NOT NULL,
+  `provider_address` varchar(45) CHARACTER SET koi8r NOT NULL,
+  `accountid` int(11) NOT NULL,
   PRIMARY KEY (`provider_id`),
+  UNIQUE KEY `provider_id_UNIQUE` (`provider_id`),
   UNIQUE KEY `provider_name_UNIQUE` (`provider_name`),
-  UNIQUE KEY `contact_number_UNIQUE` (`contact_number`),
-  KEY `account_id_idx` (`account_id`),
-  KEY `asd_idx` (`account_id`),
-  KEY `sp_type_idx` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `provider_contact_UNIQUE` (`provider_contact`),
+  UNIQUE KEY `provider_address_UNIQUE` (`provider_address`),
+  KEY `accountid_idx` (`accountid`),
+  CONSTRAINT `accountid` FOREIGN KEY (`accountid`) REFERENCES `accounts` (`account_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +198,6 @@ CREATE TABLE `service_provider` (
 
 LOCK TABLES `service_provider` WRITE;
 /*!40000 ALTER TABLE `service_provider` DISABLE KEYS */;
-INSERT INTO `service_provider` VALUES (1,'Rei','553',0);
 /*!40000 ALTER TABLE `service_provider` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,18 +209,19 @@ DROP TABLE IF EXISTS `transaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaction` (
-  `transactopm_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL,
+  `transaction_id` int(11) NOT NULL,
   `date_rented` date NOT NULL,
   `date_due` date NOT NULL,
-  `days_rented` int(11) NOT NULL,
   `amount` double NOT NULL,
   `approved` tinyint(4) NOT NULL,
-  PRIMARY KEY (`transactopm_id`),
+  `customer_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  PRIMARY KEY (`transaction_id`),
+  UNIQUE KEY `transaction_id_UNIQUE` (`transaction_id`),
+  KEY `customer_id_idx` (`customer_id`),
+  KEY `provider_id_idx` (`item_id`),
   KEY `item_id_idx` (`item_id`),
-  KEY `client_id_idx` (`client_id`),
-  CONSTRAINT `client_id` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`),
+  CONSTRAINT `customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
   CONSTRAINT `item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -220,7 +232,6 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (1,1,1,'2018-04-18','2018-04-19',1,30,1);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -233,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-28 14:19:02
+-- Dump completed on 2018-04-30 10:37:53
