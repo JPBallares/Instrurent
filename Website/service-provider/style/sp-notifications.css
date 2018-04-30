@@ -1,0 +1,25 @@
+button {
+	border: none;
+}
+
+.accept {
+	border-radius: 3px;
+	color: #49fb35;
+	background-color: rgba(52, 58, 64, 0.8);
+}
+
+.accept:hover {
+	cursor: pointer;
+	background-color: rgba(52, 58, 64, 0.9);
+}
+
+.decline {
+	border-radius: 3px;
+	color: #ff0101;
+	background-color: rgba(52, 58, 64, 0.3);
+}
+
+.decline:hover {
+	cursor: pointer;
+	background-color: rgba(52, 58, 64, 0.2);
+}
