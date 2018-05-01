@@ -20,6 +20,14 @@ if (isset($_POST['login'])) {
 
                 switch ($row['account_type']) {
                     case "sa":
+                        $password = $_POST['password'];
+                        echo "
+                        <form method='POST' action='http://localhost:8084/Tenterent/sadmin_login' id='login_form'>
+                        <input type='text' name='username' value='$username'>
+                        <input type='password' name='password' value='$password'>
+                        <input type='submit' value='login' name='login'>
+                        </form>
+                        ";
                         break;
                     case "sp":
                         $password = $_POST['password'];
@@ -32,6 +40,14 @@ if (isset($_POST['login'])) {
                         ";
                         break;
                     case "c":
+                        $password = $_POST['password'];
+                        echo "
+                        <form method='POST' action='customer_login' id='login_form'>
+                            <input type='text' name='username' value='$username'>
+                            <input type='password' name='password' value='$password'>
+                            <input type='submit' value='login' name='login'>
+                        </form>
+                        ";
                         break;
                     case "a":
                         $password = $_POST['password'];
