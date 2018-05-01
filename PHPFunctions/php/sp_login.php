@@ -9,8 +9,7 @@ $password = sha1($_POST['password']);
 $username = mysqli_real_escape_string($conn, $username);
 $password = mysqli_real_escape_string($conn, $password);
 
-$sql = "SELECT * FROM service_provider INNER JOIN accounts
-        ON service_provider.accountid=accounts.account_id
+$sql = "SELECT * FROM service_provider NATURAL JOIN accounts
         WHERE username = '$username';";
 $result = $conn->query($sql);
 
