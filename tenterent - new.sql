@@ -91,7 +91,7 @@ CREATE TABLE `customer` (
   `contact_number` varchar(45) NOT NULL,
   `accepted` tinyint(4) NOT NULL,
   `account_id` int(11) NOT NULL,
-  `account_age` int(11) NOT NULL,
+  `account_birthdate` int(11) NOT NULL,
   `account_gender` enum('M','F') NOT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
@@ -247,4 +247,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-02 13:24:29
+-- Dump completed on 2018-05-02 13:55:04
