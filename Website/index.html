@@ -28,6 +28,10 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="">Home</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="">Rentals</a>
+                </li>
   
                 <li class="nav-item">
                     <a class="nav-link" href="">Contact</a>
@@ -65,13 +69,13 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email Address</label>
-                      <input type="email" class="form-control" id="log_email" placeholder="Enter email">
+                      <label for="user_login">Username</label>
+                      <input type="email" class="form-control" id="user_login" placeholder="Username">
                     </div>
 
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="log_pass" placeholder="Password">
+                      <label for="user_pass">Password</label>
+                      <input type="password" class="form-control" id="user_pass" placeholder="Password">
                     </div>
                 </form>
             </div>
@@ -114,34 +118,46 @@
                             <div class="modal-body">
                                 <div class="form-row">
                                     <div class="col-md-4 mb-3">
-                                        <label for="first_name">First name</label>
-                                        <input name="first_name" type="text" class="form-control" id="first_name" placeholder="First name" required>
+                                        <label for="client_first_name">First name</label>
+                                        <input name="client_first_name" type="text" class="form-control" id="client_first_name" placeholder="First name" required>
                                     </div>
                 
                                     <div class="col-md-4 mb-3">
-                                        <label for="last_name">Last name</label>
-                                        <input name="last_name" type="text" class="form-control" id="last_name" placeholder="Last name" required>
+                                        <label for="client_last_name">Last name</label>
+                                        <input name="client_last_name" type="text" class="form-control" id="client_last_name" placeholder="Last name" required>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="signup_address">Address</label>
-                                        <input name="address" type="text" class="form-control" id="signup_address" placeholder="Address" required>
+                                        <label for="client_address">Address</label>
+                                        <input name="client_address" type="text" class="form-control" id="client_address" placeholder="Address" required>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="signup_email">Email Address</label>
-                                        <input name="email" type="text" class="form-control" id="signup_email" placeholder="Email Address" required>
+                                        <label for="client_email">Email Address</label>
+                                        <input name="client_email" type="text" class="form-control" id="client_email" placeholder="Email Address" required>
+                                    </div>
+
+                                    <div class="col-md-4 mb-3">
+                                        <label for=client_username>Username</label>
+                                        <input name="client_username" type="text" class="form-control" id="client_username" placeholder="Username" required>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="signup_password">Password</label>
-                                        <input name="password" type="password" class="form-control" id="signup_password" placeholder="Password" required>
+                                        <label for="client_pass">Password</label>
+                                        <input name="client_pass" type="password" class="form-control" id="client_pass" placeholder="Password" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="client_contact">Contact number</label>
+                                        <input name="client_contact" type="text" class="form-control" id="client_contact" placeholder="Contact number" required>
                                     </div>
                                 </div>
                             </div>
@@ -153,34 +169,41 @@
                             <div class="modal-body">
                                 <div class="form-row">
                                     <div class="col-md-4 mb-3">
-                                        <label for="first_name">First name</label>
-                                        <input name="first_name" type="text" class="form-control" id="first_name" placeholder="First name" required>
+                                        <label for="service_name">Provider name</label>
+                                        <input name="service_name" type="text" class="form-control" id="service_name" placeholder="Name" required>
                                     </div>
                 
                                     <div class="col-md-4 mb-3">
-                                        <label for="last_name">Last name</label>
-                                        <input name="last_name" type="text" class="form-control" id="last_name" placeholder="Last name" required>
+                                        <label for="service_username">Username</label>
+                                        <input name="service_username" type="text" class="form-control" id="service_username" placeholder="Username" required>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="signup_address">Address</label>
-                                        <input name="address" type="text" class="form-control" id="signup_address" placeholder="Address" required>
+                                        <label for="service_address">Address</label>
+                                        <input name="service_address" type="text" class="form-control" id="service_address" placeholder="Address" required>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="signup_email">Email Address</label>
-                                        <input name="email" type="text" class="form-control" id="signup_email" placeholder="Email Address" required>
+                                        <label for="service_email">Email Address</label>
+                                        <input name="service_email" type="text" class="form-control" id="service_email" placeholder="Email Address" required>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="signup_password">Password</label>
-                                        <input name="password" type="password" class="form-control" id="signup_password" placeholder="Password" required>
+                                        <label for="service_pass">Password</label>
+                                        <input name="service_pass" type="password" class="form-control" id="service_pass" placeholder="Password" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="service_contact">Contact number</label>
+                                        <input name="service_contact" type="text" class="form-control" id="service_contact" placeholder="Contact number" required>
                                     </div>
                                 </div>
                             </div>
@@ -209,22 +232,22 @@
         <div class="carousel-inner">
             <div class="carousel-item active" id="slide_1">
                 <div class="carousel-caption d-none d-md-block">
-                        <h5>...</h5>
-                        <p>...</p>
+                    <h5></h5>
+                    <p></p>
                 </div>
             </div>
 
             <div class="carousel-item" id="slide_2" style="background-position: bottom;">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>...</h5>
-                    <p>...</p>
+                    <h5></h5>
+                    <p></p>
                 </div>
             </div>
 
             <div class="carousel-item" id="slide_3" style="background-position: bottom;">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>...</h5>
-                    <p>...</p>
+                    <h5></h5>
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -246,10 +269,22 @@
         <div class="container">
             <img src="css/img/Logo.png" class="float-left" alt="Website Logo">
             <h1 class="display-4" id="logo_name">TentERent</h1>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="lead">Explore the Earth like nothing else.</p>
         </div>
     </div>
     <!-- Intro -->
 
+    <div class="container">
+        <h1>Most Popular</h1>
+    </div>
+
+    <!-- Footer -->
+    <div class="empty"></div>
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">WebTech 2018 &copy; Saint Louis University</span>
+        </div>
+    </footer>
+    <!-- Footer -->
 </body>
 </html>
