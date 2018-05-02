@@ -44,7 +44,7 @@ body {
 }
 
 .cus-col-sm {
-	margin: 0 5px 0px 5px;
+	margin: 0 10px 0px 10px;
 	border-radius: 3px;
 	background-color: #fff;
 }
@@ -67,3 +67,30 @@ body {
 .sp-item-image {
 	width: inherit;
 }
+
+.cus-row {
+    padding: 10px 0 10px 0;
+}
+
+/*
+#items-add {
+    width: 265px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sp-add-item {
+    color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0);
+    transition: all .2s ease-in-out;
+    font-size: 6em;
+    border: none;
+}
+
+.sp-add-item:hover {
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+*/
