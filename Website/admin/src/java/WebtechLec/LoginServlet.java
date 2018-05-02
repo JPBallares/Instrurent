@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
                     x = 1;
                     break;
                 }else {
-                    response.sendRedirect("index.html");
+                    response.sendRedirect("errorlogin.html");
                 }
             }
             if(rs.getString("account_type").equals("sa") && x == 1){

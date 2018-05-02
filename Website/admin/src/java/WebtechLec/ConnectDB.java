@@ -16,7 +16,7 @@ public class ConnectDB {
     public Connection getConn() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/tenterent", "root", "root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tenterent", "root", "");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
