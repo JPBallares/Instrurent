@@ -65,25 +65,26 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-
+              <form action="php/main_login.php" method="POST">
             <div class="modal-body">
-                <form>
+                
                     <div class="form-group">
                       <label for="user_login">Username</label>
-                      <input type="email" class="form-control" id="user_login" placeholder="Username">
+                      <input name="username" type="text" class="form-control" id="user_login" placeholder="Username">
                     </div>
 
                     <div class="form-group">
                       <label for="user_pass">Password</label>
-                      <input type="password" class="form-control" id="user_pass" placeholder="Password">
+                      <input name="password" type="password" class="form-control" id="user_pass" placeholder="Password">
                     </div>
-                </form>
+                
             </div>
             
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary btn_cc">Login</button>
+              <input name="login" type="submit" class="btn btn-primary btn_cc" value="Login">
             </div>
+                  </form>
           </div>
         </div>
     </div>
@@ -239,7 +240,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary btn_cc">Sign-up</button>
+              <input type="submit" class="btn btn-primary btn_cc" value="Sign-up">
             </div>
           </div>
         </div>
