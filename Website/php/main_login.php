@@ -81,10 +81,11 @@ if (isset($_POST['login'])) {
     } else {
         echo "
             <script>
-                alert('Account doesn't exist.);
+                alert('Account doesn\'t exist.');
                 window.history.back();
             </script>
         ";
+        
     }
 
 } else {

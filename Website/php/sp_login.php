@@ -25,7 +25,7 @@ $result = $conn->query($sql);
                 $_SESSION['account_id'] = $row['account_id'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $row['password'];
-                header('Location: provider.tenterent.com:8081');
+                header('Location: https://provider.tenterent.com:8081');
                 exit;
 
             } else {

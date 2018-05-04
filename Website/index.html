@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="css/img/Logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/validate.css">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -14,7 +15,7 @@
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/popper.min.js"></script>
     <!-- Bootstrap -->
-    
+    <script src="js/ajax.js"></script>
     <script src="js/catchphrase.js"></script>
 </head>
 <body>
@@ -165,28 +166,32 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label for="client_email">Email Address</label>
-                                        <input name="client_email" type="text" class="form-control" id="client_email" placeholder="Email Address" required>
+                                        <input name="client_email" type="text" class="form-control" id="client_email" placeholder="Email Address" onkeyup="showHint('email', this.value, 'emailValidate')" required>
+                                        <div id="emailValidate"></div>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label for="client_address">Address</label>
-                                        <input name="client_address" type="text" class="form-control" id="client_address" placeholder="Address" required>
+                                        <input name="client_address" type="text" class="form-control" id="client_address" placeholder="House No, Street, Barangay, City, Province" onkeyup="showHint('address', this.value, 'addressValidate')" required>
+                                        <div id="addressValidate"></div>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label for="client_pass">Password</label>
-                                        <input name="client_pass" type="password" class="form-control" id="client_pass" placeholder="Password" required>
+                                        <input name="client_pass" type="password" class="form-control" id="client_pass" placeholder="Password" id="client_email" onkeyup="showHint('password', this.value, 'passwordValidate')" required>
+                                        <div id="passwordValidate"></div>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label for="client_contact">Contact number</label>
-                                        <input name="client_contact" type="text" class="form-control" id="client_contact" placeholder="Contact number" required>
+                                        <input name="client_contact" type="text" class="form-control" id="client_contact" placeholder="Contact number" onkeyup="showHint('contact', this.value, 'contactValidate')" required>
+                                        <div id="contactValidate"></div>
                                     </div>
                                 </div>
                             </div>
@@ -216,28 +221,32 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label for="service_address">Address</label>
-                                        <input name="service_address" type="text" class="form-control" id="service_address" placeholder="Address" required>
+                                        <input name="service_address" type="text" class="form-control" id="service_address" placeholder="House No, Street, Barangay, City, Province" onkeyup="showHint('address', this.value, 'addressValidateSP')" required>
+                                        <div id="addressValidateSP"></div>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label for="service_email">Email Address</label>
-                                        <input name="service_email" type="text" class="form-control" id="service_email" placeholder="Email Address" required>
+                                        <input name="service_email" type="text" class="form-control" id="service_email" placeholder="Email Address" onkeyup="showHint('email', this.value, 'emailValidateSP')" required>
+                                        <div id="emailValidateSP"></div>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label for="service_pass">Password</label>
-                                        <input name="service_pass" type="password" class="form-control" id="service_pass" placeholder="Password" required>
+                                        <input name="service_pass" type="password" class="form-control" id="service_pass" placeholder="Password" onkeyup="showHint('password', this.value, 'passwordValidateSP')" required>
+                                        <div id="passwordValidateSP"></div>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label for="service_contact">Contact number</label>
-                                        <input name="service_contact" type="text" class="form-control" id="service_contact" placeholder="Contact number" required>
+                                        <input name="service_contact" type="text" class="form-control" id="service_contact" placeholder="Contact number" onkeyup="showHint('contact', this.value, 'contactValidateSP')" required>
+                                        <div id="contactValidateSP"></div>
                                     </div>
                                 </div>
                             </div>
