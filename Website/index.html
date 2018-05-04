@@ -6,14 +6,16 @@
     <title>TentERent | Home</title>
     <link rel="shortcut icon" href="css/img/Logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/main.css"/>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/popper.min.js"></script>
+    <!-- Bootstrap -->
+    
     <script src="js/catchphrase.js"></script>
-	<!-- Bootstrap -->
 </head>
 <body>
 
@@ -255,7 +257,7 @@
     </div>
     <!-- Sign-up -->
 
-    <!-- Slider -->
+    <!-- Slider
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -296,20 +298,151 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <!-- Slider -->
+    -->
+
+    <!-- Banner -->
+    <div class="jumbotron" id="home_banner">
+        <div class="container">
+            <img src="css/img/Logo.png" alt="Website Logo" style="width: 40%; margin-top: 50px;">
+            <h1 class="display-4">TentERent</h1>
+            <div id="catchphrase"><p class="lead">Explore the Earth like nothing else.</p></div>
+            <hr class="my-4" id="hr_banner">
+            <p>Create your free account now to get started.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#sign_up">Get Started</a>
+        </div>
+    </div>
+    <!-- Banner -->
 
     <!-- Intro -->
     <div class="jumbotron jumbotron-fluid" id="intro">
         <div class="container">
-            <img src="css/img/Logo.png" class="float-left" alt="Website Logo">
-            <h1 class="display-4" id="logo_name">TentERent</h1>
-            <div id="catchphrase"><p class="lead">Explore the Earth like nothing else.</p></div>
+           
         </div>
     </div>
     <!-- Intro -->
 
     <div class="container">
-        <h1>Most Popular</h1>
+        <!-- Slider -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active" id="slide_1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5></h5>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="carousel-item" id="slide_2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5></h5>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="carousel-item" id="slide_3">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5></h5>
+                            <p></p>
+                    </div>
+                </div>
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <br>
+        <br>
+        <!-- Slider -->
+        <h1 class="display-4">Most Popular</h1>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Item:
+                                    <br>Description:
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
+                                    </div>
+                                    <small class="text-muted">Price: </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Item:
+                                    <br>Description:
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
+                                    </div>
+                                    <small class="text-muted">Price: </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Item:
+                                    <br>Description:
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
+                                    </div>
+                                    <small class="text-muted">Price: </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <h1 class="display-4">Categories</h1>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+           
+        </div>
     </div>
 
     <!-- Footer -->
