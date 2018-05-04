@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function showHint(q, str, elementId) {
+            if (str.length == 0) {
+                document.getElementById(elementId).innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById(elementId).innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "validate.php?type=" + q +"&" + q +"=" + str, true);
+                xmlhttp.send();
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <p>
+        <b>Start typing a name in the input field below:</b>
+    </p>
+    <form>
+        Email:
+        <input type="text" onkeyup="showHint('email', this.value, 'emailValidate')">
+        <div id="emailValidate"></div>
+        Contact Number:
+        <input type="text" onkeyup="showHint('contact', this.value, 'contactValidate')">
+        <div id="contactValidate"></div>
+        Password:
+        <input type="text" onkeyup="showHint('password', this.value, 'passwordValidate')">
+        <div id="passwordValidate"></div>
+    </form>
+    
+</body>
+
+</html>
