@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/login.css">
 	<title> Admin </title>
+        
+        
 </head>
     <body>
     <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
@@ -31,7 +33,7 @@
                 <div id="admininfo">
                     <h1 id="header">ADMIN LOGIN</h1>
                     <br>
-                    <form action="LoginServlet">
+                    <form method="POST" action="LoginServlet" onsubmit="return test();" name="sample">
                         <label for="defaultFormLoginEmailEx" class="grey-text">Username</label>
                         <input type="text" id="defaultFormLoginEmailEx" class="form-control" placeholder="Username" name="username">
                         <br>
@@ -45,4 +47,22 @@
         </div>
     </div>
     </body>
+    <script type="text/javascript">
+        function test(){
+            var uname=sample.username.value;
+            var pass=sample.password.value;
+            if(uname.length===0 && pass.length===0){
+                alert("Enter username and password");
+                return false;
+            }
+            else if(uname.length===0){
+                alert("Enter username");
+                return false;
+            }else if(pass.length===0){
+                alert("Enter password");
+                return false;
+            }
+    }
+    </script>
+    
 </html>

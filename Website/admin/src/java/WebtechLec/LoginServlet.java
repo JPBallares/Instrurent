@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -56,7 +57,10 @@ public class LoginServlet extends HttpServlet {
                     x = 1;
                     break;
                 }else {
-                    response.sendRedirect("errorlogin.html");
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Username or password is incorrect!');");
+                    out.println("location='index.html';");
+                    out.println("</script>");
                 }
             }
             if(rs.getString("account_type").equals("sa") && x == 1){
