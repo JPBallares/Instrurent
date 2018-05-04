@@ -4,22 +4,22 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>TentERent | Rentals</title>
-    <link rel="shortcut icon" href="css/img/Logo.png">
+    <link rel="shortcut icon" href="../css/img/Logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-	<script src="js/popper.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+	<script src="../js/popper.min.js"></script>
     <!-- Bootstrap -->
 </head>
 <body>
 
     <!-- Navbar -->
     <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
-        <a class="navbar-brand" href="#"><img src="css/img/Logo.png" class="logo_s">TentERent</a>
+        <a class="navbar-brand" href="#"><img src="../css/img/Logo.png" class="logo_s">TentERent</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,11 +27,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="../index.html">Home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="rentals.html">Rentals</a>
+                    <a class="nav-link" href="../rentals.html">Rentals</a>
                 </li>
   
                 <li class="nav-item">
@@ -66,7 +66,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-              <form action="php/main_login.php" method="POST">
+              <form action="../php/main_login.php" method="POST">
             <div class="modal-body">
                 
                     <div class="form-group">
@@ -255,156 +255,27 @@
     </div>
     <!-- Sign-up -->
 
-    <!-- Banner -->
-    <div class="jumbotron" id="rental_banner">
+    <section id="view_rental">
         <div class="container">
-            <h1 class="display-2">Rentals</h1>
-        </div>
-    </div>
-    <!-- Banner -->
-    
-    <div class="container">
-        <h1 class="display-4">Categories</h1>
-        <div class="jumbotron">
-            
-        </div>
-        <br>
-        <br>
-    </div>
+            <div class="jumbotron" id="view">
+                <section id="item">
+                    <div id="item_img"></div>
+                </section>
 
-    <div class="container-fluid" id="rentals_content">
-        <div id="rentals_side_nav">
-            <h2 class="display-4">Sort By: </h2>
-            <hr class="my-4">
-            <h5>Price</h5>
-            <hr class="my-4">
-            <h5>Rating</h5>
-            <hr class="my-4">
-        </div>
-    
-        <section id="rentals_main_content">
-            <div class="container-fluid">
-                <div class="row">
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Item:
-                                    <br>Description:
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <a role="button" class="btn btn-sm btn-outline-secondary" href="rentals/view_rental.html">View</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
-                                    </div>
-                                    <small class="text-muted">Price: </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Item:
-                                    <br>Description:
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <a role="button" class="btn btn-sm btn-outline-secondary" href="rentals/view_rental.html">View</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
-                                    </div>
-                                    <small class="text-muted">Price: </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Item:
-                                    <br>Description:
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <a role="button" class="btn btn-sm btn-outline-secondary" href="rentals/view_rental.html">View</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
-                                    </div>
-                                    <small class="text-muted">Price: </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Item:
-                                    <br>Description:
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <a role="button" class="btn btn-sm btn-outline-secondary" href="rentals/view_rental.html">View</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
-                                    </div>
-                                    <small class="text-muted">Price: </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Item:
-                                    <br>Description:
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <a role="button" class="btn btn-sm btn-outline-secondary" href="rentals/view_rental.html">View</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
-                                    </div>
-                                    <small class="text-muted">Price: </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Item:
-                                    <br>Description:
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                    <a role="button" class="btn btn-sm btn-outline-secondary" href="rentals/view_rental.html">View</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
-                                    </div>
-                                    <small class="text-muted">Price: </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                <section id="description">
+                    <h1 class="display-4">Item: </h1>
+                    <hr class="my-4">
+                    <h1 class="display-4">Description: </h1>
+                </section>
             </div>
-        </section>
-    </div>
+            <br>
+            <br>
+            <div id="item_details">
+                <h1 class="display-4">Details: </h1>
+            </div>
+        </div>
+        
+    </section>    
 
     <!-- Footer -->
     <div class="empty"></div>
