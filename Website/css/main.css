@@ -145,6 +145,10 @@ body {
     width: 80%;
     height: 100vh;
 }
+
+#rentals_side_nav h2 {
+    font-size: 30px !important;
+}
 /* Rental Page */
 /* Main Content */
 
