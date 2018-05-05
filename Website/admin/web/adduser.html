@@ -1,18 +1,82 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="css/img/Logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/popper.min.js"></script>
+    <link rel="stylesheet" href="css/profile.css">
+	<title> Admin </title>
+</head>
     <body>
-        <div>TODO write content
-        Form para sa add user ng admin (username, password, email, admin name, admin contact)
+    <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
+        <a class="navbar-brand" href="#"><img src="css/img/Logo.png" class="logo_s">TentERent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="HomeServlet">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="adduser.html">Add User</a>
+                </li>
+                
+            </ul>
+
+            <ul class="navbar-nav" id="login_and_sign_up">
+                <li class="nav-item">
+                    <form method="post" action="LogoutServlet">
+                        <button>Logout</button>
+                    </form>
+                </li>
+            </ul>
         </div>
+    </nav>
+     <div class="content main">
+        <div id="heading">
+            <div id="admininfo">
+            <h1 id="header">Add User</h1>
+            <br>
+                <form action="">
+                    <label for="defaultFormLoginEmailEx" class="grey-text">First Name</label>
+                    <input type="text" id="defaultFormLoginEmailEx" required class="form-control" placeholder="iquery yung name firstname ng admin sa database">
+                    <br>
+                    <label for="defaultFormLoginPasswordEx" class="grey-text">Last Name</label>
+                    <input type="text" id="defaultFormLoginPasswordEx" required class="form-control" placeholder="iquery yung name lastname ng admin sa database">
+                    <br>
+                    <label for="defaultFormLoginPasswordEx" class="grey-text">Contact</label>
+                    <input type="tel" id="defaultFormLoginPasswordEx" required class="form-control"  required pattern="^[+ 0-9]{3}-\d{10}$" placeholder="+XX-XXXXXXXXXX">
+                    <br>
+                    <label for="defaultFormLoginPasswordEx" class="grey-text">Username</label>
+                    <input type="text" id="defaultFormLoginPasswordEx" required class="form-control" placeholder="dito rin pero username">
+                    <br>
+                    <label for="defaultFormLoginPasswordEx" class="grey-text">Email</label>
+                    <input type="email" id="defaultFormLoginPasswordEx" required class="form-control" placeholder="dito rin pero yung email">
+                    <br>
+                    <label for="defaultFormLoginPasswordEx" class="grey-text">Set Password</label>
+                    <input type="text" id="defaultFormLoginPasswordEx" required class="form-control" placeholder="dito rin pero yung password">
+                    <br>
+                    
+                    <div class="text-center mt-4">
+                        <button class="btn btn-indigo" type="submit">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     </body>
+        
 </html>
