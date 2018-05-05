@@ -1,0 +1,216 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.logo_s {
+    height: 40px;
+    padding-right: 5px;
+}
+
+#hr_banner {
+    display: block !important;
+    height: 1px !important;
+    border: 0 !important;
+    border-top: 1px solid #ccc !important;
+    margin: 1em 0 !important;
+    padding: 0 !important; 
+}
+
+/* Fonts */
+@font-face {
+    font-family: 'nature';
+    src: url(../fonts/nature.ttf);
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url(../fonts/roboto.ttf);
+}
+/* Fonts */
+
+/* Navbar */
+.navbar-brand {
+    font-family: nature;
+    padding-left: 30px;
+    padding-right: 50px;
+}
+
+#login_and_sign_up {
+    padding-right: 30px;
+}
+/* Navbar */
+
+/* Slider */
+.carousel-item {
+    height: 60vh;
+}
+
+#slide_1 {
+    background-image: url(../img/slider_1.png);
+}
+
+#slide_2 {
+    background-image: url(../img/slider_2.png);
+}
+
+#slide_3 {
+    background-image: url(../img/slider_3.png);
+}
+
+#slide_1, #slide_2, #slide_3 {
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+/* Slider */
+
+
+/* Forms */
+.btn_cc {
+    background-color: rgb(158, 6, 57) !important;
+    border-color: rgb(158, 6, 57) !important;
+}
+
+.btn_cc:hover {
+    background-color: rgb(206, 8, 74) !important;
+}
+
+#sign_up_nav {
+    margin-left: 20px;
+}
+/* Forms */
+
+/* Banner */
+#home_banner {
+    margin-bottom: 0px;
+    text-align: center;
+    background-image: url(../img/slider_1.png);
+    color: #fff;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+#home_banner h1 {
+    font-family: nature;
+    font-size: 110px;
+    margin-top: 20px;
+}
+
+#catchphrase p {
+    font-size: 30px;
+}
+
+#rental_banner {
+    background-color: rgb(158, 6, 57) !important;
+    color: white;
+}
+
+#rental_banner h1 {
+    margin-top: 30px;
+}
+/* Banner */
+
+/* Main Content */
+/* Home Page */
+.box-shadow { 
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+}
+
+.items_small_pic {
+    background-color: rgb(56, 56, 56);
+    height: 200px;
+}
+/* Home Page */
+
+/* Rental Page */
+#rentals_content {
+    padding: 0 13% 0 13%;
+}
+
+#rentals_side_nav {
+    float: left;
+    width: 24%;
+    height: 100vh;
+    padding: 1%;
+}
+
+#rentals_main_content {
+    float: left;
+    width: 76%;
+}
+
+#rentals_side_nav h2 {
+    font-size: 30px !important;
+}
+
+#view_rental {
+    padding: 8% 0 8% 0;
+}
+
+#view {
+    padding: 1%;
+    background-color: #fff;
+}
+
+#view hr {
+    display: block !important;
+    height: 1px !important;
+    border: 0 !important;
+    border-top: 1px solid #ccc !important;
+    margin: 1em 0 !important;
+    padding: 0 !important; 
+}
+
+#item {
+    float: left;
+    width: 60%;
+}
+
+#item_img {
+    width: 100%;
+    height: 400px;
+    background-color: rgb(51, 51, 51);
+}
+
+#item_details {
+    clear: both;
+    padding-top: 30px;
+}
+
+#description {
+    float: left;
+    width: 32%;
+    margin: 2%;
+    background-color: rgb(158, 6, 57);
+    margin-top: -1px;
+    color: white;
+    padding: 2%;
+}
+
+#description h1 {
+    font-size: 25px;
+}
+/* Rental Page */
+/* Main Content */
+
+/* Footer */
+.empty{
+    height: 10vh;
+    clear: both;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
+/* Footer */
