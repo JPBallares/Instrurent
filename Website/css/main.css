@@ -191,6 +191,7 @@ body {
     margin-top: -1px;
     color: white;
     padding: 2%;
+    border-radius: 5px;
 }
 
 #description h1 {

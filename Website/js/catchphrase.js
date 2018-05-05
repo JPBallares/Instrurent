@@ -9,8 +9,6 @@ var sp_qoutes = [
 var sp_quotes_index = Math.floor(Math.random() * 5); 
 
 
-function random_sp_qoutes() {
+window.onload = function () {
 	document.getElementById("catchphrase").innerHTML = sp_qoutes[sp_quotes_index];
 }
-
-window.onload = random_sp_quotes;
