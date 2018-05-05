@@ -1,0 +1,4 @@
+tomcat 8080 admin.tenterent.com
+node 8081 www.tenterent.com
+wamp 8082 provider.tenterent.com
+
