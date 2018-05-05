@@ -34,6 +34,15 @@ switch ($type) {
         } else {
             echo "<span class='valid'>That looks good</span>";
         }   
+    case "confirm":
+        $confirmPass = $_REQUEST["confirmPass"];
+        $password = $_REQUEST["password"];
+        if ($password === $confirmPass){
+            echo "<span class='invalid'>Password doesn't match.</span>";
+        } else {
+            echo "<span class='valid'>That looks good</span>";
+        }
+        break;
 
         
 }
