@@ -15,6 +15,7 @@ function showHint(q, str, elementId) {
 }
 
 function confirmPass(q, str, passElementId, elementId){
+    var pass = document.getElementById(passElementId).value;
     if (str.length == 0) {
         document.getElementById(elementId).innerHTML = "";
         return;
@@ -25,6 +26,7 @@ function confirmPass(q, str, passElementId, elementId){
                 document.getElementById(elementId).innerHTML = this.responseText;
             }
         };
+        console.log("php/validate.php?type=" + q + "&" + q + "=" + str + "&password=" + pass);
         xmlhttp.open("GET", "php/validate.php?type=" + q + "&" + q + "=" + str + "&password=" + pass, true);
         xmlhttp.send();
     }

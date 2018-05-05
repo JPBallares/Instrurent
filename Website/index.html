@@ -182,8 +182,16 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
                                         <label for="client_pass">Password</label>
-                                        <input name="client_pass" type="password" class="form-control" id="client_pass" placeholder="Password" id="client_email" onkeyup="showHint('password', this.value, 'passwordValidate')" required>
+                                        <input name="client_pass" type="password" class="form-control" placeholder="Password" id="client_password" onkeyup="showHint('password', this.value, 'passwordValidate')" required>
                                         <div id="passwordValidate"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="client_confirm_pass">Confirm Password</label>
+                                        <input name="client_confirm_pass" type="password" class="form-control" placeholder="Password" id="client_confirm_password" onkeyup="confirmPass('confirm', this.value, 'client_password', 'confirmPass')" required>
+                                        <div id="confirmPass"></div>
                                     </div>
                                 </div>
 
@@ -239,6 +247,14 @@
                                         <label for="service_pass">Password</label>
                                         <input name="service_pass" type="password" class="form-control" id="service_pass" placeholder="Password" onkeyup="showHint('password', this.value, 'passwordValidateSP')" required>
                                         <div id="passwordValidateSP"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="service_pass">Confirm Password</label>
+                                        <input name="service_pass" type="password" class="form-control" id="service_confirm_pass" placeholder="Password" onkeyup="confirmPass('confirm', this.value, 'service_pass','confirmPassSP')" required>
+                                        <div id="confirmPassSP"></div>
                                     </div>
                                 </div>
 
