@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -46,25 +45,22 @@ public class LoginServlet extends HttpServlet {
             String uPass = request.getParameter("password");
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
-            byte x = 0;
+            String username = request.getParameter("username");
             HttpSession session = request.getSession();
-            String stmt = "select * from accounts where account_type='sa';";
+            session.setAttribute("username", username);
+            byte x = 0;
+            String stmt = "select * from accounts where account_type='sa' or account_type='a';";
             PreparedStatement ps = conn.prepareStatement(stmt);
             ResultSet rs = ps.executeQuery();
+            String acc_type1="sa";
+            String acc_type2="a";
+            String a = "";
             while(rs.next()){
-                if(uName.equals(rs.getString("username")) && uPass.equals(rs.getString("password"))){
-                    session.setAttribute("uName", uName);
-                    x = 1;
-                    break;
-                }else {
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Username or password is incorrect!');");
-                    out.println("location='index.html';");
-                    out.println("</script>");
+                if(uName.equals(rs.getString("username")) && uPass.equals(rs.getString("password")) && acc_type1.equals(rs.getString("account_type"))){
+                    response.sendRedirect("SAHomeServlet");
+                }else if(uName.equals(rs.getString("username")) && uPass.equals(rs.getString("password")) && acc_type2.equals(rs.getString("account_type"))){
+                    response.sendRedirect("AHomeServlet");
                 }
-            }
-            if(rs.getString("account_type").equals("sa") && x == 1){
-                response.sendRedirect("HomeServlet");
             }
             //if(rs.getString("user_type").equals("Admin")){
             //    response.sendRedirect("home.html");
