@@ -33,10 +33,18 @@ public class SAHomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
-            rd.include(request, response);
+            HttpSession session = request.getSession(false);
+            if(session != null){
+                RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
+                rd.include(request, response);
+            }else{
+                response.sendRedirect("index.html");               
+            }
         }
     }
 

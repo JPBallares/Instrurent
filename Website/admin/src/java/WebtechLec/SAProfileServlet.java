@@ -28,36 +28,42 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "SAProfileServlet", urlPatterns = {"/SAProfileServlet"})
 public class SAProfileServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        String username = session.getAttribute("username").toString();
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAprofileheader.html");
-        rd.include(request, response);
-        rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAprofilefooter.html");
-        rd.include(request, response);
-        try (PrintWriter out = response.getWriter()) {
-            ConnectDB db = new ConnectDB();
-            Connection conn = db.getConn();
-            String stmt1 = "select username, email from accounts where username="+username+";";
-            String stmt2 = "select admin_name, admin_contact from admin inner join accounts on admin.account_id = accounts.account_id where accounts.username="+username+";";
-            PreparedStatement ps1 = conn.prepareStatement(stmt1);
-            ResultSet rs1 = ps1.executeQuery();
-            PreparedStatement ps2 = conn.prepareStatement(stmt2);
-            ResultSet rs2 = ps2.executeQuery();
-            out.println("<h1>asd</h1");
-            
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.
+        HttpSession session = request.getSession(false);
+        if(session == null){
+            response.sendRedirect("index.html");  
+        }else{
+            try (PrintWriter out = response.getWriter()) {
+                response.setContentType("text/html;charset=UTF-8");
+                String username = session.getAttribute("username").toString();
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAprofileheader.html");
+                rd.include(request, response);
+                ConnectDB db = new ConnectDB();
+                Connection conn = db.getConn();
+                String stmt1 = "select username, email from accounts where username='"+username+"';";
+                String stmt2 = "select admin_name, admin_contact from admin inner join accounts on admin.account_id = accounts.account_id where accounts.username='"+username+"';";
+                PreparedStatement ps1 = conn.prepareStatement(stmt1);
+                PreparedStatement ps2 = conn.prepareStatement(stmt2);
+                ResultSet rs1 = ps1.executeQuery();
+                ResultSet rs2 = ps2.executeQuery();
+                while(rs1.next()){
+                    out.println("<h3>Username:&nbsp;&nbsp;&nbsp;"+rs1.getString("username")+"</h3>");
+                    out.println("<h3>Email:&nbsp;&nbsp;&nbsp;"+rs1.getString("email")+"</h3>");
+                }
+                while(rs2.next()){
+                    out.println("<h3>Admin Name:&nbsp;&nbsp;&nbsp;"+rs2.getString("admin_name")+"</h3>");
+                    out.println("<h3>Contact:&nbsp;&nbsp;&nbsp;"+rs2.getString("admin_contact")+"</h3>");                  
+                }
+
+                rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAprofilefooter.html");
+                rd.include(request, response);
         }
+        
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

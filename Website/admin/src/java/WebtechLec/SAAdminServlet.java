@@ -20,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,12 +31,19 @@ public class SAAdminServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.
         response.setContentType("text/html;charset=UTF-8");
         String clients = request.getParameter("clients");
         String sp = request.getParameter("sp");
         String optionV = request.getParameter("usertype");
         response.setContentType("text/html");
         try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession(false);
+            if(session == null){
+                response.sendRedirect("index.html");  
+            }else {
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAheader.html");
@@ -200,6 +208,7 @@ public class SAAdminServlet extends HttpServlet {
             }
             rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAfooter.html");
             rd.include(request, response);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(SAAdminServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

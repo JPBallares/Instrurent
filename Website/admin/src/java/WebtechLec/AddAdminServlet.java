@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,8 +39,14 @@ public class AddAdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.
         response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(false);
+        if(session == null){
+            response.sendRedirect("index.html");
+        }else{
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
@@ -47,27 +54,31 @@ public class AddAdminServlet extends HttpServlet {
         String name = request.getParameter("name");
         String contact = request.getParameter("contact");
         response.setContentType("text/html");
-        String stmt;
+        String stmt1;
         String stmt2;
+        String stmt3;
         try (PrintWriter out = response.getWriter()) {
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/header.html");
-            rd.include(request, response);
-            
-            stmt = "INSERT INTO accounts(email, username, password, account_type) VALUES ('"+email+"','"+username+"','"+password+"','"+acc_type+"')";
-            stmt2 = "INSERT INTO admin(admin_name, admin_contact) values ('"+name+"', '"+contact+"')";
-            PreparedStatement p = conn.prepareStatement(stmt);
+            stmt1 = "INSERT INTO accounts(email, username, password, account_type) VALUES ('"+email+"','"+username+"','"+password+"','"+acc_type+"');";
+            PreparedStatement p1 = conn.prepareStatement(stmt1);
+            p1.executeUpdate(stmt1);
+            stmt2 = "SELECT account_id from accounts order by account_id desc limit 1";
             PreparedStatement p2 = conn.prepareStatement(stmt2);
-            p.executeUpdate(stmt);
-            p2.executeUpdate(stmt2);
-            conn.close();
-            rd = request.getRequestDispatcher("/WEB-INF/pagefragments/footer.html");
-            rd.include(request, response);
+            ResultSet rs = p2.executeQuery();
+            
+            String aId = null;
+            while(rs.next()){
+                aId = rs.getString("account_id");
+            }
+            stmt3 = "INSERT INTO admin(admin_name, admin_contact, account_id) values ('"+name+"', '"+contact+"', '"+aId+"')";
+            PreparedStatement p3 = conn.prepareStatement(stmt3);
+            p3.executeUpdate(stmt3);
+            response.sendRedirect("successfulAddAdmin.html");
         } catch (SQLException ex) {
             Logger.getLogger(SAAdminServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
