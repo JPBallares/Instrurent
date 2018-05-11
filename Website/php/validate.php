@@ -13,8 +13,8 @@ switch ($type) {
         break;
     case "contact":
         $contact_number = $_REQUEST["contact"];
-        if (!preg_match("/^\+639[0-9]{9}$|^09[0-9]{9}$/", $contact_number)) {
-            echo "<span class='invalid'>Invalid Contact Number, should be 09XXXXXXXXX or +63XXXXXXXXXX</span>";
+        if (!preg_match("/^09[0-9]{9}$/", $contact_number)) {
+            echo "<span class='invalid'>Invalid Contact Number, should be 09XXXXXXXXX</span>";
         } else {
             echo "<span class='valid'>That looks good</span>";
         }
@@ -34,6 +34,7 @@ switch ($type) {
         } else {
             echo "<span class='valid'>That looks good</span>";
         }   
+        break;
     case "confirm":
         $confirm = $_REQUEST["confirm"];
         $password = $_REQUEST["password"];

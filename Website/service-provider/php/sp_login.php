@@ -17,7 +17,7 @@ $result = $conn->query($sql);
         // output data of each row
         while ($row = $result->fetch_assoc()) {
             if ($row['password'] == $password) {
-                $_SESSION['client_loggedin'] = true;
+                $_SESSION['provider_loggedin'] = true;
                 $_SESSION['provider_id'] = $row['provider_id'];
                 $_SESSION['name'] = $row['provider_name'];
                 $_SESSION['contact'] = $row['provider_contact'];
