@@ -2,7 +2,6 @@
 	$con_db = new mysqli("localhost", "root", "", "tenterent");
 	$sql = "select item_name, price, renting_fee, stock, item_image from items";
 	$res = $con_db->query($sql);
-    $counter = 0;
 
 	if($res->num_rows > 0) {
 		while($row = $res->fetch_assoc()) {
