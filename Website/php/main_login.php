@@ -32,7 +32,7 @@ if (isset($_POST['login'])) {
                     case "sp":
                         $password = $_POST['password'];
                         echo "
-                        <form method='POST' action='sp_login.php' id='login_form'>
+                        <form method='POST' action='http://provider.tenterent.com:8082/php/sp_login.php' id='login_form'>
                             <input type='text' name='username' value='$username'>
                             <input type='password' name='password' value='$password'>
                             <input type='submit' value='login' name='login'>
