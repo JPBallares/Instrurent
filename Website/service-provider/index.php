@@ -115,52 +115,72 @@
 		</div>
 	</div>
 	
-	<!--
-<img class="sp-item-image" src="images/item-1.jpg">
-<div class="sp-item-info">
-	
-</div>
-	-->
-	
-	<div class="container sp-items">
+<div class="container sp-items">
 		<h3 class="sp-items-header">Items Owned</h3>
-		<div class="row cus-row">
-			<div class="col-sm cus-col-sm">
-			 	<img class="sp-item-image" src="images/item-1.png">
-				<div class="sp-item-info">
-					<p>Name: </p>
-					<p>Price: </p>
-					<p>Renting Fee: </p>
-					<p>Stock: </p>
-				</div>
-			</div>
-			<div class="col-sm cus-col-sm">
-			  <img class="sp-item-image" src="images/item-1.png">
-				<div class="sp-item-info">
-					<p>Name: </p>
-					<p>Price: </p>
-					<p>Renting Fee: </p>
-					<p>Stock: </p>
-				</div>
-			</div>
-			<div class="col-sm cus-col-sm">
-			  <img class="sp-item-image" src="images/item-1.png">
-				<div class="sp-item-info">
-					<p>Name: </p>
-					<p>Price: </p>
-					<p>Renting Fee: </p>
-					<p>Stock: </p>
-				</div>
-			</div>
-			<div class="col-sm cus-col-sm">
-			  <img class="sp-item-image" src="images/item-1.png">
-				<div class="sp-item-info">
-					<p>Name: </p>
-					<p>Price: </p>
-					<p>Renting Fee: </p>
-					<p>Stock: </p>
-				</div>
-			</div>
+		<div class="cus-row">
+			<div class="card cus-card" style="width: 300px; height: 350px;">
+            <img class="card-img-top" src="img/slider_1.png" alt="Card image cap" style="width: 300px; height: 150px;">
+                <div class="card-body">
+                    <h5 class="card-title">Name</h5>
+                    <p class="card-text">Price: </p>
+                    <p class="card-text">Renting Fee: </p>
+                    <p class="card-text">Stock: </p>
+                </div>
+            </div>
+            
+            <?php include 'query-owned-items.php'; ?>
+            
+            <div class="card cus-card add-card" style="width: 300px; height: 350px;">
+                <div class="card-body add-item">
+                    <a class="btn btn-primary btn-lg btn_cc" href="#" role="button" data-toggle="modal" data-target="#add-item-modal"><i class="fa fa-plus"></i></a>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="add-item-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add New Item</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="POST">
+                                <div class="form-group">
+                                    <label for="item-name">Name</label>
+                                    <input name="item-name" type="text" class="form-control" id="item_name" placeholder="Item Name">
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="item-price">Price</label>
+                                    <input name="item-price" type="text" class="form-control" id="item_price" placeholder="Item Price">
+                                </div>
+                                <div class="form-group">
+                                    <label for="item-fee">Renting Fee</label>
+                                    <input name="item-fee" type="text" class="form-control" id="item_fee" placeholder="Item Fee">
+                                </div>
+                                <div class="form-group">
+                                    <label for="item-quantity">Quantity</label>
+                                    <input name="item-quantity" type="text" class="form-control" id="item_quantity" placeholder="Item Quantity">
+                                </div>
+                                <div class="form-group">
+                                    <label for="item-type">Type</label>
+                                    <select>
+                                        <option value="">1</option>
+                                        <option value="">...</option>
+                                        <option value="">15</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary sp-btn btn_cc">Add Item</button>
+                            <button type="button" class="btn btn-secondary sp-btn" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 	
