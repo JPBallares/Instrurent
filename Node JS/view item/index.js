@@ -7,7 +7,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 var connection = mysql.createConnection({
     host: 'localhost',
-    port: 3308,
+    port: 3306,
     user: 'root',
     password: '',
     database: 'tenterent'
@@ -26,15 +26,21 @@ app.post('/item', urlencodedParser, function (req, res) {
     'use strict';
     var item_id = "'" + req.body.id + "'",
         html = '',
-        sql = 'SELECT item_name, price, renting_fee, stock, type_name, provider_name, provider_contact, provider_address FROM items natural join item_type natural join service_provider where item_id = ' + item_id;
+        sql = 'SELECT item_name, price, renting_fee, stock, type_name, provider_name, provider_contact, provider_address, item_image FROM items natural join item_type natural join service_provider where item_id = ' + item_id;
     connection.query(sql, function (err, result, field) {
         if (err) {
             throw err;
         }
         
         Object.keys(result).forEach(function (key) {
-            var row = result[key];
-            html += row.item_name + "<br>" + row.price + "<br>" + row.renting_fee + "<br> " + row.stock + "<br> " + row.type_name + "<br>" + row.provider_name + "<br>" + row.provider_contact + "<br>" + row.provider_address;
+			var row = result[key];
+			var blob = new Blob()
+            var buffer = new Buffer(row.item_image,'binary');
+			var image = buffer.toString('base64');
+			html += "<body>";
+			html += row.item_name + "<br>" + row.price + "<br>" + row.renting_fee + "<br> " + row.stock + "<br> " + row.type_name + "<br>" + row.provider_name + "<br>" + row.provider_contact + "<br>" + row.provider_address + " <br>";
+			html += "<img src={'data:image/;'" + image +"}";
+			html += "</body>";
             res.send(html);
         });
     });
