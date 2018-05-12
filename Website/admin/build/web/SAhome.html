@@ -11,7 +11,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/popper.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
-	<title> Title </title>
+	<title> Super Admin </title>
 </head>
     <body>
     <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
@@ -29,7 +29,7 @@
                     <a class="nav-link" href="SAProfileServlet">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="adduser.html">Add Admin</a>
+                    <a class="nav-link" href="AddAdminRedirectServlet">Add Admin</a>
                 </li>
             </ul>
             <ul class="navbar-nav" id="login_and_sign_up">
@@ -50,7 +50,7 @@
                     <form action="SAAdminServlet" method="post">
                         <select  class="form-control" id="exampleFormControlSelect1" name="usertype">
                             <option value="" disabled selected id="placeholder">Choose user type...</option>
-                            <optgroup label="Accounts">
+                            <optgroup label="Account Information">
                                 <option value="All Accounts" name="all">All Accounts</option>
                                 <option value="Customers" name="customers">Customers</option>
                                 <option value="Admins" name="admin">Admins</option>
@@ -61,6 +61,13 @@
                                 <option value="UAdmins" name="admin">Admins</option>
                                 <option value="UService Provider" name="service provider">Service Providers</option>
                             </optgroup>
+                            <optgroup label="Pending Accounts">
+                                <option value="Customers2" name="customers2">Customers</option>
+                                <option value="Service Provider2" name="service provider2">Service Provider</option>
+                            </optgroup>
+                            <optgroup label="Client-Service Provider Transaction">
+                                <option value="Transaction" name="customers">Transaction</option>
+                            </optgroup>  
                         </select>
                         <button>Search</button>
                     </form>

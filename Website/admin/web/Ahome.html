@@ -47,7 +47,7 @@
                     <form action="AAdminServlet" method="post">
                         <select  class="form-control" id="exampleFormControlSelect1" name="usertype">
                             <option value="" disabled selected id="placeholder">Choose user type...</option>
-                            <optgroup label="Accounts">
+                            <optgroup label="Account Information">
                                 <option value="All Accounts" name="all">All Accounts</option>
                                 <option value="Customers" name="customers">Customers</option>
                                 <option value="Admins" name="admin">Admins</option>
@@ -58,6 +58,13 @@
                                 <option value="UAdmins" name="admin">Admins</option>
                                 <option value="UService Provider" name="service provider">Service Providers</option>
                             </optgroup>
+                            <optgroup label="Pending Accounts">
+                                <option value="Customers2" name="customers2">Customers</option>
+                                <option value="Service Provider2" name="service provider2">Service Provider</option>
+                            </optgroup>
+                            <optgroup label="Client-Service Provider Transaction">
+                                <option value="Transaction" name="customers">Transaction</option>
+                            </optgroup> 
                         </select>
                         <button>Search</button>
                     </form>

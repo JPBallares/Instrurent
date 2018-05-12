@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,7 +52,6 @@ public class LoginServlet extends HttpServlet {
             String username = request.getParameter("username");
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
-            byte x = 0;
             String stmt = "select * from accounts where account_type='sa' or account_type='a';";
             PreparedStatement ps = conn.prepareStatement(stmt);
             ResultSet rs = ps.executeQuery();
@@ -65,9 +65,11 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("AHomeServlet");
                 }
             }
-            //if(rs.getString("user_type").equals("Admin")){
-            //    response.sendRedirect("home.html");
-            //}
+            out.println("<script type=\"text/javascript\">");  
+            out.println("alert('Incorrent Username or password.');");  
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/loginheader.html");
+            rd.include(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

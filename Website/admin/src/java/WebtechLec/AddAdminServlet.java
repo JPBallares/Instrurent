@@ -60,7 +60,7 @@ public class AddAdminServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
-            stmt1 = "INSERT INTO accounts(email, username, password, account_type) VALUES ('"+email+"','"+username+"','"+password+"','"+acc_type+"');";
+            stmt1 = "INSERT INTO accounts(email, username, password, account_type, ar_status, ed_status) VALUES ('"+email+"','"+username+"','"+password+"','"+acc_type+"', 'Pending','Enabled');";
             PreparedStatement p1 = conn.prepareStatement(stmt1);
             p1.executeUpdate(stmt1);
             stmt2 = "SELECT account_id from accounts order by account_id desc limit 1";

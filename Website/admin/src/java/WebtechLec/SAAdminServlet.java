@@ -51,7 +51,7 @@ public class SAAdminServlet extends HttpServlet {
             String stmt;
             if (optionV.equals("All Accounts")) {
                 out.println("<h1>All Accounts List</h1><br>");
-                stmt = "select username, password, email, account_type from accounts;";
+                stmt = "select username, password, email, account_type, ar_status, ed_status from accounts;";
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
                 String table = "    <table>"
@@ -60,15 +60,19 @@ public class SAAdminServlet extends HttpServlet {
                         + "         <th>Password</th>"
                         + "         <th>Email</th>"
                         + "         <th>AccountType</th>"
+                        + "         <th>Accept/Reject Status </th>"
+                        + "         <th>Account Status</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
-                    out.println("           <tr>");
-                    out.println("               <td>"+rs.getString("username")+"</td>");
-                    out.println("               <td>"+rs.getString("password")+"</td>");
-                    out.println("               <td>"+rs.getString("email")+"</td>");
-                    out.println("               <td>"+rs.getString("account_type")+"</td>");
-                    out.println("           </tr>");
+                        out.println("           <tr>");
+                        out.println("               <td>"+rs.getString("username")+"</td>");
+                        out.println("               <td>"+rs.getString("password")+"</td>");
+                        out.println("               <td>"+rs.getString("email")+"</td>");
+                        out.println("               <td>"+rs.getString("account_type")+"</td>");
+                        out.println("               <td>"+rs.getString("ar_status")+"</td>");
+                        out.println("               <td>"+rs.getString("ed_status")+"<form method=\"post\" action=\"\"><button>Enable</button></form><form><button>Disable</button></form></td>");
+                        out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("Customers")) {
@@ -203,6 +207,81 @@ public class SAAdminServlet extends HttpServlet {
                     out.println("               <td>"+rs.getString("provider_address")+"</td>");
                     out.println("               <td>"+rs.getString("account_id")+"</td>");
                     out.println("           </tr>");
+                }
+                out.println("   </table>");
+            }else if(optionV.equals("Customers2")){
+                stmt = "select username, password, email, account_type, ar_status, ed_status from accounts where ar_status='Pending' and account_type='c';";
+                out.println("<h1>Pending Customer Accounts</h1><br>");
+                PreparedStatement ps = conn.prepareStatement(stmt);
+                ResultSet rs = ps.executeQuery();
+                String table = "    <table>"
+                        + "     <tr>"
+                        + "         <th>Username</th>"
+                        + "         <th>Password</th>"
+                        + "         <th>Email</th>"
+                        + "         <th>AccountType</th>"
+                        + "         <th>Accept/Reject Status </th>"
+                        + "     </tr>";
+                out.println(table);
+                while(rs.next()){
+                        out.println("           <tr>");
+                        out.println("               <td>"+rs.getString("username")+"</td>");
+                        out.println("               <td>"+rs.getString("password")+"</td>");
+                        out.println("               <td>"+rs.getString("email")+"</td>");
+                        out.println("               <td>"+rs.getString("account_type")+"</td>");
+                        out.println("               <td>"+rs.getString("ar_status")+"<form method=\"post\" action=\"\"><button>Accept</button></form><form><button>Reject</button></form></td>");
+                        out.println("           </tr>");
+                }
+                out.println("   </table>");
+            }else if(optionV.equals("Service Provider2")){
+                stmt = "select username, password, email, account_type, ar_status, ed_status from accounts where ar_status='Pending' and account_type='sp';";
+                out.println("<h1>Pending Service Provider Accounts</h1><br>");
+                PreparedStatement ps = conn.prepareStatement(stmt);
+                ResultSet rs = ps.executeQuery();
+                String table = "    <table>"
+                        + "     <tr>"
+                        + "         <th>Username</th>"
+                        + "         <th>Password</th>"
+                        + "         <th>Email</th>"
+                        + "         <th>AccountType</th>"
+                        + "         <th>Accept/Reject Status </th>"
+                        + "     </tr>";
+                out.println(table);
+                while(rs.next()){
+                        out.println("           <tr>");
+                        out.println("               <td>"+rs.getString("username")+"</td>");
+                        out.println("               <td>"+rs.getString("password")+"</td>");
+                        out.println("               <td>"+rs.getString("email")+"</td>");
+                        out.println("               <td>"+rs.getString("account_type")+"</td>");
+                        out.println("               <td>"+rs.getString("ar_status")+"<form method=\"post\" action=\"\"><button>Accept</button></form><form><button>Reject</button></form></td>");
+                        out.println("           </tr>");
+                }
+                out.println("   </table>");
+            }else if(optionV.equals("Transaction")){
+                stmt = "select first_name, last_name, item_name, price, date_rented, provider_name from customer join transaction on customer.customer_id = transaction.cust_id join items on items.item_id = transaction.item_id join service_provider on items.provider_id = service_provider.provider_id;";
+                out.println("<h1>Transactions</h1><br>");
+                PreparedStatement ps = conn.prepareStatement(stmt);
+                ResultSet rs = ps.executeQuery();
+                String table = "    <table>"
+                        + "     <tr>"
+                        + "         <th>First Name</th>"
+                        + "         <th>Last Name</th>"
+                        + "         <th>Item Name</th>"
+                        + "         <th>Service Provider</th>"
+                        + "         <th>Price</th>"
+                        + "         <th>Date Rented</th>"
+                        + "     </tr>";
+                out.println(table);
+                while(rs.next()){
+                        out.println("           <tr>");
+                        out.println("               <td>"+rs.getString("first_name")+"</td>");
+                        out.println("               <td>"+rs.getString("last_name")+"</td>");
+                        out.println("               <td>"+rs.getString("item_name")+"</td>");
+                        out.println("               <td>"+rs.getString("provider_name")+"</td>");
+                        out.println("               <td>"+rs.getString("price")+"</td>");
+                        out.println("               <td>"+rs.getString("date_rented")+"</td>");
+
+                        out.println("           </tr>");
                 }
                 out.println("   </table>");
             }
