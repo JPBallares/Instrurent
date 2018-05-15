@@ -32,25 +32,26 @@ app.post('/item', urlencodedParser, function (req, res) {
 				throw err;
 			}
 			for (var x = 1; x <= result[0].count; x++){
-				var sql = 'SELECT * FROM items NATURAL JOIN item_type NATURAL JOIN service_provider where item_id = ' + x;
-				connection.query(sql, function (err, result, field) {
-				if (err) {
-					throw err;
+				var sql = 'SELECT item_name, price, renting_fee, stock, type_name, provider_name, provider_contact, provider_address, item_image FROM items natural join item_type natural join service_provider where item_id = ' + x;
+				connection.query(sql, function (err1, result1, field1) {
+				if (err1) {
+					throw err1;
 				}
 
-				Object.keys(result).forEach(function (key) {
-					var row = result[key];
+				Object.keys(result1).forEach(function (key) {
+					var row = result1[key];
 					var buffer = new Buffer(row.item_image,'binary');
 					var image = buffer.toString('base64');
 					html += "<body>";
 					html += row.item_name + "<br>" + row.price + "<br>" + row.renting_fee + "<br> " + row.stock + "<br> " + row.type_name + "<br>" + row.provider_name + "<br>" + row.provider_contact + "<br>" + row.provider_address + " <br>";
 					html += `<img src="data:image;base64,` + image +`">`;
 					html += "</body>";
-					res.send(html);
+					res.write(html);
 					res.run;
 
 				});
 			});
+				console.log(x);
 			}
 
 		
