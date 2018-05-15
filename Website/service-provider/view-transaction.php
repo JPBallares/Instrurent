@@ -62,9 +62,13 @@
     </div>
     </nav>
 	
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 	<?php
-        include "php/view_transaction.php";
+        include 'php/view_transaction.php';
     ?>
 	
 	<div class="sp-divider"></div>
