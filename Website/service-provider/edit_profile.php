@@ -31,6 +31,7 @@
         <link rel="stylesheet" href="style/web-fonts-with-css/css/fontawesome-all.min.css">
         <!-- Fontawesome -->
         <script src="js/ajax.js"></script>
+        <link rel="stylesheet" href="css/validate.css"/>
     </head>
 
     <body>
@@ -77,18 +78,25 @@
         <br>
         <br>
 
-
-        <form>
+        <?php
+            if ($_SESSION['banner'] === NULL){
+                
+            } else {
+                echo '<img src="data:image;base64,' . base64_encode($_SESSION['banner']) . '">';
+            }
+            
+        ?>
+        <form method="POST" action="php/update.php">
             <div class="modal-body">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="service_name">Provider name</label>
-                        <input name="service_name" type="text" class="form-control" id="service_name" placeholder="Name" required>
+                        <input name="service_name" type="text" class="form-control" id="service_name" placeholder="Name" <?php echo "value='".$_SESSION['name']."'";?> required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                         <label for="service_username">Username</label>
-                        <input name="service_username" type="text" class="form-control" id="service_username" placeholder="Username" required>
+                        <input name="service_username" type="text" class="form-control" id="service_username" placeholder="Username" <?php echo "value='".$_SESSION['username']."'";?> required>
                     </div>
                 </div>
 
@@ -96,7 +104,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="service_address">Address</label>
                         <input name="service_address" type="text" class="form-control" id="service_address" placeholder="House No, Street, Barangay, City, Province"
-                            onkeyup="showHint('address', this.value, 'addressValidateSP')" required>
+                            onkeyup="showHint('address', this.value, 'addressValidateSP')" <?php echo "value='".$_SESSION['address']."'";?> required>
                         <div id="addressValidateSP"></div>
                     </div>
                 </div>
@@ -105,7 +113,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="service_email">Email Address</label>
                         <input name="service_email" type="text" class="form-control" id="service_email" placeholder="Email Address" onkeyup="showHint('email', this.value, 'emailValidateSP')"
-                            required>
+                        <?php echo "value='".$_SESSION['email']."'";?> required>
                         <div id="emailValidateSP"></div>
                     </div>
                 </div>
@@ -114,7 +122,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="service_pass">Password</label>
                         <input name="service_pass" type="password" class="form-control" id="service_pass" placeholder="Password" onkeyup="showHint('password', this.value, 'passwordValidateSP')"
-                            required>
+                        <?php echo "value='".$_SESSION['password']."'";?> required>
                         <div id="passwordValidateSP"></div>
                     </div>
                 </div>
@@ -132,7 +140,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="service_contact">Contact number</label>
                         <input name="service_contact" type="text" class="form-control" id="service_contact" placeholder="Contact number" onkeyup="showHint('contact', this.value, 'contactValidateSP')"
-                            required>
+                        <?php echo "value='".$_SESSION['contact']."'";?> required>
                         <div id="contactValidateSP"></div>
                     </div>
                 </div>

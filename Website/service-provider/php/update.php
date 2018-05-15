@@ -1,6 +1,6 @@
 <?php
 include 'access_db.php';
-
+session_start();
 $conn = OpenCon();
 
 $provider_id = $_SESSION['provider_id'];
