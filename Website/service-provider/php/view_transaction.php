@@ -28,8 +28,8 @@ $result = $conn->query($sql);
             "<td>" . $row['date_due'] . "</td>" .
             "<td>" . $row['amount'] . "</td>" .
             "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>" .
-            "<td><a href='/accept.php?trans_id=" . $row['transaction_id'] . "'>
-            <a href='/reject.php?trans_id=" . $row['transaction_id'] . "'></td>" .
+            "<td><a href='/php/accept.php?trans_id=" . $row['transaction_id'] . "'>
+            <a href='/php/reject.php?trans_id=" . $row['transaction_id'] . "'></td>" .
             "</tr>";
         }
         echo "</table>";
