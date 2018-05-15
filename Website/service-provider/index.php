@@ -4,11 +4,11 @@
     if (!isset($_SESSION['provider_loggedin'])){
         echo "
             <script>
-                alert('You're not logged in as service provider');
-                window.location = 'http://www.tenterent.com';
+                alert('You\'re not logged in as service provider');
+                window.location = 'http://www.tenterent.com:8082';
             </script>
         ";
-    }
+    } else {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -189,3 +189,6 @@
 	<script src="scripts/sp-randomizer.js"></script>
 </body>
 </html>
+<?php
+}
+?>
