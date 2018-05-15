@@ -1,15 +1,40 @@
 <html>
     <body>
-        <form action="http://192.168.10.110:8082/item" method="POST">
+        <form action="http://localhost:8082/item" method="post">
             TNT
             <br>Okimwa
-            <button type="submit" value="1" name ="id">VIEW</button>
+            <button type="submit" name ="id">VIEW</button>
         </form>
         <br>
-        <form action="http://192.168.10.110:8082/item" method="POST">
+        <form action="http://localhost:8082/item" method="post">
             Coleman sunrise 2p go tent
             <br>JUSTINE
-            <button type="submit" value="1" name ="id">VIEW</button>
+			
+            <button type="submit" value="2" name ="id">VIEW</button>
         </form>
     </body>
 </html>
+
+
+<!--
+var sql = 'SELECT * FROM items NATURAL JOIN item_type NATURAL JOIN service_provider where item_id = ' + counter;
+connection.query(sql, function (err, result, field) {
+				if (err) {
+					throw err;
+				}
+
+
+				Object.keys(result).forEach(function (key) {
+					var row = result[key];
+					var buffer = new Buffer(row.item_image,'binary');
+					var image = buffer.toString('base64');
+					html += "<body>";
+					html += row.item_name + "<br>" + row.price + "<br>" + row.renting_fee + "<br> " + row.stock + "<br> " + row.type_name + "<br>" + row.provider_name + "<br>" + row.provider_contact + "<br>" + row.provider_address + " <br>";
+					html += `<img src="data:image;base64,` + image +`">`;
+					html += "</body>";
+					res.send(html);
+					res.run;
+
+				});
+			});
+-->
