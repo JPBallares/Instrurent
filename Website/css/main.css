@@ -21,6 +21,7 @@ body {
     padding: 0 !important; 
 }
 
+
 /* Fonts */
 @font-face {
     font-family: 'nature';
@@ -33,6 +34,7 @@ body {
 }
 /* Fonts */
 
+
 /* Navbar */
 .navbar-brand {
     font-family: nature;
@@ -44,6 +46,7 @@ body {
     padding-right: 30px;
 }
 /* Navbar */
+
 
 /* Slider */
 .carousel-item {
@@ -85,6 +88,7 @@ body {
 }
 /* Forms */
 
+
 /* Banner */
 #home_banner {
     margin-bottom: 0px;
@@ -116,7 +120,7 @@ body {
 }
 /* Banner */
 
-/* Main Content */
+
 /* Home Page */
 .box-shadow { 
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
@@ -126,7 +130,8 @@ body {
     background-color: rgb(56, 56, 56);
     height: 200px;
 }
-/* Home Page */
+/* Home Page */ 
+
 
 /* Rental Page */
 #rentals_content {
@@ -197,8 +202,72 @@ body {
 #description h1 {
     font-size: 25px;
 }
+
+#category_rental_page li {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 10px;
+}
+
+#category_rental_page li a {
+	display: block;
+	text-align: center;
+	padding: 5px 34px 5px 34px;
+	border-radius: 15px;
+	text-decoration: none;
+	color: white;
+	background-color: rgb(170, 166, 167);
+}
+
+#category_rental_page li a:visited {
+	color: white;
+}
+
+#category_rental_page li a:hover {
+	color: white;
+	background-color: rgb(191, 150, 160);
+}
+
+.item {
+	width: 100%;
+	clear: both;
+}
+
+.item_description {
+	padding-left: 100px;
+}
+
+.item_space {
+	height: 10px;
+	clear: both;
+}
+
+.item_img {
+	float: left;
+	width: 80px;
+	height: 70px;
+	background-color: black;
+}
+
+.item_left {
+	width: 40%;
+	height: 80px;
+	float: left;
+}
+
+.item_rigth {
+	width: 40%;
+	height: 80px;
+	float: right;
+	text-align: right;
+}
 /* Rental Page */
-/* Main Content */
+
+
+.clear {
+	clear: both;
+}
+
 
 /* Footer */
 .empty{
