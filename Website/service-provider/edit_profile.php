@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="style/web-fonts-with-css/css/fontawesome-all.min.css">
         <!-- Fontawesome -->
         <script src="js/ajax.js"></script>
-        <link rel="stylesheet" href="css/validate.css"/>
+        <link rel="stylesheet" href="css/validate.css" />
     </head>
 
     <body>
@@ -73,88 +73,114 @@
                 </ul>
             </div>
         </nav>
-        
-        <br>
-        <br>
-        <br>
 
+        <br>
+        <br>
+        <br>
+        <div class="modal fade" id="banner" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <br>
+                    </div>
+                    <div class="model-body">
+                        <form method="POST" action="php/addbanner.php" enctype="multipart/form-data">
+                            <input type="file" name="file" accept="image/*">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <input type="submit" class="btn btn-primary btn_cc" value="Submit" id="submitProvider">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php
             if ($_SESSION['banner'] === NULL){
-                
+        ?>
+
+            <a href="#" data-target="#banner" data-toggle="modal">Add Banner</a>
+        <?php
             } else {
-                echo '<img src="data:image;base64,' . base64_encode($_SESSION['banner']) . '">';
+                echo '<a href="#" data-target="#banner" data-toggle="modal"><img src="data:image;base64,' . base64_encode($_SESSION['banner']) . '"></a>';
             }
             
         ?>
-        <form method="POST" action="php/update.php">
-            <div class="modal-body">
-                <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                        <label for="service_name">Provider name</label>
-                        <input name="service_name" type="text" class="form-control" id="service_name" placeholder="Name" <?php echo "value='".$_SESSION['name']."'";?> required>
+                <form method="POST" action="php/update.php">
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="service_name">Provider name</label>
+                                <input name="service_name" type="text" class="form-control" id="service_name" placeholder="Name" <?php echo "value='".$_SESSION[
+                                    'name']. "'";?> required>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="service_username">Username</label>
+                                <input name="service_username" type="text" class="form-control" id="service_username" placeholder="Username" <?php echo
+                                    "value='".$_SESSION[ 'username']. "'";?> required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="service_address">Address</label>
+                                <input name="service_address" type="text" class="form-control" id="service_address" placeholder="House No, Street, Barangay, City, Province"
+                                    onkeyup="showHint('address', this.value, 'addressValidateSP')" <?php echo "value='".$_SESSION[
+                                    'address']. "'";?> required>
+                                <div id="addressValidateSP"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="service_email">Email Address</label>
+                                <input name="service_email" type="text" class="form-control" id="service_email" placeholder="Email Address" onkeyup="showHint('email', this.value, 'emailValidateSP')"
+                                    <?php echo "value='".$_SESSION[ 'email']. "'";?> required>
+                                <div id="emailValidateSP"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="service_pass">Password</label>
+                                <input name="service_pass" type="password" class="form-control" id="service_pass" placeholder="Password" onkeyup="showHint('password', this.value, 'passwordValidateSP')"
+                                    <?php echo "value='".$_SESSION[ 'password']. "'";?> required>
+                                <div id="passwordValidateSP"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="service_pass">Confirm Password</label>
+                                <input name="service_pass" type="password" class="form-control" id="service_confirm_pass" placeholder="Password" onkeyup="confirmPass('confirm', this.value, 'service_pass','confirmPassSP')"
+                                    required>
+                                <div id="confirmPassSP"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="service_contact">Contact number</label>
+                                <input name="service_contact" type="text" class="form-control" id="service_contact" placeholder="Contact number" onkeyup="showHint('contact', this.value, 'contactValidateSP')"
+                                    <?php echo "value='".$_SESSION[ 'contact']. "'";?> required>
+                                <div id="contactValidateSP"></div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-md-4 mb-3">
-                        <label for="service_username">Username</label>
-                        <input name="service_username" type="text" class="form-control" id="service_username" placeholder="Username" <?php echo "value='".$_SESSION['username']."'";?> required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-primary btn_cc" value="Update" id="submitProvider">
                     </div>
-                </div>
+                </form>
 
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="service_address">Address</label>
-                        <input name="service_address" type="text" class="form-control" id="service_address" placeholder="House No, Street, Barangay, City, Province"
-                            onkeyup="showHint('address', this.value, 'addressValidateSP')" <?php echo "value='".$_SESSION['address']."'";?> required>
-                        <div id="addressValidateSP"></div>
-                    </div>
-                </div>
+                <div class="sp-divider"></div>
 
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="service_email">Email Address</label>
-                        <input name="service_email" type="text" class="form-control" id="service_email" placeholder="Email Address" onkeyup="showHint('email', this.value, 'emailValidateSP')"
-                        <?php echo "value='".$_SESSION['email']."'";?> required>
-                        <div id="emailValidateSP"></div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="service_pass">Password</label>
-                        <input name="service_pass" type="password" class="form-control" id="service_pass" placeholder="Password" onkeyup="showHint('password', this.value, 'passwordValidateSP')"
-                        <?php echo "value='".$_SESSION['password']."'";?> required>
-                        <div id="passwordValidateSP"></div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="service_pass">Confirm Password</label>
-                        <input name="service_pass" type="password" class="form-control" id="service_confirm_pass" placeholder="Password" onkeyup="confirmPass('confirm', this.value, 'service_pass','confirmPassSP')"
-                            required>
-                        <div id="confirmPassSP"></div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="service_contact">Contact number</label>
-                        <input name="service_contact" type="text" class="form-control" id="service_contact" placeholder="Contact number" onkeyup="showHint('contact', this.value, 'contactValidateSP')"
-                        <?php echo "value='".$_SESSION['contact']."'";?> required>
-                        <div id="contactValidateSP"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <input type="submit" class="btn btn-primary btn_cc" value="Update" id="submitProvider">
-            </div>
-        </form>
-
-        <div class="sp-divider"></div>
-
-        <script src="scripts/sp-randomizer.js"></script>
+                <script src="scripts/sp-randomizer.js"></script>
     </body>
 
     </html>
