@@ -146,7 +146,11 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="POST">
+                            <form action="php/insert_items.php" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="item-image">Image</label>
+                                    <input name="file" type="file" class="form-control" id="item_image" placeholder="Item Image" accept="image/*">
+                                </div>
                                 <div class="form-group">
                                     <label for="item-name">Name</label>
                                     <input name="item-name" type="text" class="form-control" id="item_name" placeholder="Item Name">
@@ -166,17 +170,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="item-type">Type</label>
-                                    <select>
-                                        <option value="">1</option>
-                                        <option value="">...</option>
-                                        <option value="">15</option>
-                                    </select>
+                                    <?php
+                                    include 'php/display_types.php';
+                                    ?>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary sp-btn btn_cc" value="Add Item">
+                                    <button type="button" class="btn btn-secondary sp-btn" data-dismiss="modal">Close</button>
                                 </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary sp-btn btn_cc">Add Item</button>
-                            <button type="button" class="btn btn-secondary sp-btn" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

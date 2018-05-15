@@ -3,14 +3,14 @@ include 'access_db.php';
 $conn = OpenCon();
 session_start();
 
-$item_name = $_POST['item_name'];
-$price = $_POST['price'];
-$renting_fee = $_POST['renting_fee'];
-$stock = $_POST['stock'];
+$item_name = $_POST['item-name'];
+$price = $_POST['item-price'];
+$renting_fee = $_POST['item-fee'];
+$stock = $_POST['item-quantity'];
 $item_image = $_FILES['file']['tmp_name'];
 $item_image = file_get_contents($item_image);
 $provider_id = $_SESSION['provider_id'];
-$type_id = $_POST['type_id'];
+$type_id = $_POST['type-id'];
 
 $item_name = mysqli_real_escape_string($conn, $item_name);
 $price = mysqli_real_escape_string($conn, $price);
