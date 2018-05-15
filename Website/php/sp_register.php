@@ -2,12 +2,12 @@
 include 'access_db.php';
 $conn = OpenCon();
 
-$provider_name = $_POST['provider_name'];
-$address = $_POST['address'];
-$contact = $_POST['contact'];
-$email = $_POST['email'];
-$username = $_POST['username'];
-$password = $_POST['password'];
+$provider_name = $_POST['service_name'];
+$address = $_POST['service_address'];
+$contact = $_POST['service_contact'];
+$email = $_POST['service_email'];
+$username = $_POST['service_username'];
+$password = $_POST['service_pass'];
 $account_type = 'sp';
 
 $provider_name = mysqli_real_escape_string($conn, $provider_name);
@@ -28,7 +28,7 @@ $password = mysqli_real_escape_string($conn, $password);
      exit;
  }
 
- if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/", $user_email)) {
+ if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/", $email)) {
      echo "
          <script>
              alert('Invalid Email');
@@ -38,7 +38,7 @@ $password = mysqli_real_escape_string($conn, $password);
      exit;
  }
 
- if (!preg_match("^\+639[0-9]{9}$|^09[0-9]{9}$", $contact)) {
+ if (!preg_match("/^09[0-9]{9}$/", $contact)) {
      echo "
          <script>
              alert('Invalid Contact Number');
@@ -48,7 +48,7 @@ $password = mysqli_real_escape_string($conn, $password);
      exit;
  }
 
- $sql = "SELECT * FROM accounts where user_email = '$email'";
+ $sql = "SELECT * FROM accounts where email = '$email'";
  $result = $conn->query($sql);
 
  if ($result->num_rows > 0) {
@@ -95,7 +95,7 @@ if ($conn->query($insert_stmt) === true) {
     while ($row = $result->fetch_assoc()) {
         $accountid = $row['account_id'];
     }
-    $insert_stmt = "INSERT INTO `tenterent`.`service_provider` (`provider_name`, `provider_contact`, `provider_address`, `accountid`) VALUES ('$provider_name', '$contact', '$address', '$accountid');";
+    $insert_stmt = "INSERT INTO `tenterent`.`service_provider` (`provider_name`, `provider_contact`, `provider_address`, `account_id`) VALUES ('$provider_name', '$contact', '$address', '$accountid');";
     if ($conn->query($insert_stmt) === true) {
         echo "
         <script>

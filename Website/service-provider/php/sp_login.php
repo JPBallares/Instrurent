@@ -23,6 +23,7 @@ $result = $conn->query($sql);
                 $_SESSION['contact'] = $row['provider_contact'];
                 $_SESSION['address'] = $row['provider_address'];
                 $_SESSION['account_id'] = $row['account_id'];
+                $_SESSION['username'] = $row['username'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $_POST['password'];
                 $_SESSION['banner'] = $row['banner'];
