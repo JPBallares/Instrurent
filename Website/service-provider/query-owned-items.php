@@ -8,10 +8,10 @@
             echo '<div class="card cus-card" style="width: 300px; height: 350px;">';
             echo '<img style="width: 300px; height: 150px;" src="data:image;base64,' . base64_encode($row["item_image"]) . '" alt="Card image cap">';
             echo '    <div class="card-body">';
-            echo '        <h5 class="card-title">Name</h5>';
-            echo '        <p class="card-text">Price: </p>';
-            echo '        <p class="card-text">Renting Fee: </p>';
-            echo '        <p class="card-text">Stock: </p>';
+            echo '        <h5 class="card-title">Name: ' . $row['item_name'] .' </h5>';
+            echo '        <p class="card-text">Price: &#8369;' . $row['price'] . '</p>';
+            echo '        <p class="card-text">Renting Fee: &#8369;' . $row['renting_fee'] . '</p>';
+            echo '        <p class="card-text">Stock: ' . $row['stock'] . '</p>';
             echo '    </div>';
             echo '</div>';
 		}

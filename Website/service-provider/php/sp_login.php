@@ -24,7 +24,8 @@ $result = $conn->query($sql);
                 $_SESSION['address'] = $row['provider_address'];
                 $_SESSION['account_id'] = $row['account_id'];
                 $_SESSION['email'] = $row['email'];
-                $_SESSION['password'] = $row['password'];
+                $_SESSION['password'] = $_POST['password'];
+                $_SESSION['banner'] = $row['banner'];
                 header('Location: http://provider.tenterent.com:8082');
                 exit;
 
