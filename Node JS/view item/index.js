@@ -31,8 +31,8 @@ app.post('/item', urlencodedParser, function (req, res) {
 			if(err){
 				throw err;
 			}
-			for (var x = 1; x <= result[0].count; x++){
-				var sql = 'SELECT item_name, price, renting_fee, stock, type_name, provider_name, provider_contact, provider_address, item_image FROM items natural join item_type natural join service_provider where item_id = ' + x;
+			//for (var x = 1; x <= result[0].count; x++){
+				var sql = 'SELECT item_name, price, renting_fee, stock, type_name, provider_name, provider_contact, provider_address, item_image FROM items natural join item_type natural join service_provider where item_id = ' + result[0].count;
 				connection.query(sql, function (err1, result1, field1) {
 				if (err1) {
 					throw err1;
@@ -52,7 +52,7 @@ app.post('/item', urlencodedParser, function (req, res) {
 				});
 			});
 				console.log(x);
-			}
+			//}
 
 		
 			
