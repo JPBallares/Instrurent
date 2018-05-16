@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `tenterent` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `tenterent`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: tenterent
 -- ------------------------------------------------------
--- Server version	5.7.14
+-- Server version	5.7.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,10 +28,12 @@ CREATE TABLE `accounts` (
   `username` varchar(20) NOT NULL,
   `password` varchar(100) NOT NULL,
   `account_type` enum('a','c','sa','sp') NOT NULL,
+  `status` enum('a','r','p') NOT NULL DEFAULT 'p',
+  `active` enum('active','inactive') NOT NULL DEFAULT 'inactive',
   PRIMARY KEY (`account_id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES (1,'user1@email.com','user1','qwert','c'),(2,'admin@gmail.com','admin','d033e22ae348aeb5660fc2140aec35850c4da997','sa'),(3,'admin1@yahoo.com','admin1','6c7ca345f63f835cb353ff15bd6c5e052ec08e7a','a'),(4,'sp@gmail.com','sp01','sp01','sp'),(7,'ballaresjustined@gmail.com','justine123','6eeafaef013319822a1f30407a5353f778b59790','sp'),(9,'2160138@slu.edu.ph','2160138','6eeafaef013319822a1f30407a5353f778b59790','sp'),(12,'123@gmai.com','123123123','6eeafaef013319822a1f30407a5353f778b59790','c');
+INSERT INTO `accounts` VALUES (1,'user1@email.com','user1','qwert','c','a','active'),(2,'admin@gmail.com','admin','d033e22ae348aeb5660fc2140aec35850c4da997','sa','a','active'),(3,'admin1@yahoo.com','admin1','6c7ca345f63f835cb353ff15bd6c5e052ec08e7a','a','a','active'),(4,'sp@gmail.com','sp01','sp01','sp','p','active'),(7,'ballaresjustined@gmail.com','justine123','6eeafaef013319822a1f30407a5353f778b59790','sp','p','active'),(9,'2160138@slu.edu.ph','2160138','6eeafaef013319822a1f30407a5353f778b59790','sp','p','active'),(12,'123@gmai.com','123123123','6eeafaef013319822a1f30407a5353f778b59790','c','a','active'),(13,'asdqweqw@udhaiu','geh','d033e22ae348aeb5660fc2140aec35850c4da997','c','p','active');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,14 +91,13 @@ CREATE TABLE `customer` (
   `address` varchar(200) NOT NULL,
   `birthdate` date NOT NULL,
   `contact_number` varchar(15) NOT NULL,
-  `accepted` enum('a','r','p') NOT NULL,
   `account_id` int(11) NOT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
   UNIQUE KEY `contact_number_UNIQUE` (`contact_number`),
   KEY `customer_account_fk_idx` (`account_id`),
   CONSTRAINT `customer_account_fk` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +106,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'klint','chinayog','asdas','0000-00-00','09993313896','a',1),(3,'dddd','dddd','a,a,a,a,a','2018-05-01','09104030178','p',12);
+INSERT INTO `customer` VALUES (1,'klint','chinayog','asdas','1999-01-01','09993313896',1),(3,'dddd','dddd','a,a,a,a,a','2018-05-01','09104030178',12),(4,'cccc','cccc','a..a.a.a.','1999-06-07','23534534346',13);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +182,6 @@ CREATE TABLE `service_provider` (
   `provider_name` varchar(100) CHARACTER SET koi8r NOT NULL,
   `provider_contact` varchar(15) CHARACTER SET koi8r NOT NULL,
   `provider_address` varchar(200) CHARACTER SET koi8r NOT NULL,
-  `status` enum('a','r','p') NOT NULL,
   `account_id` int(11) NOT NULL,
   `banner` mediumblob,
   PRIMARY KEY (`provider_id`),
@@ -193,7 +191,7 @@ CREATE TABLE `service_provider` (
   UNIQUE KEY `provider_address_UNIQUE` (`provider_address`),
   KEY `sp_account_fk_idx` (`account_id`),
   CONSTRAINT `sp_account_fk` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,7 +200,7 @@ CREATE TABLE `service_provider` (
 
 LOCK TABLES `service_provider` WRITE;
 /*!40000 ALTER TABLE `service_provider` DISABLE KEYS */;
-INSERT INTO `service_provider` VALUES (1,'okimwa','09158776605','bakakeng','a',4,NULL),(2,'Justined','09951444108','Baguio City d','a',7,''),(3,'Juser','09104030178','a,a,a,a,a','a',9,NULL);
+INSERT INTO `service_provider` VALUES (1,'okimwa','09158776605','bakakeng',4,NULL),(2,'Justined','09951444108','Baguio City d',7,''),(3,'Juser','09104030178','a,a,a,a,a',9,NULL),(4,'fjlkdasjfl','09876543277','b.b.b.b.b.',3,NULL);
 /*!40000 ALTER TABLE `service_provider` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,6 +217,7 @@ CREATE TABLE `transaction` (
   `date_rented` date NOT NULL,
   `date_due` date NOT NULL,
   `amount` double NOT NULL,
+  `quantity` int(11) NOT NULL,
   `approved` enum('a','r','p') NOT NULL,
   `customer_id` int(11) NOT NULL,
   PRIMARY KEY (`transaction_id`,`item_id`),
@@ -235,7 +234,7 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (1,2,'2018-05-01','2018-05-02',400,'r',3),(1,3,'2018-05-01','2018-05-02',300,'r',3);
+INSERT INTO `transaction` VALUES (1,2,'2018-05-01','2018-05-02',400,0,'r',3),(1,3,'2018-05-01','2018-05-02',300,0,'r',3);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -248,4 +247,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-16  8:10:19
+-- Dump completed on 2018-05-16 16:21:52
