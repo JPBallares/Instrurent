@@ -29,7 +29,7 @@ CREATE TABLE `accounts` (
   `password` varchar(100) NOT NULL,
   `account_type` enum('a','c','sa','sp') NOT NULL,
   `status` enum('a','r','p') NOT NULL DEFAULT 'p',
-  `active` enum('active','inactive') NOT NULL DEFAULT 'inactive',
+  `activate` enum('active','inactive') NOT NULL DEFAULT 'inactive',
   PRIMARY KEY (`account_id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `username_UNIQUE` (`username`)
@@ -42,7 +42,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES (1,'user1@email.com','user1','qwert','c','a','active'),(2,'admin@gmail.com','admin','d033e22ae348aeb5660fc2140aec35850c4da997','sa','a','active'),(3,'admin1@yahoo.com','admin1','6c7ca345f63f835cb353ff15bd6c5e052ec08e7a','a','a','active'),(4,'sp@gmail.com','sp01','sp01','sp','p','active'),(7,'ballaresjustined@gmail.com','justine123','6eeafaef013319822a1f30407a5353f778b59790','sp','p','active'),(9,'2160138@slu.edu.ph','2160138','6eeafaef013319822a1f30407a5353f778b59790','sp','p','active'),(12,'123@gmai.com','123123123','6eeafaef013319822a1f30407a5353f778b59790','c','a','active'),(13,'asdqweqw@udhaiu','geh','d033e22ae348aeb5660fc2140aec35850c4da997','c','p','active');
+INSERT INTO `accounts` VALUES (1,'user1@email.com','user1','qwert','c','a','active'),(2,'admin@gmail.com','admin','d033e22ae348aeb5660fc2140aec35850c4da997','sa','a','active'),(3,'admin1@yahoo.com','admin1','6c7ca345f63f835cb353ff15bd6c5e052ec08e7a','a','a','active'),(4,'sp@gmail.com','sp01','sp01','sp','a','active'),(7,'ballaresjustined@gmail.com','justine123','6eeafaef013319822a1f30407a5353f778b59790','sp','p','inactive'),(9,'2160138@slu.edu.ph','2160138','6eeafaef013319822a1f30407a5353f778b59790','sp','a','active'),(12,'123@gmai.com','123123123','6eeafaef013319822a1f30407a5353f778b59790','c','a','active'),(13,'asdqweqw@udhaiu','geh','d033e22ae348aeb5660fc2140aec35850c4da997','c','p','inactive');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,4 +247,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-16 16:21:52
+-- Dump completed on 2018-05-16 23:59:59
