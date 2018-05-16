@@ -1,0 +1,106 @@
+.modal.fade#sign_up(tabindex='-1', role='dialog', aria-labelledby='sign_up', aria-hidden='true')
+      .modal-dialog.modal-dialog-centered.modal-lg(role='document')
+        .modal-content
+          .modal-header
+            h5.modal-title#exampleModalCenterTitle Sign-up
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            ul.nav.nav-tabs
+              li.nav-item
+                a.nav-link.active(data-toggle='tab', href='#menu1') Client
+              li.nav-item
+                a.nav-link(data-toggle='tab', href='#menu2') Service provider
+            .tab-content
+              .tab-pane.active.container#menu1
+                form(method='POST', action='client_register.php')
+                  .modal-body
+                    .form-row
+                      .col-md-4.mb-3
+                        label(for='client_first_name') First name
+                        input.form-control#client_first_name(name='client_first_name', type='text', placeholder='First name', required='')
+                      .col-md-4.mb-3
+                        label(for='client_last_name') Last name
+                        input.form-control#client_last_name(name='client_last_name', type='text', placeholder='Last name', required='')
+                    .form-row
+                      .form-check.mr-4
+                        input.form-check-input#option_male(type='radio', name='gender', value='male')
+                        label.form-check-label(for='option_male') Male
+                      .form-check
+                        input.form-check-input#option_female(type='radio', name='gender', value='female')
+                        label.form-check-label(for='option_female') Female
+                    br
+                    .form-row
+                      .col-md-6
+                        .form-group
+                          label Date of Birth
+                          input.form-control#exampleInputDOB1(name='birth_date', type='date', placeholder='Date of Birth')
+                      .col-md-4.mb-3
+                        label(for='client_username') Username
+                        input.form-control#client_username(name='client_username', type='text', placeholder='Username', required='')
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='client_email') Email Address
+                        input.form-control#client_email(name='client_email',type='text',placeholder='Email Address', onkeyup=`showHint('email',this.value,'emailValidate')`, required='')
+                        #emailValidate
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='client_address') Address
+                        input.form-control#client_address(name='client_address', type='text', placeholder='House No, Street, Barangay, City, Province', onkeyup=`showHint('address', this.value, 'addressValidate')`, required='')
+                        #addressValidate
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='client_pass') Password
+                        input.form-control#client_password(name='client_pass', type='password', placeholder='Password', onkeyup=`showHint('password', this.value, 'passwordValidate')`, required='')
+                        #passwordValidate
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='client_confirm_pass') Confirm Password
+                        input.form-control#client_confirm_password(name='client_confirm_pass', type='password', placeholder='Password', onkeyup=`confirmPass('confirm', this.value, 'client_password', 'confirmPass')`, required='')
+                        #confirmPass
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='client_contact') Contact number
+                        input.form-control#client_contact(name='client_contact', type='text', placeholder='Contact number', onkeyup=`showHint('contact', this.value, 'contactValidate')`, required='')
+                        #contactValidate
+                  .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    input.btn.btn-primary.btn_cc#submitClient(type='submit', value='Sign-up')
+              .tab-pane.container#menu2
+                form(method='POST', action='php/sp_register.php')
+                  .modal-body
+                    .form-row
+                      .col-md-4.mb-3
+                        label(for='service_name') Provider name
+                        input.form-control#service_name(name='service_name', type='text', placeholder='Name', required='')
+                      .col-md-4.mb-3
+                        label(for='service_username') Username
+                        input.form-control#service_username(name='service_username', type='text', placeholder='Username', required='')
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='service_address') Address
+                        input.form-control#service_address(name='service_address', type='text', placeholder='House No, Street, Barangay, City, Province', onkeyup=`showHint('address', this.value, 'addressValidateSP')`, required='')
+                        #addressValidateSP
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='service_email') Email Address
+                        input.form-control#service_email(name='service_email', type='text', placeholder='Email Address', onkeyup=`showHint('email', this.value, 'emailValidateSP')`, required='')
+                        #emailValidateSP
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='service_pass') Password
+                        input.form-control#service_pass(name='service_pass', type='password', placeholder='Password', onkeyup=`showHint('password', this.value, 'passwordValidateSP')`, required='')
+                        #passwordValidateSP
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='service_pass') Confirm Password
+                        input.form-control#service_confirm_pass(name='service_pass', type='password', placeholder='Password', onkeyup=`confirmPass('confirm', this.value, 'service_pass','confirmPassSP')`, required='')
+                        #confirmPassSP
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='service_contact') Contact number
+                        input.form-control#service_contact(name='service_contact', type='text', placeholder='Contact number', onkeyup=`showHint('contact', this.value, 'contactValidateSP')`, required='')
+                        #contactValidateSP
+                  .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    input.btn.btn-primary.btn_cc#submitProvider(type='submit', value='Sign-up')

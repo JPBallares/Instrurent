@@ -1,0 +1,18 @@
+.modal.fade#login(tabindex='-1', role='dialog', aria-labelledby='login', aria-hidden='true')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header
+            h5.modal-title#user_login Login
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          form(action='php/main_login.php', method='POST')
+            .modal-body
+              .form-group
+                label(for='user_login') Username
+                input.form-control#user_login(name='username', type='text', placeholder='Username')
+              .form-group
+                label(for='user_pass') Password
+                input.form-control#user_pass(name='password', type='password', placeholder='Password')
+            .modal-footer
+              button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+              input.btn.btn-primary.btn_cc(name='login', type='submit', value='Login')

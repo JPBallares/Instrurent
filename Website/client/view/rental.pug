@@ -1,6 +1,19 @@
-include header
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title TentERent | Rentals
+    link(rel='shortcut icon', href='img/Logo.png')
+    meta(name='viewport', content='width=device-width,initial-scale=1')
+    link(rel='stylesheet', href='/main.css')
     // Bootstrap 
-body
+    link(rel='stylesheet', href='bootstrap.min.css')
+    script(src='/js/jquery.min.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/popper.min.js')
+    // Bootstrap 
+  body
     // Navbar 
     nav.navbar.navbar-dark.bg-dark.fixed-top.navbar-expand-lg
       a.navbar-brand(href='#')
@@ -15,9 +28,9 @@ body
           li.nav-item
             a.nav-link(href='/rental') Rentals
           li.nav-item
-            a.nav-link(href='/contact') Contact
+            a.nav-link(href='/contact.html') Contact
           li.nav-item
-            a.nav-link(href='/aboutus') About Us
+            a.nav-link(href='/aboutus.html') About Us
         ul.navbar-nav#login_and_sign_up
           li.nav-item
             a.nav-link(href='#', data-toggle='modal', data-target='#login') Login
@@ -32,7 +45,7 @@ body
             h5.modal-title#user_login Login
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
-          form(action='/main_login.php', method='POST')
+          form(action='../php/main_login.php', method='POST')
             .modal-body
               .form-group
                 label(for='user_login') Username
@@ -275,4 +288,7 @@ body
     //  -------------- Rentals main content --------------  
     // Footer 
     .empty
-   
+    footer.footer
+      .container
+        span.text-muted WebTech 2018 © Saint Louis University
+    // Footer 

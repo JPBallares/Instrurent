@@ -30,3 +30,15 @@ app.set('view engine', 'pug');
 app.get('/',(req, res) => {
 	res.render('index');
 });
+
+app.get('/rental', (req, res) => {
+	res.render('index');
+});
+
+app.get('/aboutus', (req, res) => {
+	res.render('aboutus');
+});
+
+app.get('/contact', (req, res) => {
+	res.render('contact');
+});
