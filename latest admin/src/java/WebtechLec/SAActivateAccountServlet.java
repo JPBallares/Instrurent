@@ -10,8 +10,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,24 +17,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author james
- */
-@WebServlet(name = "SAAcceptAccountServlet", urlPatterns = {"/SAAcceptAccountServlet"})
-public class SAAcceptAccountServlet extends HttpServlet {
+@WebServlet(name = "SAActivateAccountServlet", urlPatterns = {"/SAActivateAccountServlet"})
+public class SAActivateAccountServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
             String cID = request.getParameter("hiddenid");
-            String value = request.getParameter("accept");
-            String value1 = request.getParameter("reject");
-            if("accept".equals(value)){
-                String sql1 = "UPDATE tenterent.accounts SET status='a' WHERE account_id='"+ cID + "';"; 
+            String value = request.getParameter("activate");
+            String value1 = request.getParameter("deactivate");
+            if("activate".equals(value)){
+                String sql1 = "UPDATE tenterent.accounts SET activate='active' WHERE account_id='"+ cID + "';"; 
                 PreparedStatement ps = conn.prepareStatement(sql1);  
                 ps.executeUpdate();
                 RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
@@ -44,8 +38,8 @@ public class SAAcceptAccountServlet extends HttpServlet {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('The user has been successfully accepted.');");
                 out.println("</script>");
-            }else if("reject".equals(value1)){
-                String sql1 = "UPDATE tenterent.accounts SET status='r' WHERE account_id='"+ cID + "';"; 
+            }else if("deactivate".equals(value1)){
+                String sql1 = "UPDATE tenterent.accounts SET activate='inactive' WHERE account_id='"+ cID + "';"; 
                 PreparedStatement ps = conn.prepareStatement(sql1);  
                 ps.executeUpdate();
                 RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
@@ -54,9 +48,6 @@ public class SAAcceptAccountServlet extends HttpServlet {
                 out.println("alert('The user has been rejected.');");
                 out.println("</script>");
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(SAAcceptAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

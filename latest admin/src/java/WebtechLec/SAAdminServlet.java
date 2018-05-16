@@ -51,7 +51,7 @@ public class SAAdminServlet extends HttpServlet {
             String stmt;
             if (optionV.equals("All Accounts")) {
                 out.println("<h1>All Accounts List</h1><br>");
-                stmt = "select username, email, account_type from accounts;";
+                stmt = "select username, email, account_type, active from accounts where status='a';";
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
                 String table = "    <table>"
@@ -59,6 +59,8 @@ public class SAAdminServlet extends HttpServlet {
                         + "         <th>Username</th>"
                         + "         <th>Email</th>"
                         + "         <th>Account Type</th>"
+                        + "         <th>Active</th>"
+                        + "         <th>Activate/Deactivate</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
@@ -66,6 +68,8 @@ public class SAAdminServlet extends HttpServlet {
                         out.println("               <td>"+rs.getString("username")+"</td>");
                         out.println("               <td>"+rs.getString("email")+"</td>");
                         out.println("               <td>"+rs.getString("account_type")+"</td>");
+                        out.println("               <td>"+rs.getString("active")+"</td>");
+                        out.println("               <td>"+"<form method=\"post\" action=\"SAActivateAccountServlet\"><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='accept' name='accept'><input type='submit' value='reject' name='reject'></form></td>");
                         out.println("           </tr>");
                 }
                 out.println("   </table>");
@@ -130,7 +134,7 @@ public class SAAdminServlet extends HttpServlet {
                 }
                 out.println("   </table>");
             }else if(optionV.equals("UCustomers")) {
-                stmt = "select first_name, last_name, address1, address2, contact_number, accepted from customer;";
+                stmt = "select first_name, last_name, address1, address2, contact_number, status from customer;";
                 out.println("<h1>Customer User Information List</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
@@ -151,7 +155,7 @@ public class SAAdminServlet extends HttpServlet {
                     out.println("               <td>"+rs.getString("address1")+"</td>");
                     out.println("               <td>"+rs.getString("address2")+"</td>");
                     out.println("               <td>"+rs.getString("contact_number")+"</td>");
-                    out.println("               <td>"+rs.getString("accepted")+"</td>");
+                    out.println("               <td>"+rs.getString("status")+"</td>");
                     out.println("           </tr>");
                 }
                 out.println("   </table>");
@@ -198,7 +202,7 @@ public class SAAdminServlet extends HttpServlet {
                 }
                 out.println("   </table>");
             }else if(optionV.equals("Customers2")){
-                stmt = "select first_name, last_name, address, birthdate, contact_number from customer where accepted='p';";
+                stmt = "select account_id, first_name, last_name, address, birthdate, contact_number from accounts natural join customer where status='p';";
                 out.println("<h1>Pending Customer Accounts</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
@@ -219,7 +223,7 @@ public class SAAdminServlet extends HttpServlet {
                         out.println("               <td>"+rs.getString("address")+"</td>");
                         out.println("               <td>"+rs.getString("birthdate")+"</td>");
                         out.println("               <td>"+rs.getString("contact_number")+"</td>");
-                        out.println("               <td>"+"<form method=\"post\" action=\"SAAcceptAccountServlet\"><button value='accept'>Accept</button>   <button value='reject'>Reject</button></form></td>");
+                        out.println("               <td>"+"<form method=\"post\" action=\"SAAcceptAccountServlet\"><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='accept' name='accept'><input type='submit' value='reject' name='reject'></form></td>");
                         out.println("           </tr>");
                 }
                 out.println("   </table>");
