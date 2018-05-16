@@ -220,11 +220,11 @@ CREATE TABLE `transaction` (
   `date_due` date NOT NULL,
   `amount` double NOT NULL,
   `approved` enum('a','r','p') NOT NULL,
-  `cust_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
   PRIMARY KEY (`transaction_id`,`item_id`),
-  KEY `cust_id_idx` (`cust_id`),
+  KEY `cust_id_idx` (`customer_id`),
   KEY `item_id_idx` (`item_id`),
-  CONSTRAINT `cust_id` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`customer_id`),
+  CONSTRAINT `cust_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
   CONSTRAINT `item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -235,6 +235,7 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
+INSERT INTO `transaction` VALUES (1,2,'2018-05-01','2018-05-02',400,'r',3),(1,3,'2018-05-01','2018-05-02',300,'r',3);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -247,4 +248,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-16  7:56:12
+-- Dump completed on 2018-05-16  8:10:19
