@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/AWMIKO/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/SAActivateAccountServlet.java</file>
+            <file>file:/C:/Users/AWMIKO/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/LoginServlet.java</file>
+            <file>file:/C:/Users/AWMIKO/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/SAAcceptProviderServlet.java</file>
+            <file>file:/C:/Users/AWMIKO/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/SAHomeServlet.java</file>
             <file>file:/C:/Users/AWMIKO/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/SAAcceptAccountServlet.java</file>
-            <file>file:/C:/Users/AWMIKO/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/SAProfileServlet.java</file>
-            <file>file:/C:/Users/AWMIKO/Desktop/Tenterent/latest%20admin/web/WEB-INF/pagefragments/adduser.html</file>
             <file>file:/C:/Users/AWMIKO/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/SAAdminServlet.java</file>
+            <file>file:/C:/Users/AWMIKO/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/AddAdminServlet.java</file>
         </group>
     </open-files>
 </project-private>
