@@ -23,9 +23,10 @@ connection.connect(function(err){
 app.listen(8091,'localhost');
 
 app.use(express.static('public'));
-app.set('views', `${__dirname}/view`);
+
+app.set('views', './view');
 app.set('view engine', 'pug');
 
-app.get('/', function (req, res) {
-	res.render('example');
+app.get('/',(req, res) => {
+	res.render('index');
 });

@@ -1,5 +1,294 @@
-html
-    head
-        title= title
-    body
-        h1= message
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title TentERent | Rentals
+    link(rel='shortcut icon', href='img/Logo.png')
+    meta(name='viewport', content='width=device-width,initial-scale=1')
+    link(rel='stylesheet', href='/main.css')
+    // Bootstrap 
+    link(rel='stylesheet', href='bootstrap.min.css')
+    script(src='/js/jquery.min.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/popper.min.js')
+    // Bootstrap 
+  body
+    // Navbar 
+    nav.navbar.navbar-dark.bg-dark.fixed-top.navbar-expand-lg
+      a.navbar-brand(href='#')
+        img.logo_s(src='/img/Logo.png')
+        | TentERent
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarSupportedContent
+        ul.navbar-nav.mr-auto
+          li.nav-item
+            a.nav-link(href='/index.html') Home
+          li.nav-item
+            a.nav-link(href='/index') Rentals
+          li.nav-item
+            a.nav-link(href='/contact.html') Contact
+          li.nav-item
+            a.nav-link(href='/aboutus.html') About Us
+        ul.navbar-nav#login_and_sign_up
+          li.nav-item
+            a.nav-link(href='#', data-toggle='modal', data-target='#login') Login
+          li.nav-item
+            a.nav-link(href='#', data-toggle='modal', data-target='#sign_up') Sign-up
+    // Navbar 
+    // Login 
+    .modal.fade#login(tabindex='-1', role='dialog', aria-labelledby='login', aria-hidden='true')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header
+            h5.modal-title#user_login Login
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          form(action='../php/main_login.php', method='POST')
+            .modal-body
+              .form-group
+                label(for='user_login') Username
+                input.form-control#user_login(name='username', type='text', placeholder='Username')
+              .form-group
+                label(for='user_pass') Password
+                input.form-control#user_pass(name='password', type='password', placeholder='Password')
+            .modal-footer
+              button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+              input.btn.btn-primary.btn_cc(name='login', type='submit', value='Login')
+    // Login 
+    // Sign-up 
+    .modal.fade#sign_up(tabindex='-1', role='dialog', aria-labelledby='sign_up', aria-hidden='true')
+      .modal-dialog.modal-dialog-centered.modal-lg(role='document')
+        .modal-content
+          .modal-header
+            h5.modal-title#user_sign_up Sign-up
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            ul.nav.nav-tabs
+              li.nav-item
+                a.nav-link.active(data-toggle='tab', href='#menu1') Client
+              li.nav-item
+                a.nav-link(data-toggle='tab', href='#menu2') Service provider
+            .tab-content
+              .tab-pane.active.container#menu1
+                form
+                  .modal-body
+                    .form-row
+                      .col-md-4.mb-3
+                        label(for='client_first_name') First name
+                        input.form-control#client_first_name(name='client_first_name', type='text', placeholder='First name', required='')
+                      .col-md-4.mb-3
+                        label(for='client_last_name') Last name
+                        input.form-control#client_last_name(name='client_last_name', type='text', placeholder='Last name', required='')
+                    .form-row
+                      .form-check.mr-4
+                        input.form-check-input#option_male(type='radio', name='male', value='male', checked='')
+                        label.form-check-label(for='option_male') Male
+                      .form-check
+                        input.form-check-input#option_female(type='radio', name='female', value='female')
+                        label.form-check-label(for='option_female') Female
+                    br
+                    .form-row
+                      .col-md-6
+                        .form-group
+                          label Date of Birth
+                          input.form-control#exampleInputDOB1(type='date', placeholder='Date of Birth')
+                      .col-md-4.mb-3
+                        label(for='client_username') Username
+                        input.form-control#client_username(name='client_username', type='text', placeholder='Username', required='')
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='client_email') Email Address
+                        input.form-control#client_email(name='client_email', type='text', placeholder='Email Address', required='')
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='client_address') Address
+                        input.form-control#client_address(name='client_address', type='text', placeholder='Address', required='')
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='client_pass') Password
+                        input.form-control#client_pass(name='client_pass', type='password', placeholder='Password', required='')
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='client_contact') Contact number
+                        input.form-control#client_contact(name='client_contact', type='text', placeholder='Contact number', required='')
+                  .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    input.btn.btn-primary.btn_cc(type='submit', value='Sign-up')
+              .tab-pane.container#menu2
+                form
+                  .modal-body
+                    .form-row
+                      .col-md-4.mb-3
+                        label(for='service_name') Provider name
+                        input.form-control#service_name(name='service_name', type='text', placeholder='Name', required='')
+                      .col-md-4.mb-3
+                        label(for='service_username') Username
+                        input.form-control#service_username(name='service_username', type='text', placeholder='Username', required='')
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='service_address') Address
+                        input.form-control#service_address(name='service_address', type='text', placeholder='Address', required='')
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='service_email') Email Address
+                        input.form-control#service_email(name='service_email', type='text', placeholder='Email Address', required='')
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='service_pass') Password
+                        input.form-control#service_pass(name='service_pass', type='password', placeholder='Password', required='')
+                    .form-row
+                      .col-md-6.mb-3
+                        label(for='service_contact') Contact number
+                        input.form-control#service_contact(name='service_contact', type='text', placeholder='Contact number', required='')
+                  .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    input.btn.btn-primary.btn_cc(type='submit', value='Sign-up')
+    // Sign-up 
+    // Banner 
+    .jumbotron#rental_banner
+      .container
+        h1.display-2 Rentals
+    // Banner 
+    // Rentals item category 
+    .container
+      h1.display-4(style='padding-bottom: 30px;') Categories
+      ul#category_rental_page(style='list-style-type: none;')
+        li
+          a(href='#') Axe
+        li
+          a(href='#') Bag
+        li
+          a(href='#') Blanket
+        li
+          a(href='#') Chair
+        li
+          a(href='#') Fishing Rod
+        li
+          a(href='#') Grill
+        li
+          a(href='#') Hammer
+        li
+          a(href='#') Lantern
+        li
+          a(href='#') Pick Axe
+        li
+          a(href='#') Pillow
+        li
+          a(href='#') Shovel
+        li
+          a(href='#') Sleeping Bag
+        li
+          a(href='#') Table
+        li
+          a(hre='', ¿¶f='#') Tent
+        li
+          a(href='#') Thermos
+      br
+      br
+    // Rentals item category 
+    .clear
+    //  -------------- Rentals main content --------------  
+    section#main(style='padding-top: 50px;')
+      .container-fluid#rentals_content
+        // Sort navbar 
+        #rentals_side_nav
+          h2.display-4 Sort By:
+          hr.my-4
+          h5 Price
+          hr.my-4
+          h5 Rating
+          hr.my-4
+        // Sort navbar 
+        // Rental items 
+        section#rentals_main_content
+          .container-fluid
+            .row
+              .col-md-4
+                .card.mb-4.box-shadow
+                  .items_small_pic
+                    img.card-img-top(src='')
+                  .card-body
+                    p.card-text
+                      | Item:
+                      br
+                      | Description:
+                    .d-flex.justify-content-between.align-items-center
+                      .btn-group
+                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
+                      small.text-muted Price:
+              .col-md-4
+                .card.mb-4.box-shadow
+                  .items_small_pic
+                    img.card-img-top(src='')
+                  .card-body
+                    p.card-text
+                      | Item:
+                      br
+                      | Description:
+                    .d-flex.justify-content-between.align-items-center
+                      .btn-group
+                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
+                      small.text-muted Price:
+              .col-md-4
+                .card.mb-4.box-shadow
+                  .items_small_pic
+                    img.card-img-top(src='')
+                  .card-body
+                    p.card-text
+                      | Item:
+                      br
+                      | Description:
+                    .d-flex.justify-content-between.align-items-center
+                      .btn-group
+                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
+                      small.text-muted Price:
+              .col-md-4
+                .card.mb-4.box-shadow
+                  .items_small_pic
+                    img.card-img-top(src='')
+                  .card-body
+                    p.card-text
+                      | Item:
+                      br
+                      | Description:
+                    .d-flex.justify-content-between.align-items-center
+                      .btn-group
+                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
+                      small.text-muted Price:
+              .col-md-4
+                .card.mb-4.box-shadow
+                  .items_small_pic
+                    img.card-img-top(src='')
+                  .card-body
+                    p.card-text
+                      | Item:
+                      br
+                      | Description:
+                    .d-flex.justify-content-between.align-items-center
+                      .btn-group
+                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
+                      small.text-muted Price:
+              .col-md-4
+                .card.mb-4.box-shadow
+                  .items_small_pic
+                    img.card-img-top(src='')
+                  .card-body
+                    p.card-text
+                      | Item:
+                      br
+                      | Description:
+                    .d-flex.justify-content-between.align-items-center
+                      .btn-group
+                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
+                      small.text-muted Price:
+        // Rental items 
+    //  -------------- Rentals main content --------------  
+    // Footer 
+    .empty
+    footer.footer
+      .container
+        span.text-muted WebTech 2018 © Saint Louis University
+    // Footer 
