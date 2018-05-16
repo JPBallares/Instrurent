@@ -10,6 +10,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +38,7 @@ public class SAActivateAccountServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
                 rd.include(request, response);
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('The user has been successfully accepted.');");
+                out.println("alert('THE ACCOUNT HAS BEEN ACTIVATED.');");
                 out.println("</script>");
             }else if("deactivate".equals(value1)){
                 String sql1 = "UPDATE tenterent.accounts SET activate='inactive' WHERE account_id='"+ cID + "';"; 
@@ -45,7 +47,7 @@ public class SAActivateAccountServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
                 rd.include(request, response);
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('The user has been rejected.');");
+                out.println("alert('THE ACCOUNT HAS BEEN DEACTIVATED.');");
                 out.println("</script>");
             }
         }
@@ -63,7 +65,11 @@ public class SAActivateAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(SAActivateAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -77,7 +83,11 @@ public class SAActivateAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(SAActivateAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
