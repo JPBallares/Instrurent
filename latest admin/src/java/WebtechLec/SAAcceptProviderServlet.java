@@ -8,19 +8,14 @@ package WebtechLec;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author james
- */
-@WebServlet(name = "SAAcceptAccountServlet", urlPatterns = {"/SAAcceptAccountServlet"})
-public class SAAcceptAccountServlet extends HttpServlet {
+@WebServlet(name = "SAAcceptProviderServlet", urlPatterns = {"/SAAcceptProviderServlet"})
+public class SAAcceptProviderServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,7 +33,6 @@ public class SAAcceptAccountServlet extends HttpServlet {
         } else if("reject".equals(value1)){
                 String sql = "DELETE `tenterent`.`customer` SET `accepted`='a' WHERE `customer_id`='?';";
             }
-
         }
     }
 

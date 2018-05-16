@@ -198,50 +198,50 @@ public class SAAdminServlet extends HttpServlet {
                 }
                 out.println("   </table>");
             }else if(optionV.equals("Customers2")){
-                stmt = "select username, password, email, account_type, ar_status, ed_status from accounts where ar_status='Pending' and account_type='c';";
+                stmt = "select first_name, last_name, address, birthdate, contact_number from customer where accepted='p';";
                 out.println("<h1>Pending Customer Accounts</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
                 String table = "    <table>"
                         + "     <tr>"
-                        + "         <th>Username</th>"
-                        + "         <th>Password</th>"
-                        + "         <th>Email</th>"
-                        + "         <th>AccountType</th>"
+                        + "         <th>First Name</th>"
+                        + "         <th>Last Name</th>"
+                        + "         <th>Address</th>"
+                        + "         <th>Birthdate</th>"
+                        + "         <th>Contact Number</th>"
                         + "         <th>Accept/Reject Status </th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
                         out.println("           <tr>");
-                        out.println("               <td>"+rs.getString("username")+"</td>");
-                        out.println("               <td>"+rs.getString("password")+"</td>");
-                        out.println("               <td>"+rs.getString("email")+"</td>");
-                        out.println("               <td>"+rs.getString("account_type")+"</td>");
-                        out.println("               <td>"+rs.getString("ar_status")+"<form method=\"post\" action=\"\"><button>Accept</button></form><form><button>Reject</button></form></td>");
+                        out.println("               <td>"+rs.getString("first_name")+"</td>");
+                        out.println("               <td>"+rs.getString("last_name")+"</td>");
+                        out.println("               <td>"+rs.getString("address")+"</td>");
+                        out.println("               <td>"+rs.getString("birthdate")+"</td>");
+                        out.println("               <td>"+rs.getString("contact_number")+"</td>");
+                        out.println("               <td>"+"<form method=\"post\" action=\"SAAcceptAccountServlet\"><button value='accept'>Accept</button>   <button value='reject'>Reject</button></form></td>");
                         out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("Service Provider2")){
-                stmt = "select username, password, email, account_type, ar_status, ed_status from accounts where ar_status='Pending' and account_type='sp';";
+                stmt = "select provider_name, provider_address, provider_contact from service_provider where status ='p';";
                 out.println("<h1>Pending Service Provider Accounts</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
                 String table = "    <table>"
                         + "     <tr>"
-                        + "         <th>Username</th>"
-                        + "         <th>Password</th>"
-                        + "         <th>Email</th>"
-                        + "         <th>AccountType</th>"
+                        + "         <th>Name</th>"
+                        + "         <th>Address</th>"
+                        + "         <th>Contact Number</th>"
                         + "         <th>Accept/Reject Status </th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
                         out.println("           <tr>");
-                        out.println("               <td>"+rs.getString("username")+"</td>");
-                        out.println("               <td>"+rs.getString("password")+"</td>");
-                        out.println("               <td>"+rs.getString("email")+"</td>");
-                        out.println("               <td>"+rs.getString("account_type")+"</td>");
-                        out.println("               <td>"+rs.getString("ar_status")+"<form method=\"post\" action=\"\"><button>Accept</button></form><form><button>Reject</button></form></td>");
+                        out.println("               <td>"+rs.getString("provider_name")+"</td>");
+                        out.println("               <td>"+rs.getString("provider_address")+"</td>");
+                        out.println("               <td>"+rs.getString("provider_contact")+"</td>");
+                        out.println("               <td>"+"<form method=\"post\" action=\"SAAcceptProviderServlet\"><button value='accept'>Accept</button>   <button value='reject'>Reject</button></form></td>");
                         out.println("           </tr>");
                 }
                 out.println("   </table>");
