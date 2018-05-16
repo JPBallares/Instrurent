@@ -71,7 +71,6 @@
         include 'php/view_transaction.php';
     ?>
 	
-	<div class="sp-divider"></div>
 	
 	<script src="scripts/sp-randomizer.js"></script>
 </body>

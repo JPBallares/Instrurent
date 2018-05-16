@@ -95,7 +95,7 @@ if ($conn->query($insert_stmt) === true) {
     while ($row = $result->fetch_assoc()) {
         $accountid = $row['account_id'];
     }
-    $insert_stmt = "INSERT INTO `tenterent`.`service_provider` (`provider_name`, `provider_contact`, `provider_address`, `account_id`) VALUES ('$provider_name', '$contact', '$address', '$accountid');";
+    $insert_stmt = "INSERT INTO `tenterent`.`service_provider` (`provider_name`, `provider_contact`, `provider_address`, `status`, `account_id`) VALUES ('$provider_name', '$contact', '$address', 'p', '$accountid');";
     if ($conn->query($insert_stmt) === true) {
         echo "
         <script>
