@@ -183,6 +183,7 @@ CREATE TABLE `service_provider` (
   `provider_name` varchar(100) CHARACTER SET koi8r NOT NULL,
   `provider_contact` varchar(15) CHARACTER SET koi8r NOT NULL,
   `provider_address` varchar(200) CHARACTER SET koi8r NOT NULL,
+  `status` enum('a','r','p') NOT NULL,
   `account_id` int(11) NOT NULL,
   `banner` mediumblob,
   PRIMARY KEY (`provider_id`),
@@ -201,7 +202,7 @@ CREATE TABLE `service_provider` (
 
 LOCK TABLES `service_provider` WRITE;
 /*!40000 ALTER TABLE `service_provider` DISABLE KEYS */;
-INSERT INTO `service_provider` VALUES (1,'okimwa','09158776605','bakakeng',4,NULL),(2,'Justined','09951444108','Baguio City d',7,NULL),(3,'Juser','09104030178','a,a,a,a,a',9,NULL);
+INSERT INTO `service_provider` VALUES (1,'okimwa','09158776605','bakakeng','a',4,NULL),(2,'Justined','09951444108','Baguio City d','a',7,''),(3,'Juser','09104030178','a,a,a,a,a','a',9,NULL);
 /*!40000 ALTER TABLE `service_provider` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +219,7 @@ CREATE TABLE `transaction` (
   `date_rented` date NOT NULL,
   `date_due` date NOT NULL,
   `amount` double NOT NULL,
-  `approved` tinyint(4) NOT NULL,
+  `approved` enum('a','r','p') NOT NULL,
   `cust_id` int(11) NOT NULL,
   PRIMARY KEY (`transaction_id`,`item_id`),
   KEY `cust_id_idx` (`cust_id`),
@@ -246,4 +247,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-16  2:27:00
+-- Dump completed on 2018-05-16  7:56:12
