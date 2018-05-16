@@ -1,19 +1,18 @@
-button {
-	border: none;
-}
-
 .accept {
+	padding: 5px;
 	border-radius: 3px;
 	color: #49fb35;
 	background-color: rgba(52, 58, 64, 0.8);
 }
 
 .accept:hover {
+	color: #67eb58;
 	cursor: pointer;
 	background-color: rgba(52, 58, 64, 0.9);
 }
 
 .decline {
+	padding: 5px;
 	border-radius: 3px;
 	color: #ff0101;
 	background-color: rgba(52, 58, 64, 0.3);

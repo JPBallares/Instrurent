@@ -43,17 +43,6 @@ body {
 	margin: 50px 0 50px 5%;
 }
 
-.cus-col-sm {
-	margin: 0 10px 0px 10px;
-	border-radius: 3px;
-	background-color: #fff;
-}
-
-.cus-col-sm:hover {
-	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
-	cursor: pointer;
-}
-
 .sp-item-info {
 	border-top: 1px solid #000;
 	width: 90%;
@@ -70,27 +59,37 @@ body {
 
 .cus-row {
     padding: 10px 0 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-/*
-#items-add {
-    width: 265px;
-    height: 300px;
+.cus-card {
+    margin: 5px !important;
+    border-radius: 3px;
+	background-color: #fff;
+    height: auto;
+}
+
+.cus-card:hover {
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+}
+
+.car-img-top {
+    width: 300px !important; 
+    height: 150px !important;
+}
+
+.add-item {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-.sp-add-item {
-    color: rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0);
-    transition: all .2s ease-in-out;
-    font-size: 6em;
-    border: none;
-}
-
-.sp-add-item:hover {
-    color: rgba(0, 0, 0, 0.6);
+.add-item:hover {
     cursor: pointer;
 }
-*/
