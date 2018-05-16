@@ -42,7 +42,7 @@ public class SAAcceptAccountServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
                 rd.include(request, response);
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('The user has been successfully accepted.');");
+                out.println("alert('THE USER HAS BEEN ACCEPTED.');");
                 out.println("</script>");
             }else if("reject".equals(value1)){
                 String sql1 = "UPDATE tenterent.accounts SET status='r' WHERE account_id='"+ cID + "';"; 
@@ -51,7 +51,7 @@ public class SAAcceptAccountServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
                 rd.include(request, response);
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('The user has been rejected.');");
+                out.println("alert('THE USER HAS BEEN REJECTED.');");
                 out.println("</script>");
             }
 

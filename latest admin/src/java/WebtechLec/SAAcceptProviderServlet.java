@@ -8,6 +8,11 @@ package WebtechLec;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,16 +28,30 @@ public class SAAcceptProviderServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
+            String cID = request.getParameter("hiddenid");
             String value = request.getParameter("accept");
             String value1 = request.getParameter("reject");
             if("accept".equals(value)){
-                String sql = "UPDATE `tenterent`.`customer` SET `accepted`='a' WHERE `customer_id`='?';";
-                response.sendRedirect("index.html");
-
-            
-        } else if("reject".equals(value1)){
-                String sql = "DELETE `tenterent`.`customer` SET `accepted`='a' WHERE `customer_id`='?';";
+                String sql1 = "UPDATE `tenterent`.`accounts` SET `status`='a' WHERE `account_id`='"+ cID + "';"; 
+                PreparedStatement ps = conn.prepareStatement(sql1);  
+                ps.executeUpdate();
+                RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
+                rd.include(request, response);
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('THE SERVICE PROVIDER HAS BEEN ACCEPTED.');");
+                out.println("</script>");
+            }else if("reject".equals(value1)){
+                String sql1 = "UPDATE `tenterent`.`accounts` SET `status`='r' WHERE `account_id`='"+ cID + "';"; 
+                PreparedStatement ps = conn.prepareStatement(sql1);  
+                ps.executeUpdate();
+                RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
+                rd.include(request, response);
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('THE SERVICE PROVIDER HAS BEEN REJECTED.');");
+                out.println("</script>");
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(SAAcceptProviderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
