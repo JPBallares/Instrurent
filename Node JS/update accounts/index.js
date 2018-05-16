@@ -22,7 +22,7 @@ var server = app.listen(8091, function () {
 
 var db = mysql.createConnection({
     host: 'localhost',
-    port: 3308,
+    port: 3306,
     user: 'root',
     password: '',
     database: 'tenterent'
