@@ -13,6 +13,7 @@ $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
         echo "<table class='table table-striped'>" .
+		"<thead>" .
         "<tr>" .
         "<th>Transaction ID</th>" . 
         "<th>Item Name</th>" .
@@ -22,7 +23,8 @@ $result = $conn->query($sql);
         "<th>Quantity</th>" .
         "<th>Customer Name</th>" .
         "<th>Accept/Reject</th>" .
-        "</tr>";
+        "</tr>" .
+		"</thead>";
         $transac_id = 0;
         while ($row = $result->fetch_assoc()) {
             echo "<tr>" .
@@ -33,8 +35,8 @@ $result = $conn->query($sql);
             "<td>" . $row['amount'] . "</td>" .
             "<td>" . $row['quantity'] . "</td>" .
             "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>" .
-            "<td><a href='/php/accept.php?trans_id=" . $row['transaction_id'] . "'>Accept</a>
-            <a href='/php/reject.php?trans_id=" . $row['transaction_id'] . "'>Reject</a></td>" .
+            "<td><a class='accept' href='/php/accept.php?trans_id=" . $row['transaction_id'] . "'>Accept</a> | 
+            <a class='decline' href='/php/reject.php?trans_id=" . $row['transaction_id'] . "'>Reject</a></td>" .
             "</tr>";
             $transac_id = $row['transaction_id'];
             break;
@@ -50,7 +52,7 @@ $result = $conn->query($sql);
                 "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>" .
                 "<td><a href='/php/accept.php?trans_id=" . $row['transaction_id'] . "'>Accept</a>
                 <a href='/php/reject.php?trans_id=" . $row['transaction_id'] . "'>Reject</a></td>" .
-                "</tr>";
+                "</tr>" . "<hr>";
                 $transac_id = $row['transaction_id'];
             } else {
                 echo "<tr>" .

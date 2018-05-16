@@ -20,6 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/main.css"/>
 	<link rel="stylesheet" href="style/sp-index.css">
+	<link rel="stylesheet" href="style/sp-notifications.css">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <script src="./js/jquery.min.js"></script>
@@ -67,9 +68,7 @@
     <br>
     <br>
     <br>
-	<?php
-        include 'php/view_transaction.php';
-    ?>
+	<?php include 'php/view_transaction.php';?>
 	
 	
 	<script src="scripts/sp-randomizer.js"></script>

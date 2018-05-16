@@ -127,15 +127,16 @@
                     <p class="card-text">Stock: </p>
                 </div>
             </div>
-            
-            <?php include 'query-owned-items.php'; ?>
-            
-            <div class="card cus-card add-card" style="width: 300px; height: 350px;">
+			
+			<?php include 'query-owned-items.php'; ?>
+			
+			<div class="card cus-card add-card" style="width: 300px; height: 350px;">
                 <div class="card-body add-item">
                     <a class="btn btn-primary btn-lg btn_cc" href="#" role="button" data-toggle="modal" data-target="#add-item-modal"><i class="fa fa-plus"></i></a>
                 </div>
             </div>
-            
+		</div>
+
             <div class="modal fade" id="add-item-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
