@@ -8,4 +8,4 @@
     /* route to handle login and registration */
     app.post('/api/register',registerController.register);
     app.post('/api/authenticate',authenticateController.authenticate);
-    app.listen(8012);
+    app.listen(8011);
