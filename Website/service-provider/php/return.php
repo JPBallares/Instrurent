@@ -6,7 +6,7 @@ $conn = OpenCon();
 $transaction_id = $_GET['trans_id'];
 $transaction_id = mysqli_real_escape_string($conn, $transaction_id);
 
-$sql = "SELECT *  FROM transaction NATURAL JOIN customer NATURAL JOIN items WHERE transaction_id = $transaction_id AND approved = 'p';";
+$sql = "SELECT *  FROM transaction NATURAL JOIN customer NATURAL JOIN items WHERE transaction_id = $transaction_id AND approved = 'a';";
 $result = $conn->query($sql);
 while ($row = $result->fetch_assoc()) {
     $item_id = $row['item_id'];
@@ -20,7 +20,7 @@ while ($row = $result->fetch_assoc()) {
     }
 }
 
-$sql = "UPDATE `transaction` SET `approved` = 'a' WHERE `transaction_id` = $transaction_id;";
+$sql = "UPDATE `transaction` SET `returned` = '1' WHERE `transaction_id` = $transaction_id;";
 if ($conn->query($sql) === TRUE) {
     echo "
     <script>
