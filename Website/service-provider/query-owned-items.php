@@ -12,8 +12,8 @@
             echo '        <p class="card-text">Price: &#8369;' . $row['price'] . '</p>';
             echo '        <p class="card-text">Renting Fee: &#8369;' . $row['renting_fee'] . '</p>';
             echo '        <p class="card-text">Stock: ' . $row['stock'] . '</p>';
-            echo '        <a href="php/edit_item.php?item_id='. $row['item_id'] . '">Edit Item</a>';
-            echo '        <a href="php/delete_item.php?item_id='. $row['item_id'] . '">Delete Item</a>';
+            echo '        <a class="btn btn-danger"  href="php/edit_item.php?item_id='. $row['item_id'] . '">Edit Item</a>';
+            echo '        <a class="btn btn-danger"  href="php/delete_item.php?item_id='. $row['item_id'] . '">Delete Item</a>';
             echo '    </div>';
            
             echo '</div>';
