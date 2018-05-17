@@ -12,11 +12,9 @@ $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         // output data of each row
-        echo "<select name='type-id'>";
         while ($row = $result->fetch_assoc()) {
             echo "<option value='" . $row['type_id'] . "'>" . $row['type_name'] . "</option>";
         }
-        echo "</select>";
     }
 
 CloseCon($conn);

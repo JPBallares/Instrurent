@@ -1,6 +1,6 @@
 <?php
 	$con_db = new mysqli("localhost", "root", "", "tenterent");
-	$sql = "select item_name, price, renting_fee, stock, item_image from items";
+	$sql = "select * from items";
 	$res = $con_db->query($sql);
 
 	if($res->num_rows > 0) {
@@ -12,7 +12,10 @@
             echo '        <p class="card-text">Price: &#8369;' . $row['price'] . '</p>';
             echo '        <p class="card-text">Renting Fee: &#8369;' . $row['renting_fee'] . '</p>';
             echo '        <p class="card-text">Stock: ' . $row['stock'] . '</p>';
+            echo '        <a href="php/edit_item.php?item_id='. $row['item_id'] . '">Edit Item</a>';
+            echo '        <a href="php/delete_item.php?item_id='. $row['item_id'] . '">Delete Item</a>';
             echo '    </div>';
+           
             echo '</div>';
 		}
 	}

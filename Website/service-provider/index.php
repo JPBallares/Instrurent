@@ -118,7 +118,7 @@
 <div class="container sp-items">
 		<h3 class="sp-items-header">Items Owned</h3>
 		<div class="cus-row">
-			<div class="card cus-card" style="width: 300px; height: 350px;">
+			<!-- <div class="card cus-card" style="width: 300px; height: 350px;">
             <img class="card-img-top" src="img/slider_1.png" alt="Card image cap" style="width: 300px; height: 150px;">
                 <div class="card-body">
                     <h5 class="card-title">Name</h5>
@@ -126,7 +126,7 @@
                     <p class="card-text">Renting Fee: </p>
                     <p class="card-text">Stock: </p>
                 </div>
-            </div>
+            </div> -->
 			
 			<?php include 'query-owned-items.php'; ?>
 			
@@ -171,9 +171,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="item-type">Type</label>
+                                    <select name='type-id'>
                                     <?php
                                     include 'php/display_types.php';
                                     ?>
+                                    </select>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="submit" class="btn btn-primary sp-btn btn_cc" value="Add Item">

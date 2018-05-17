@@ -1,22 +1,20 @@
 <?php
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+if (!function_exists(OpenCon)) {
+    function OpenCon()
+    {
+        $dbhost = "localhost";
+        $dbuser = "root";
+        $dbpass = "";
+        $db = "tenterent";
 
-function OpenCon()
- {
- $dbhost = "localhost";
- $dbuser = "root";
- $dbpass = "";
- $db = "tenterent";
+        $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
 
+        return $conn;
+    }
 
- $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
-
- 
- return $conn;
- }
- 
-function CloseCon($conn)
- {
- $conn -> close();
- }
-   
-?>
+    function CloseCon($conn)
+    {
+        $conn->close();
+    }
+}
