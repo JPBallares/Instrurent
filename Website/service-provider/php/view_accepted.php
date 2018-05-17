@@ -35,7 +35,7 @@ $result = $conn->query($sql);
             "<td>" . $row['amount'] . "</td>" .
             "<td>" . $row['quantity'] . "</td>" .
             "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
-            if ($row['returned'] === 1) {
+            if ($row['returned'] == 1) {
                 echo "<td>Item Returned</td>";
             } else {
                 echo "<td><a class='accept' href='/php/return.php?trans_id=" . $row['transaction_id'] . "'>Mark as Returned</a></td>";
@@ -52,10 +52,13 @@ $result = $conn->query($sql);
                 "<td>" . $row['date_rented'] . "</td>" .
                 "<td>" . $row['date_due'] . "</td>" .
                 "<td>" . $row['amount'] . "</td>" .
-                "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>" .
-                "<td><a href='/php/accept.php?trans_id=" . $row['transaction_id'] . "'>Accept</a>
-                <a href='/php/reject.php?trans_id=" . $row['transaction_id'] . "'>Reject</a></td>" .
-                "</tr>" . "<hr>";
+                "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
+                if ($row['returned'] == 1) {
+                    echo "<td>Item Returned</td>";
+                } else {
+                    echo "<td><a class='accept' href='/php/return.php?trans_id=" . $row['transaction_id'] . "'>Mark as Returned</a></td>";
+                }
+                echo "</tr>" . "<hr>";
                 $transac_id = $row['transaction_id'];
             } else {
                 echo "<tr>" .

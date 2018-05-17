@@ -47,17 +47,16 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-sp dropdown-menu-right" aria-labelledby="navbarDropdown">
 					<h6 class="dropdown-header"><?php echo $_SESSION['name'];?></h6>
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Account Information</a>
+                    <a class="dropdown-item" href="edit_profile.php">Profile</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="php/logout.php">Log out</a>
                 </div>
             </li>
 			<li class="nav-item nav-item-sp">
-            	<a class="nav-link" href=""><i class="fa fa-envelope"></i></a>
+            	<a class="nav-link" href="view-accepted"><i class="fa fa-envelope"></i></a>
             </li>
 			<li class="nav-item nav-item-sp">
-            	<a class="nav-link" href="notifications.html"><i class="fas fa-bell"></i></a>
+            	<a class="nav-link" href="view-transaction"><i class="fas fa-bell"></i></a>
             </li>
         </ul>
     </div>

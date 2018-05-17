@@ -24,7 +24,7 @@ $sql = "UPDATE `transaction` SET `returned` = '1' WHERE `transaction_id` = $tran
 if ($conn->query($sql) === TRUE) {
     echo "
     <script>
-    alert('The transaction has been accepted');
+    alert('The transaction has been returned');
     window.history.back();
     </script>
     ";
