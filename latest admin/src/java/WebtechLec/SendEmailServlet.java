@@ -40,18 +40,19 @@ public class SendEmailServlet extends HttpServlet {
             throws ServletException, IOException, AddressException, MessagingException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+           
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
-            String temp = request.getParameter("stmt");
+            String temp = request.getParameter("email");
+            
+            if("email".equals(temp)){
             PreparedStatement ps = conn.prepareStatement(temp);
             ResultSet rs = ps.executeQuery();
-            String email = rs.getString("email");
-            
+            String mail = rs.getString(temp);
             String host ="smtp.gmail.com" ;
             String user = "2161920@slu.edu.ph";
             String pass = "0k1mw4N4I9";
-            String to = email;
+            String to = mail;
             String from = "2161920@slu.edu.ph";
             String subject = "This is confirmation number for your expertprogramming account. Please insert this number to activate your account.";
             String messageText = "Your Is Test Email :";
@@ -81,6 +82,9 @@ public class SendEmailServlet extends HttpServlet {
            transport.close();
            RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
                 rd.include(request, response);
+            }else{
+                out.println("error");
+            }
         }
     }
 

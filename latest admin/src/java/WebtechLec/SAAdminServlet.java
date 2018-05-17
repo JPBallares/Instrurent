@@ -202,7 +202,7 @@ public class SAAdminServlet extends HttpServlet {
                 }
                 out.println("   </table>");
             }else if(optionV.equals("Customers2")){
-                stmt = "select account_id, first_name, last_name, address, birthdate, contact_number,email from accounts natural join customer where status='p';";
+                stmt = "select account_id, first_name, last_name, address, birthdate, contact_number, email from accounts natural join customer where status='p';";
                 out.println("<h1>Pending Customer Accounts</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
