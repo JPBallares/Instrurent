@@ -93,3 +93,19 @@ body {
 .add-item:hover {
     cursor: pointer;
 }
+
+.cus-btn-group {
+	justify-content: space-between;
+}
+
+.cus-btn-i {
+	font-size: 0.8em !important;
+}
+
+.img-con-card {
+	width: 300px; 
+	height: 150px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}

@@ -105,10 +105,40 @@
 	<div class="container sp-container">
 		<div class="row sp-row">
 			<div class="col-md-6">
-				<h3>Lorem</h3>
-				<p style="text-indent: 3em;">Morbi ullamcorper, magna et efficitur semper, magna augue accumsan leo, a lobortis sapien risus non velit. Mauris viverra ante quis tempor pellentesque. Mauris vitae ornare sem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam at commodo ante. Curabitur faucibus, massa non tempus venenatis, est augue elementum arcu, sed consequat lectus lorem sit amet risus. Quisque et congue ante. Phasellus metus mi, ornare id sollicitudin in, tincidunt in sem. Vivamus a ultrices metus, at rhoncus diam. Duis ac suscipit est, eget faucibus magna. Aenean rhoncus, justo a venenatis dapibus, nibh orci congue sem, at lobortis justo nibh in justo.</p>
+				<h3>Top Items</h3>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<td>Item Name</td>
+							<td>Range</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Item 1</td>
+							<td>Day</td>
+						</tr>
+						<tr>
+							<td>Item 2</td>
+							<td>Week</td>
+						</tr>
+						<tr>
+							<td>Item 3</td>
+							<td>Month</td>
+						</tr>
+						<tr>
+							<td>Item 4</td>
+							<td>Year</td>
+						</tr>
+						<tr>
+							<td>Item 5</td>
+							<td>All Time</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<div class="col-md-6" id="sp-top-images">
+				<p>Top Item Image</p>
 				<img class="sp-image" src="images/sp-top-image-1.jpeg">
 			</div>
 		</div>
@@ -116,7 +146,7 @@
 	
 <div class="container sp-items">
 		<h3 class="sp-items-header">Items Owned</h3>
-		<div class="cus-row">
+		<div class="cus-row row-eq-height">
 			<!-- <div class="card cus-card" style="width: 300px; height: 350px;">
             <img class="card-img-top" src="img/slider_1.png" alt="Card image cap" style="width: 300px; height: 150px;">
                 <div class="card-body">
@@ -189,8 +219,6 @@
 	</div>
 	
 	<div class="sp-divider"></div>
-	
-	<script src="scripts/sp-randomizer.js"></script>
 </body>
 </html>
 <?php

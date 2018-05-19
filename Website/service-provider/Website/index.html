@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TentERent | Home</title>
+    <link rel="shortcut icon" href="css/img/Logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/validate.css"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/popper.min.js"></script>
+    <!-- Bootstrap -->   
+    <script src="js/ajax.js"></script>
+    
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
+        <a class="navbar-brand" href="#"><img src="css/img/Logo.png" class="logo_s">TentERent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="rentals.html">Rentals</a>
+                </li>
+  
+                <li class="nav-item">
+                    <a class="nav-link" href="">Contact</a>
+                </li>
+  
+                <li class="nav-item">
+                    <a class="nav-link" href="">About Us</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav" id="login_and_sign_up">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#login">Login</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#sign_up">Sign-up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+   <!-- Login -->
+   <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="user_login">Login</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="php/main_login.php" method="POST">
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="user_login">Username</label>
+                            <input name="username" type="text" class="form-control" id="user_login" placeholder="Username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_pass">Password</label>
+                            <input name="password" type="password" class="form-control" id="user_pass" placeholder="Password">
+                        </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input name="login" type="submit" class="btn btn-primary btn_cc" value="Login">
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    <!-- Login -->
+
+    <!-- Sign-up -->
+    <div class="modal fade" id="sign_up" tabindex="-1" role="dialog" aria-labelledby="sign_up" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Sign-up</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+            </div>
+
+            <div class="modal-body">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#menu1">Client</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu2">Service provider</a>
+                    </li>
+                </ul>
+      
+                <div class="tab-content">
+                    <div class="tab-pane active container" id="menu1">
+                        <form>
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="client_first_name">First name</label>
+                                        <input name="client_first_name" type="text" class="form-control" id="client_first_name" placeholder="First name" required>
+                                    </div>
+                
+                                    <div class="col-md-4 mb-3">
+                                        <label for="client_last_name">Last name</label>
+                                        <input name="client_last_name" type="text" class="form-control" id="client_last_name" placeholder="Last name" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-check mr-4">
+                                        <input class="form-check-input" type="radio" name="male" id="option_male" value="male" checked>
+                                        <label class="form-check-label" for="option_male">
+                                            Male
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="female" id="option_female" value="female">
+                                        <label class="form-check-label" for="option_female">
+                                            Female
+                                        </label>
+                                    </div>   
+                                </div>
+                                <br>
+                                <div class="form-row">
+                                    <div class="col-md-6">    
+                                        <div class="form-group">
+                                            <label>Date of Birth</label>
+                                            <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Date of Birth">
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-md-4 mb-3">
+                                        <label for=client_username>Username</label>
+                                        <input name="client_username" type="text" class="form-control" id="client_username" placeholder="Username" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="client_email">Email Address</label>
+                                        <input name="client_email" type="text" class="form-control" id="client_email" placeholder="Email Address" onkeyup="showHint('email', this.value, 'emailValidate')" required>
+                                        <div id="emailValidate"></div>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="client_address">Address</label>
+                                        <input name="client_address" type="text" class="form-control" id="client_address" placeholder="House No, Street, Barangay, City, Province" onkeyup="showHint('address', this.value, 'addressValidate')" required>
+                                        <div id="addressValidate"></div>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="client_pass">Password</label>
+                                        <input name="client_pass" type="password" class="form-control" placeholder="Password" id="client_password" onkeyup="showHint('password', this.value, 'passwordValidate')" required>
+                                        <div id="passwordValidate"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="client_confirm_pass">Confirm Password</label>
+                                        <input name="client_confirm_pass" type="password" class="form-control" placeholder="Password" id="client_confirm_password" onkeyup="confirmPass('confirm', this.value, 'client_password', 'confirmPass')" required>
+                                        <div id="confirmPass"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="client_contact">Contact number</label>
+                                        <input name="client_contact" type="text" class="form-control" id="client_contact" placeholder="Contact number" onkeyup="showHint('contact', this.value, 'contactValidate')" required>
+                                        <div id="contactValidate"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <input type="submit" class="btn btn-primary btn_cc" value="Sign-up" id="submitClient">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane container" id="menu2">
+                        <form>
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="service_name">Provider name</label>
+                                        <input name="service_name" type="text" class="form-control" id="service_name" placeholder="Name" required>
+                                    </div>
+                
+                                    <div class="col-md-4 mb-3">
+                                        <label for="service_username">Username</label>
+                                        <input name="service_username" type="text" class="form-control" id="service_username" placeholder="Username" required>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="service_address">Address</label>
+                                        <input name="service_address" type="text" class="form-control" id="service_address" placeholder="House No, Street, Barangay, City, Province" onkeyup="showHint('address', this.value, 'addressValidateSP')" required>
+                                        <div id="addressValidateSP"></div>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="service_email">Email Address</label>
+                                        <input name="service_email" type="text" class="form-control" id="service_email" placeholder="Email Address" onkeyup="showHint('email', this.value, 'emailValidateSP')" required>
+                                        <div id="emailValidateSP"></div>
+                                    </div>
+                                </div>
+                
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="service_pass">Password</label>
+                                        <input name="service_pass" type="password" class="form-control" id="service_pass" placeholder="Password" onkeyup="showHint('password', this.value, 'passwordValidateSP')" required>
+                                        <div id="passwordValidateSP"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="service_pass">Confirm Password</label>
+                                        <input name="service_pass" type="password" class="form-control" id="service_confirm_pass" placeholder="Password" onkeyup="confirmPass('confirm', this.value, 'service_pass','confirmPassSP')" required>
+                                        <div id="confirmPassSP"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="service_contact">Contact number</label>
+                                        <input name="service_contact" type="text" class="form-control" id="service_contact" placeholder="Contact number" onkeyup="showHint('contact', this.value, 'contactValidateSP')" required>
+                                        <div id="contactValidateSP"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <input type="submit" class="btn btn-primary btn_cc" value="Sign-up" id="submitProvider">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+           
+          </div>
+        </div>
+    </div>
+    <!-- Sign-up -->
+
+    <!-- Slider
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active" id="slide_1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5></h5>
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="carousel-item" id="slide_2" style="background-position: bottom;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5></h5>
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="carousel-item" id="slide_3" style="background-position: bottom;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5></h5>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    -->
+
+    <!-- Banner -->
+    <div class="jumbotron" id="home_banner">
+        <div class="container">
+            <img src="css/img/Logo.png" alt="Website Logo" style="width: 40%; margin-top: 50px;">
+            <h1 class="display-4">TentERent</h1>
+            <div id="catchphrase"><p class="lead">Explore the Earth like nothing else.</p></div>
+            <hr class="my-4" id="hr_banner">
+            <p>Create your free account now to get started.</p>
+            <a class="btn btn-primary btn-lg btn_cc" href="#" role="button" data-toggle="modal" data-target="#sign_up">Get Started</a>
+        </div>
+    </div>
+    <!-- Banner -->
+
+    <!-- Intro -->
+    <div class="jumbotron jumbotron-fluid" id="intro">
+        <div class="container">
+           
+        </div>
+    </div>
+    <!-- Intro -->
+
+    <div class="container" id="home_main_content">
+        <!-- Slider -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active" id="slide_1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5></h5>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="carousel-item" id="slide_2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5></h5>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="carousel-item" id="slide_3">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5></h5>
+                            <p></p>
+                    </div>
+                </div>
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <br>
+        <br>
+        <!-- Slider -->
+        <h1 class="display-4">Most Popular</h1>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Item:
+                                    <br>Description:
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    <a role="button" class="btn btn-sm btn-outline-secondary" href="rentals/view_rental.html">View</a>
+                                    </div>
+                                    <small class="text-muted">Price: </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Item:
+                                    <br>Description:
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    <a role="button" class="btn btn-sm btn-outline-secondary" href="rentals/view_rental.html">View</a>
+                                    </div>
+                                    <small class="text-muted">Price: </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                        <div class="items_small_pic"><img class="card-img-top" src=""></div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Item:
+                                    <br>Description:
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    <a role="button" class="btn btn-sm btn-outline-secondary" href="rentals/view_rental.html">View</a>
+                                    </div>
+                                    <small class="text-muted">Price: </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <h1 class="display-4">Categories</h1>
+		<br>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+        	<ul id="category_rental_page" style="list-style-type: none;">
+				<li><a href="#">Axe</a></li>
+				<li><a href="#">Bag</a></li>
+				<li><a href="#">Blanket</a></li>
+				<li><a href="#">Chair</a></li>
+				<li><a href="#">Fishing Rod</a></li>
+				<li><a href="#">Grill</a></li>
+				<li><a href="#">Hammer</a></li>
+				<li><a href="#">Lantern</a></li>
+				<li><a href="#">Pick Axe</a></li>
+				<li><a href="#">Pillow</a></li>
+				<li><a href="#">Shovel</a></li>
+				<li><a href="#">Sleeping Bag</a></li>
+				<li><a href="#">Table</a></li>
+				<li><a href="#">Tent</a></li>
+				<li><a href="#">Thermos</a></li>
+			</ul>
+        </div>
+		
+		<div class="clear"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="empty"></div>
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">WebTech 2018 &copy; Saint Louis University</span>
+        </div>
+    </footer>
+    <!-- Footer -->
+
+    <script src="js/catchphrase.js"></script>
+</body>
+</html>
