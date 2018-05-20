@@ -7,6 +7,7 @@ package WebtechLec;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -284,9 +285,6 @@ public class AAdminServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(SAAdminServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        <script type="text/javascript">
-        
-        </script>
     }
 
 

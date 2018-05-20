@@ -7,6 +7,7 @@ package WebtechLec;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -37,7 +38,7 @@ public class SAActivateAccountServlet extends HttpServlet {
                 ps.executeUpdate();
                 RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
                 rd.include(request, response);
-                out.println("<script type=\"text/javascript\">"); 
+                out.println("<script type=\"text/javascript\">");
                 out.println("alert('THE ACCOUNT HAS BEEN ACTIVATED.');");
                 out.println("</script>");
                 

@@ -69,7 +69,7 @@ public class SAAdminServlet extends HttpServlet {
                         out.println("               <td>"+rs.getString("email")+"</td>");
                         out.println("               <td>"+rs.getString("account_type")+"</td>");
                         out.println("               <td>"+rs.getString("activate")+"</td>");
-                        out.println("               <td>"+"<form method=\"post\" action=\"SAActivateAccountServlet\"><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='activate' id='A' name='activate'><input type='submit' value='deactivate' id='DA' name='deactivate'></form></td>");
+                        out.println("               <td>"+"<form method=\"post\" action=\"SAActivateAccountServlet\"><input type='text' value=" + rs.getString("email") + " style='display:none;' name='email'><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='activate' id='A' name='activate'><input type='submit' value='deactivate' id='DA' name='deactivate'></form></td>");
                         out.println("           </tr>");
                 }
                 out.println("   </table>");

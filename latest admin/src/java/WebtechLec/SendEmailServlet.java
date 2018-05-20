@@ -40,12 +40,13 @@ public class SendEmailServlet extends HttpServlet {
             throws ServletException, IOException, AddressException, MessagingException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
+            
+            String temp = request.getParameter("hiddenid");
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
-            String temp = request.getParameter("email");
             
-            if("email".equals(temp)){
+            
+            if("hiddenid".equals(temp)){
             PreparedStatement ps = conn.prepareStatement(temp);
             ResultSet rs = ps.executeQuery();
             String mail = rs.getString(temp);
@@ -103,9 +104,7 @@ public class SendEmailServlet extends HttpServlet {
         try {
             try {
                 processRequest(request, response);
-            } catch (AddressException ex) {
-                Logger.getLogger(SendEmailServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
+            } catch (AddressException | SQLException ex) {
                 Logger.getLogger(SendEmailServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (MessagingException ex) {
@@ -127,9 +126,7 @@ public class SendEmailServlet extends HttpServlet {
         try {
             try {
                 processRequest(request, response);
-            } catch (AddressException ex) {
-                Logger.getLogger(SendEmailServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
+            } catch (AddressException | SQLException ex) {
                 Logger.getLogger(SendEmailServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (MessagingException ex) {

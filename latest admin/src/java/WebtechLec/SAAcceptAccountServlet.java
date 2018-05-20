@@ -39,8 +39,7 @@ public class SAAcceptAccountServlet extends HttpServlet {
                 String sql1 = "UPDATE tenterent.accounts SET status='a' WHERE account_id='"+ cID + "';"; 
                 PreparedStatement ps = conn.prepareStatement(sql1);  
                 ps.executeUpdate();
-                RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
-                rd.include(request, response);
+                response.sendRedirect("SendEmailServlet");
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('THE USER HAS BEEN ACCEPTED.');");
                 out.println("</script>");
