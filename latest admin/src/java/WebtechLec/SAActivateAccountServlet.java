@@ -37,9 +37,10 @@ public class SAActivateAccountServlet extends HttpServlet {
                 ps.executeUpdate();
                 RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
                 rd.include(request, response);
-                out.println("<script type=\"text/javascript\">");
+                out.println("<script type=\"text/javascript\">"); 
                 out.println("alert('THE ACCOUNT HAS BEEN ACTIVATED.');");
                 out.println("</script>");
+                
             }else if("deactivate".equals(value1)){
                 String sql1 = "UPDATE tenterent.accounts SET activate='inactive' WHERE account_id='"+ cID + "';"; 
                 PreparedStatement ps = conn.prepareStatement(sql1);  
@@ -50,6 +51,7 @@ public class SAActivateAccountServlet extends HttpServlet {
                 out.println("alert('THE ACCOUNT HAS BEEN DEACTIVATED.');");
                 out.println("</script>");
             }
+            
         }
     }
 

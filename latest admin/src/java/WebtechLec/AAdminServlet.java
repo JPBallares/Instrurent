@@ -46,19 +46,21 @@ public class AAdminServlet extends HttpServlet {
             }else {
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/Aheader.html");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAheader.html");
             rd.include(request, response);
             String stmt;
             if (optionV.equals("All Accounts")) {
                 out.println("<h1>All Accounts List</h1><br>");
-                stmt = "select username, password, email, account_type from accounts;";
+                stmt = "select account_id, username, email, account_type, activate from accounts where status='a';";
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
                 String table = "    <table>"
                         + "     <tr>"
                         + "         <th>Username</th>"
                         + "         <th>Email</th>"
-                        + "         <th>AccountType</th>"
+                        + "         <th>Account Type</th>"
+                        + "         <th>Active</th>"
+                        + "         <th>Activate/Deactivate</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
@@ -66,11 +68,13 @@ public class AAdminServlet extends HttpServlet {
                         out.println("               <td>"+rs.getString("username")+"</td>");
                         out.println("               <td>"+rs.getString("email")+"</td>");
                         out.println("               <td>"+rs.getString("account_type")+"</td>");
+                        out.println("               <td>"+rs.getString("activate")+"</td>");
+                        out.println("               <td>"+"<form method=\"post\" action=\"SAActivateAccountServlet\"><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='activate' name='activate'><input type='submit' value='deactivate' name='deactivate'></form></td>");
                         out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("Customers")) {
-                stmt = "select username, email, account_type from accounts where account_type='c';";
+                stmt = "select username, email, account_type, activate from accounts where account_type='c';";
                 out.println("<h1>Customer Users List</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
@@ -78,7 +82,8 @@ public class AAdminServlet extends HttpServlet {
                         + "     <tr>"
                         + "         <th>Username</th>"
                         + "         <th>Email</th>"
-                        + "         <th>AccountType</th>"
+                        + "         <th>Account Type</th>"
+                        + "         <th>Account Status</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
@@ -86,11 +91,12 @@ public class AAdminServlet extends HttpServlet {
                     out.println("               <td>"+rs.getString("username")+"</td>");
                     out.println("               <td>"+rs.getString("email")+"</td>");
                     out.println("               <td>"+rs.getString("account_type")+"</td>");
+                    out.println("               <td>"+rs.getString("activate")+"</td>");
                     out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("Admins")) {
-                stmt = "select username, email, account_type from accounts where account_type='sa' or account_type='a';";
+                stmt = "select username,email, account_type, activate from accounts where account_type='sa' or account_type='a';";
                 out.println("<h1>Admin Users List</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
@@ -98,7 +104,8 @@ public class AAdminServlet extends HttpServlet {
                         + "     <tr>"
                         + "         <th>Username</th>"
                         + "         <th>Email</th>"
-                        + "         <th>AccountType</th>"
+                        + "         <th>Account Type</th>"
+                        + "         <th>Account Status</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
@@ -106,11 +113,12 @@ public class AAdminServlet extends HttpServlet {
                     out.println("               <td>"+rs.getString("username")+"</td>");
                     out.println("               <td>"+rs.getString("email")+"</td>");
                     out.println("               <td>"+rs.getString("account_type")+"</td>");
+                    out.println("               <td>"+rs.getString("activate")+"</td>");
                     out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("Service Provider")){
-                stmt = "select username, email, account_type from accounts where account_type='sp';";
+                stmt = "select username, email, account_type, activate from accounts where account_type='sp';";
                 out.println("<h1>Service Provider Users List</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
@@ -118,7 +126,8 @@ public class AAdminServlet extends HttpServlet {
                         + "     <tr>"
                         + "         <th>Username</th>"
                         + "         <th>Email</th>"
-                        + "         <th>AccountType</th>"
+                        + "         <th>Account Type</th>"
+                        + "         <th>Account Status</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
@@ -126,11 +135,12 @@ public class AAdminServlet extends HttpServlet {
                     out.println("               <td>"+rs.getString("username")+"</td>");
                     out.println("               <td>"+rs.getString("email")+"</td>");
                     out.println("               <td>"+rs.getString("account_type")+"</td>");
+                    out.println("               <td>"+rs.getString("activate")+"</td>");
                     out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("UCustomers")) {
-                stmt = "select first_name, last_name, address1, address2, contact_number, accepted from customer;";
+                stmt = "select first_name, last_name,address, birthdate, contact_number from customer;";
                 out.println("<h1>Customer User Information List</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
@@ -138,25 +148,23 @@ public class AAdminServlet extends HttpServlet {
                         + "     <tr>"
                         + "         <th>First Name</th>"
                         + "         <th>Last Name</th>"
-                        + "         <th>Address 1</th>"
-                        + "         <th>Address 2</th>"
+                        + "         <th>Address</th>"
+                        + "         <th>Birthdate</th>"
                         + "         <th>Contact Number</th>"
-                        + "         <th>Account Status</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
                     out.println("           <tr>");
                     out.println("               <td>"+rs.getString("first_name")+"</td>");
                     out.println("               <td>"+rs.getString("last_name")+"</td>");
-                    out.println("               <td>"+rs.getString("address1")+"</td>");
-                    out.println("               <td>"+rs.getString("address2")+"</td>");
+                    out.println("               <td>"+rs.getString("address")+"</td>");
+                    out.println("               <td>"+rs.getString("birthdate")+"</td>");
                     out.println("               <td>"+rs.getString("contact_number")+"</td>");
-                    out.println("               <td>"+rs.getString("accepted")+"</td>");
                     out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("UAdmins")) {
-                stmt = "select admin_name, admin_contact, account_id from admin;";
+                stmt = "select admin_name, admin_contact from admin;";
                 out.println("<h1>Admin User Information List</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
@@ -164,19 +172,17 @@ public class AAdminServlet extends HttpServlet {
                         + "     <tr>"
                         + "         <th>Name</th>"
                         + "         <th>Contact</th>"
-                        + "         <th>Account ID</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
                     out.println("           <tr>");
                     out.println("               <td>"+rs.getString("admin_name")+"</td>");
                     out.println("               <td>"+rs.getString("admin_contact")+"</td>");
-                    out.println("               <td>"+rs.getString("account_id")+"</td>");
                     out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("UService Provider")) {
-                stmt = "select provider_name, provider_contact, provider_address, account_id from service_provider;";
+                stmt = "select provider_name, provider_contact, provider_address from service_provider;";
                 out.println("<h1>Service Provider User Information List</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
@@ -185,7 +191,6 @@ public class AAdminServlet extends HttpServlet {
                         + "         <th>Name</th>"
                         + "         <th>Contact</th>"
                         + "         <th>Address</th>"
-                        + "         <th>Account ID</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
@@ -193,60 +198,61 @@ public class AAdminServlet extends HttpServlet {
                     out.println("               <td>"+rs.getString("provider_name")+"</td>");
                     out.println("               <td>"+rs.getString("provider_contact")+"</td>");
                     out.println("               <td>"+rs.getString("provider_address")+"</td>");
-                    out.println("               <td>"+rs.getString("account_id")+"</td>");
                     out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("Customers2")){
-                stmt = "select username, password, email, account_type, ar_status, ed_status from accounts where ar_status='Pending' and account_type='c';";
+                stmt = "select account_id, first_name, last_name, address, birthdate, contact_number, email from accounts natural join customer where status='p';";
                 out.println("<h1>Pending Customer Accounts</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
                 String table = "    <table>"
                         + "     <tr>"
-                        + "         <th>Username</th>"
-                        + "         <th>Password</th>"
-                        + "         <th>Email</th>"
-                        + "         <th>AccountType</th>"
+                        + "         <th>First Name</th>"
+                        + "         <th>Last Name</th>"
+                        + "         <th>Address</th>"
+                        + "         <th>Birthdate</th>"
+                        + "         <th>Contact Number</th>"
                         + "         <th>Accept/Reject Status </th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
                         out.println("           <tr>");
-                        out.println("               <td>"+rs.getString("username")+"</td>");
-                        out.println("               <td>"+rs.getString("password")+"</td>");
-                        out.println("               <td>"+rs.getString("email")+"</td>");
-                        out.println("               <td>"+rs.getString("account_type")+"</td>");
-                        out.println("               <td>"+rs.getString("ar_status")+"<form method=\"post\" action=\"\"><button>Accept</button></form><form><button>Reject</button></form></td>");
+                        out.println("               <td>"+rs.getString("first_name")+"</td>");
+                        out.println("               <td>"+rs.getString("last_name")+"</td>");
+                        out.println("               <td>"+rs.getString("address")+"</td>");
+                        out.println("               <td>"+rs.getString("birthdate")+"</td>");
+                        out.println("               <td>"+rs.getString("contact_number")+"</td>");
+                        out.println("               <td>"+"<form method=\"post\" action=\"SAAcceptAccountServlet\"><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='accept' name='accept'><input type='submit' value='reject' name='reject'></form></td>");
                         out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("Service Provider2")){
-                stmt = "select username, password, email, account_type, ar_status, ed_status from accounts where ar_status='Pending' and account_type='sp';";
+                stmt = "select account_id, provider_name, provider_address, provider_contact from accounts natural join service_provider where status='p';";
                 out.println("<h1>Pending Service Provider Accounts</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
                 String table = "    <table>"
                         + "     <tr>"
-                        + "         <th>Username</th>"
-                        + "         <th>Password</th>"
-                        + "         <th>Email</th>"
-                        + "         <th>AccountType</th>"
+                        + "         <th>Name</th>"
+                        + "         <th>Address</th>"
+                        + "         <th>Contact Number</th>"
                         + "         <th>Accept/Reject Status </th>"
                         + "     </tr>";
                 out.println(table);
+                    
                 while(rs.next()){
                         out.println("           <tr>");
-                        out.println("               <td>"+rs.getString("username")+"</td>");
-                        out.println("               <td>"+rs.getString("password")+"</td>");
-                        out.println("               <td>"+rs.getString("email")+"</td>");
-                        out.println("               <td>"+rs.getString("account_type")+"</td>");
-                        out.println("               <td>"+rs.getString("ar_status")+"<form method=\"post\" action=\"\"><button>Accept</button></form><form><button>Reject</button></form></td>");
+                        out.println("               <td>"+rs.getString("provider_name")+"</td>");
+                        out.println("               <td>"+rs.getString("provider_address")+"</td>");
+                        out.println("               <td>"+rs.getString("provider_contact")+"</td>");
+                        out.println("               <td>"+"<form method=\"post\" action=\"SAAcceptProviderServlet\"><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='accept' name='accept'><input type='submit' value='reject' name='reject'></form></td>");
                         out.println("           </tr>");
                 }
+                
                 out.println("   </table>");
             }else if(optionV.equals("Transaction")){
-                stmt = "select first_name, last_name, item_name, price, date_rented, provider_name from customer join transaction on customer.customer_id = transaction.cust_id join items on items.item_id = transaction.item_id join service_provider on items.provider_id = service_provider.provider_id;";
+                stmt = "select first_name, last_name, item_name, price, date_rented, provider_name from customer join transaction on customer.customer_id = transaction.customer_id join items on items.item_id = transaction.item_id join service_provider on items.provider_id = service_provider.provider_id;";
                 out.println("<h1>Transactions</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
@@ -268,17 +274,19 @@ public class AAdminServlet extends HttpServlet {
                         out.println("               <td>"+rs.getString("provider_name")+"</td>");
                         out.println("               <td>"+rs.getString("price")+"</td>");
                         out.println("               <td>"+rs.getString("date_rented")+"</td>");
-
                         out.println("           </tr>");
                 }
                 out.println("   </table>");
             }
-            rd = request.getRequestDispatcher("/WEB-INF/pagefragments/Afooter.html");
+            rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAfooter.html");
             rd.include(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(SAAdminServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        <script type="text/javascript">
+        
+        </script>
     }
 
 

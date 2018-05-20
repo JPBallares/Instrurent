@@ -69,74 +69,8 @@ public class SAAdminServlet extends HttpServlet {
                         out.println("               <td>"+rs.getString("email")+"</td>");
                         out.println("               <td>"+rs.getString("account_type")+"</td>");
                         out.println("               <td>"+rs.getString("activate")+"</td>");
-                        out.println("               <td>"+"<form method=\"post\" action=\"SAActivateAccountServlet\"><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='activate' name='activate'><input type='submit' value='deactivate' name='deactivate'></form></td>");
+                        out.println("               <td>"+"<form method=\"post\" action=\"SAActivateAccountServlet\"><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='activate' id='A' name='activate'><input type='submit' value='deactivate' id='DA' name='deactivate'></form></td>");
                         out.println("           </tr>");
-                }
-                out.println("   </table>");
-            }else if(optionV.equals("Customers")) {
-                stmt = "select username, email, account_type, activate from accounts where account_type='c';";
-                out.println("<h1>Customer Users List</h1><br>");
-                PreparedStatement ps = conn.prepareStatement(stmt);
-                ResultSet rs = ps.executeQuery();
-                String table = "    <table>"
-                        + "     <tr>"
-                        + "         <th>Username</th>"
-                        + "         <th>Email</th>"
-                        + "         <th>Account Type</th>"
-                        + "         <th>Account Status</th>"
-                        + "     </tr>";
-                out.println(table);
-                while(rs.next()){
-                    out.println("           <tr>");
-                    out.println("               <td>"+rs.getString("username")+"</td>");
-                    out.println("               <td>"+rs.getString("email")+"</td>");
-                    out.println("               <td>"+rs.getString("account_type")+"</td>");
-                    out.println("               <td>"+rs.getString("activate")+"</td>");
-                    out.println("           </tr>");
-                }
-                out.println("   </table>");
-            }else if(optionV.equals("Admins")) {
-                stmt = "select username,email, account_type, activate from accounts where account_type='sa' or account_type='a';";
-                out.println("<h1>Admin Users List</h1><br>");
-                PreparedStatement ps = conn.prepareStatement(stmt);
-                ResultSet rs = ps.executeQuery();
-                String table = "    <table>"
-                        + "     <tr>"
-                        + "         <th>Username</th>"
-                        + "         <th>Email</th>"
-                        + "         <th>Account Type</th>"
-                        + "         <th>Account Status</th>"
-                        + "     </tr>";
-                out.println(table);
-                while(rs.next()){
-                    out.println("           <tr>");
-                    out.println("               <td>"+rs.getString("username")+"</td>");
-                    out.println("               <td>"+rs.getString("email")+"</td>");
-                    out.println("               <td>"+rs.getString("account_type")+"</td>");
-                    out.println("               <td>"+rs.getString("activate")+"</td>");
-                    out.println("           </tr>");
-                }
-                out.println("   </table>");
-            }else if(optionV.equals("Service Provider")){
-                stmt = "select username, email, account_type, activate from accounts where account_type='sp';";
-                out.println("<h1>Service Provider Users List</h1><br>");
-                PreparedStatement ps = conn.prepareStatement(stmt);
-                ResultSet rs = ps.executeQuery();
-                String table = "    <table>"
-                        + "     <tr>"
-                        + "         <th>Username</th>"
-                        + "         <th>Email</th>"
-                        + "         <th>Account Type</th>"
-                        + "         <th>Account Status</th>"
-                        + "     </tr>";
-                out.println(table);
-                while(rs.next()){
-                    out.println("           <tr>");
-                    out.println("               <td>"+rs.getString("username")+"</td>");
-                    out.println("               <td>"+rs.getString("email")+"</td>");
-                    out.println("               <td>"+rs.getString("account_type")+"</td>");
-                    out.println("               <td>"+rs.getString("activate")+"</td>");
-                    out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("UCustomers")) {
