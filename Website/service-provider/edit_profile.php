@@ -117,12 +117,6 @@
                                 <input name="service_name" type="text" class="form-control" id="service_name" placeholder="Name" <?php echo "value='".$_SESSION[
                                     'name']. "'";?> required>
                             </div>
-
-                            <div class="col-md-4 mb-3">
-                                <label for="service_username">Username</label>
-                                <input name="service_username" type="text" class="form-control" id="service_username" placeholder="Username" <?php echo
-                                    "value='".$_SESSION[ 'username']. "'";?> required>
-                            </div>
                         </div>
 
                         <div class="form-row">
@@ -139,7 +133,7 @@
                             <div class="col-md-6 mb-3">
                                 <label for="service_email">Email Address</label>
                                 <input name="service_email" type="text" class="form-control" id="service_email" placeholder="Email Address" onkeyup="showHint('email', this.value, 'emailValidateSP')"
-                                    <?php echo "value='".$_SESSION[ 'email']. "'";?> required>
+                                    <?php echo "value='".$_SESSION['email']. "'";?> required>
                                 <div id="emailValidateSP"></div>
                             </div>
                         </div>
@@ -173,7 +167,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location = '/';">Cancel</button>
                         <input type="submit" class="btn btn-primary btn_cc" value="Update" id="submitProvider">
                     </div>
                 </form>

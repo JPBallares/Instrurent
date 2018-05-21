@@ -114,26 +114,9 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Item 1</td>
-							<td>Day</td>
-						</tr>
-						<tr>
-							<td>Item 2</td>
-							<td>Week</td>
-						</tr>
-						<tr>
-							<td>Item 3</td>
-							<td>Month</td>
-						</tr>
-						<tr>
-							<td>Item 4</td>
-							<td>Year</td>
-						</tr>
-						<tr>
-							<td>Item 5</td>
-							<td>All Time</td>
-						</tr>
+                        <?php
+                            include "php/top_items.php";
+                        ?>
 					</tbody>
 				</table>
 			</div>

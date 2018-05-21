@@ -32,7 +32,7 @@ $result = $conn->query($sql);
             "<td>" . $row['item_name'] . "</td>" .
             "<td>" . $row['date_rented'] . "</td>" .
             "<td>" . $row['date_due'] . "</td>" .
-            "<td>" . $row['amount'] . "</td>" .
+            "<td>" . number_format($row['amount'], 2) . "</td>" .
             "<td>" . $row['quantity'] . "</td>" .
             "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
             if ($row['returned'] == 1) {
@@ -51,7 +51,8 @@ $result = $conn->query($sql);
                 "<td>" . $row['item_name'] . "</td>" .
                 "<td>" . $row['date_rented'] . "</td>" .
                 "<td>" . $row['date_due'] . "</td>" .
-                "<td>" . $row['amount'] . "</td>" .
+                "<td>" . number_format($row['amount'], 2) . "</td>" .
+                "<td>" . $row['quantity'] . "</td>" .
                 "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
                 if ($row['returned'] == 1) {
                     echo "<td>Item Returned</td>";
@@ -66,7 +67,7 @@ $result = $conn->query($sql);
                 "<td>" . $row['item_name'] . "</td>" .
                 "<td>" . $row['date_rented'] . "</td>" .
                 "<td>" . $row['date_due'] . "</td>" .
-                "<td>" . $row['amount'] . "</td>" .
+                "<td>" . number_format($row['amount'],2) . "</td>" .
                 "<td>" . $row['quantity'] . "</td>" .
                 "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>" .
                 "<td></td>" .
