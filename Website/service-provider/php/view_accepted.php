@@ -22,7 +22,7 @@ $result = $conn->query($sql);
         "<th>Amount</th>" .
         "<th>Quantity</th>" .
         "<th>Customer Name</th>" .
-        "<th>Accept/Reject</th>" .
+        "<th>Status</th>" .
         "</tr>" .
 		"</thead>";
         $transac_id = 0;

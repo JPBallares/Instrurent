@@ -229,7 +229,7 @@ CREATE TABLE `transaction` (
   KEY `item_id_idx` (`item_id`),
   CONSTRAINT `cust_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
   CONSTRAINT `item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,7 +238,7 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (1,4,'2017-05-01','2017-05-04',350,1,'a',1,5),(1,8,'2017-05-01','2017-05-04',210,1,'a',1,5),(2,5,'2017-05-01','2017-05-04',700,2,'a',1,6),(2,9,'2017-05-01','2017-05-04',430,1,'a',1,6);
+INSERT INTO `transaction` VALUES (1,4,'2017-05-01','2017-05-04',350,1,'a',1,5),(1,8,'2017-05-01','2017-05-04',210,1,'a',1,5),(2,5,'2017-05-01','2017-05-04',700,2,'a',1,6),(2,9,'2017-05-01','2017-05-04',430,1,'a',1,6),(3,5,'2018-05-21','2018-05-23',1750,5,'a',1,6),(4,6,'2018-05-23','2018-05-25',4023,6,'a',1,5);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -251,4 +251,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-21 10:07:59
+-- Dump completed on 2018-05-21 10:38:01
