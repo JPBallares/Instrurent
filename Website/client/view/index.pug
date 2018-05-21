@@ -3,7 +3,7 @@ include header
 body
     // Navbar 
     nav.navbar.navbar-dark.bg-dark.fixed-top.navbar-expand-lg
-      a.navbar-brand(href='#')
+      a.navbar-brand(href='/')
         img.logo_s(src='/img/Logo.png')
         | TentERent
       button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
@@ -11,7 +11,7 @@ body
       .collapse.navbar-collapse#navbarSupportedContent
         ul.navbar-nav.mr-auto
           li.nav-item
-            a.nav-link(href='/index.html') Home
+            a.nav-link(href='/') Home
           li.nav-item
             a.nav-link(href='/rental') Rentals
           li.nav-item
@@ -42,7 +42,7 @@ body
                 input.form-control#user_pass(name='password', type='password', placeholder='Password')
             .modal-footer
               button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
-              input.btn.btn-primary.btn_cc(name='login', type='submit', value='Login')
+              input.btn.btn-primary.btn_cc(href='login', type='submit', value='Login')
     // Login 
     // Sign-up 
     .modal.fade#sign_up(tabindex='-1', role='dialog', aria-labelledby='sign_up', aria-hidden='true')
@@ -133,146 +133,14 @@ body
                   .modal-footer
                     button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
                     input.btn.btn-primary.btn_cc(type='submit', value='Sign-up')
-    // Sign-up 
-    // Banner 
-    .jumbotron#rental_banner
+ 
+    .jumbotron#home_banner
       .container
-        h1.display-2 Rentals
-    // Banner 
-    // Rentals item category 
-    .container
-      h1.display-4(style='padding-bottom: 30px;') Categories
-      ul#category_rental_page(style='list-style-type: none;')
-        li
-          a(href='#') Axe
-        li
-          a(href='#') Bag
-        li
-          a(href='#') Blanket
-        li
-          a(href='#') Chair
-        li
-          a(href='#') Fishing Rod
-        li
-          a(href='#') Grill
-        li
-          a(href='#') Hammer
-        li
-          a(href='#') Lantern
-        li
-          a(href='#') Pick Axe
-        li
-          a(href='#') Pillow
-        li
-          a(href='#') Shovel
-        li
-          a(href='#') Sleeping Bag
-        li
-          a(href='#') Table
-        li
-          a(hre='', ¿¶f='#') Tent
-        li
-          a(href='#') Thermos
-      br
-      br
-    // Rentals item category 
-    .clear
-    //  -------------- Rentals main content --------------  
-    section#main(style='padding-top: 50px;')
-      .container-fluid#rentals_content
-        // Sort navbar 
-        #rentals_side_nav
-          h2.display-4 Sort By:
-          hr.my-4
-          h5 Price
-          hr.my-4
-          h5 Rating
-          hr.my-4
-        // Sort navbar 
-        // Rental items 
-        section#rentals_main_content
-          .container-fluid
-            .row
-              .col-md-4
-                .card.mb-4.box-shadow
-                  .items_small_pic
-                    img.card-img-top(src='')
-                  .card-body
-                    p.card-text
-                      | Item:
-                      br
-                      | Description:
-                    .d-flex.justify-content-between.align-items-center
-                      .btn-group
-                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
-                      small.text-muted Price:
-              .col-md-4
-                .card.mb-4.box-shadow
-                  .items_small_pic
-                    img.card-img-top(src='')
-                  .card-body
-                    p.card-text
-                      | Item:
-                      br
-                      | Description:
-                    .d-flex.justify-content-between.align-items-center
-                      .btn-group
-                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
-                      small.text-muted Price:
-              .col-md-4
-                .card.mb-4.box-shadow
-                  .items_small_pic
-                    img.card-img-top(src='')
-                  .card-body
-                    p.card-text
-                      | Item:
-                      br
-                      | Description:
-                    .d-flex.justify-content-between.align-items-center
-                      .btn-group
-                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
-                      small.text-muted Price:
-              .col-md-4
-                .card.mb-4.box-shadow
-                  .items_small_pic
-                    img.card-img-top(src='')
-                  .card-body
-                    p.card-text
-                      | Item:
-                      br
-                      | Description:
-                    .d-flex.justify-content-between.align-items-center
-                      .btn-group
-                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
-                      small.text-muted Price:
-              .col-md-4
-                .card.mb-4.box-shadow
-                  .items_small_pic
-                    img.card-img-top(src='')
-                  .card-body
-                    p.card-text
-                      | Item:
-                      br
-                      | Description:
-                    .d-flex.justify-content-between.align-items-center
-                      .btn-group
-                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
-                      small.text-muted Price:
-              .col-md-4
-                .card.mb-4.box-shadow
-                  .items_small_pic
-                    img.card-img-top(src='')
-                  .card-body
-                    p.card-text
-                      | Item:
-                      br
-                      | Description:
-                    .d-flex.justify-content-between.align-items-center
-                      .btn-group
-                        a.btn.btn-sm.btn-outline-secondary(role='button', href='/rentals/view_rental.html') View
-                      small.text-muted Price:
-        // Rental items 
-    //  -------------- Rentals main content --------------  
-    // Footer 
-    .empty
-   
+        img(src='/img/Logo.png', alt='Website Logo', style='width: 40%; margin-top: 50px;')
+        h1.display-4 TentERent
+        #catchphrase
+          p.lead Explore the Earth like nothing else.
+        hr.my-4#hr_banner
+        p Create your free account now to get started.
+        a.btn.btn-primary.btn-lg.btn_cc(href='#', role='button', data-toggle='modal', data-target='#sign_up') Get Started
+include footer
