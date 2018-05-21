@@ -61,15 +61,44 @@
         </ul>
     </div>
     </nav>
-	
+	<script>
+        function getData(str, elementId) {
+            if (str.length == 0) {
+                document.getElementById(elementId).innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById(elementId).innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "php/view_accepted.php?str=" + str, true);
+                xmlhttp.send();
+            }
+        }
+
+        window.onload = getData(0,'res');
+    </script>
     <br>
     <br>
     <br>
-    <br>
-    <br>
-	<?php include 'php/view_accepted.php';?>
-	
-	
+    <select id="query" onchange="getData(this.value,'res')">
+        <option value="0">All</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select>
+    <div id="res"></div>
 	<script src="scripts/sp-randomizer.js"></script>
 </body>
 </html>

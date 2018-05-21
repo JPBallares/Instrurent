@@ -7,7 +7,7 @@ if (!isset($_SESSION)) {
 }
 $provider_id = $_SESSION['provider_id'];
 
-$sql = "SELECT *  FROM transaction NATURAL JOIN customer NATURAL JOIN items WHERE approved = 'p' AND provider_id = '$provider_id';";
+$sql = "SELECT *  FROM transaction NATURAL JOIN customer NATURAL JOIN items WHERE approved = 'p' AND provider_id = '$provider_id' ORDER BY date_rented;";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

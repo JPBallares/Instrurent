@@ -31,5 +31,6 @@ function confirmPass(q, str, passElementId, elementId){
         xmlhttp.send();
     }
 }
+z
 document.getElementById("submitClient").disabled = true;
 document.getElementById("submitProvider").disabled = true;
