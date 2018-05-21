@@ -1,3 +1,9 @@
+<style>
+    body{
+        display: none;
+    }
+</style>
+
 <?php
 include 'access_db.php';
 
@@ -17,56 +23,76 @@ if (isset($_POST['login'])) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
             if ($row['password'] == $password) {
-
-                switch ($row['account_type']) {
-                    case "sa":
-                        $password = $_POST['password'];
+                switch ($row['status']) {
+                    case "r":
                         echo "
-                        <form method='POST' action='http://admin.tenterent.com:8080/LoginServlet' id='login_form'>
-                        <input type='text' name='username' value='$username'>
-                        <input type='password' name='password' value='$password'>
-                        <input type='submit' value='login' name='login'>
-                        </form>
+                        <script>
+                            alert('Registration rejected by admin.');
+                            window.location.replace('/');
+                        </script>
                         ";
                         break;
-                    case "sp":
-                        $password = $_POST['password'];
+                    case "p":
                         echo "
-                        <form method='POST' action='http://provider.tenterent.com:8082/php/sp_login.php' id='login_form'>
-                            <input type='text' name='username' value='$username'>
-                            <input type='password' name='password' value='$password'>
-                            <input type='submit' value='login' name='login'>
-                        </form>
-                        ";
-                        break;
-                    case "c":
-                        $password = $_POST['password'];
-                        echo "
-                        <form method='POST' action='http://www.tenterent.com:8081' id='login_form'>
-                            <input type='text' name='username' value='$username'>
-                            <input type='password' name='password' value='$password'>
-                            <input type='submit' value='login' name='login'>
-                        </form>
+                        <script>
+                            alert('Your account is still pending.');
+                            window.location.replace('/');
+                        </script>
                         ";
                         break;
                     case "a":
-                        $password = $_POST['password'];
+                        switch ($row['account_type']) {
+                            case "sa":
+                                $password = $_POST['password'];
+                                echo "
+                                <form method='POST' action='http://admin.tenterent.com:8080/LoginServlet' id='login_form'>
+                                <input type='text' name='username' value='$username'>
+                                <input type='password' name='password' value='$password'>
+                                <input type='submit' value='login' name='login'>
+                                </form>
+                                ";
+                                break;
+                            case "sp":
+                                $password = $_POST['password'];
+                                echo "
+                                <form method='POST' action='http://provider.tenterent.com:8082/php/sp_login.php' id='login_form'>
+                                    <input type='text' name='username' value='$username'>
+                                    <input type='password' name='password' value='$password'>
+                                    <input type='submit' value='login' name='login'>
+                                </form>
+                                ";
+                                break;
+                            case "c":
+                                $password = $_POST['password'];
+                                echo "
+                                <form method='POST' action='http://www.tenterent.com:8081' id='login_form'>
+                                    <input type='text' name='username' value='$username'>
+                                    <input type='password' name='password' value='$password'>
+                                    <input type='submit' value='login' name='login'>
+                                </form>
+                                ";
+                                break;
+                            case "a":
+                                $password = $_POST['password'];
+                                echo "
+                                <form method='POST' action='http://admin.tenterent.com:8080/LoginServlet' id='login_form'>
+                                    <input type='text' name='username' value='$username'>
+                                    <input type='password' name='password' value='$password'>
+                                    <input type='submit' value='login' name='login'>
+                                </form>
+                                ";
+                                break;
+                        }
                         echo "
-                        <form method='POST' action='http://admin.tenterent.com:8080/LoginServlet' id='login_form'>
-                            <input type='text' name='username' value='$username'>
-                            <input type='password' name='password' value='$password'>
-                            <input type='submit' value='login' name='login'>
-                        </form>
+                        <script>
+                        window.onload = function(){
+                            document.getElementById('login_form').submit();
+                        }
+                        </script>
                         ";
                         break;
                 }
-                echo "
-                <script>
-                window.onload = function(){
-                    document.getElementById('login_form').submit();
-                }
-                </script>
-                ";
+
             } else {
 
                 echo "
@@ -85,7 +111,7 @@ if (isset($_POST['login'])) {
                 window.history.back();
             </script>
         ";
-        
+
     }
 
 } else {

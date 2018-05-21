@@ -80,7 +80,7 @@ if ($conn->query($insert_stmt) === true) {
     while ($row = $result->fetch_assoc()) {
         $accountid = $row['account_id'];
     }
-    $insert_stmt = "INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `address`, `birthdate`, `contact_number`, `accepted`, `account_id`) VALUES (NULL, '$first_name', '$last_name', '$address', '$birthdate', '$contact', 'p', '$accountid');";
+    $insert_stmt = "INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `address`, `birthdate`, `contact_number`, `account_id`) VALUES (NULL, '$first_name', '$last_name', '$address', '$birthdate', '$contact', '$accountid');";
     if ($conn->query($insert_stmt) === true) {
         echo "
         <script>
