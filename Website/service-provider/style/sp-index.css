@@ -111,6 +111,6 @@ body {
 }
 
 .bubble {
-	padding: 2px 6px;
-	color: #fff;
+	font-size: 5em;
+	background-color: #dd1d1d !important;
 }
