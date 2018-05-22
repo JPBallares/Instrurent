@@ -59,28 +59,14 @@
             var auto_refresh = setInterval(
             function ()
             {
-            $('#pending').load('php/notification.php');
-            }, 1);
+            $('#bubble').load('php/notification.php');
+            }, 2000);
             </script>
 			<li class="nav-item nav-item-sp">
 				<a class="nav-link" href="view-transaction">
 					<i class="fas fa-bell"></i>
-					<span class="bubble" id="bubble">
-						<?php
-							$provider_id = $_SESSION['provider_id'];
-			
-							$condb = new mysqli("localhost", "root", "" , "tenterent");
-							$sql = "SELECT *  FROM transaction NATURAL JOIN customer NATURAL JOIN items WHERE approved = 'p' AND provider_id = '$provider_id';";
-							$res = $condb->query($sql);
-							$total_notif = 0;
-							while ($row = $res->fetch_assoc()) {
-								$total_notif++;
-							}
-							echo $total_notif;
-						?>
-					</span>
+					<span class="bubble" id="bubble"></span>
 				</a>
-            	<a class="nav-link" href="view-transaction"><i class="fas fa-bell"><span id="pending"></span></i></a>
             </li>
             
         </ul>
