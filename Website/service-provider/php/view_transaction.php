@@ -53,7 +53,7 @@ if ($result->num_rows > 0) {
             "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>" .
             "<td><a class='accept' href='/php/accept.php?trans_id=" . $row['transaction_id'] . "'>Accept</a> |
             <a class='decline' href='/php/reject.php?trans_id=" . $row['transaction_id'] . "'>Reject</a></td>" .
-            "</tr>" . "<hr>";
+            "</tr>";
             $transac_id = $row['transaction_id'];
         } else {
             echo "<tr>" .

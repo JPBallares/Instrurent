@@ -63,7 +63,7 @@ if ($result->num_rows > 0) {
             } else {
                 echo "<td><a class='accept' href='/php/return.php?trans_id=" . $row['transaction_id'] . "'>Mark as Returned</a></td>";
             }
-            echo "</tr>" . "<hr>";
+            echo "</tr>";
             $transac_id = $row['transaction_id'];
         } else {
             echo "<tr>" .
