@@ -12,10 +12,10 @@ var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    port     : 3306,
+    port     : 3308,
     database : 'tenterent'
 });
-connection.connect(function(err){
+connection.connect(function(err) {
     if(!err) {
         console.log("Database is connected");
     } else {
@@ -32,7 +32,9 @@ app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/',(req, res) => {
-	res.render('index');
+	res.render('index', {
+        username: req.username,
+    });
 });
 
 app.get('/rental', (req, res) => {
@@ -51,7 +53,7 @@ app.post('/login', function (request, response) {
     'use strict';
     var username = request.body.username,
         password = request.body.password,
-        sql = "Select * from accounts where username = '" + username + "';",
+        sql = "Select * from accounts natural join customer where username = '" + username + "';",
         reply1 = "<script> alert('Username does not exist'); window.history.back(); </script>",
         reply2 = "<script> alert('Wrong password'); window.history.back(); </script>",
         reply3 = "<script> alert('You are now logged in'); window.history.back(); </script>";
@@ -61,9 +63,16 @@ app.post('/login', function (request, response) {
         }
         if (result.length === 1) {
             if (result[0].password === password) {
-                response.send(reply3);
+                request.session.loggedin = true;
                 request.session.username = username;
-                console.log(request.session.username);
+                request.session.email = result[0].email;
+                request.session.password = password;
+                request.session.first_name = result[0].first_name;
+                request.session.last_name = result[0].last_name;
+                request.session.address = result[0].address;
+                request.session.birthdate = result[0].birthdate;
+                request.session.contact = result[0].contact_number;
+                response.redirect('/');
             } else {
                 response.send(reply2);
             }
@@ -116,4 +125,28 @@ app.post('/signup', function (request, response){
 	});
 	connection.query(input1)
 		
+});
+
+app.post('edit-profile', function (request, response) {
+    var first_name = request.body.first_name,
+        last_name = request.body.last_name,
+        birthdate = request.body.birthdate,
+        email = request.body.email,
+        address = request.body.address,
+        password = sha1(request.body.password),
+        contact = request.body.contact,
+        username = request.body.username,
+        reply = "echo <script> alert ('Successfully updated'); window.history.back(); </script>",
+        sql = "UPDATE accounts SET email = ?, password = ? WHERE username = ?",
+        sql1 = "UPDATE customer SET first_name = ?, last_name = ?, address = ?, birthdate = ?, contact_number = ? WHERE username = ?";
+    connection.query(sql,[email,password,username], function(error, result, fileds) {
+       if(error){
+           throw error;
+       }
+       connection.query(sql,[first_name,last_name,address, birthdate, contact, username], function(error, result, fileds) {
+           if(error){
+               throw error;
+            } 
+        }); 
+    });    
 });

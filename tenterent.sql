@@ -108,7 +108,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'klint','chinayog','asdas','1999-01-01','09993313896',1),(3,'dddd','dddd','a,a,a,a,a','2018-05-01','09104030178',12),(4,'cccc','cccc','a..a.a.a.','1999-06-07','23534534346',13),(5,'John','Bravo','123, Street A, Barangay A, City A, Province A','1999-11-13','09102030458',15),(6,'James','Rosquilla','555, Somewhere, Barangay, City, Probinsya','1999-09-04','09945621594',16);
+INSERT INTO `customer` VALUES (1,'Klint','Chinayog','asdas','1999-01-01','09993313896',1),(3,'Paul','Gil','a,a,a,a,a','2018-05-01','09104030178',12),(4,'Jack','Up','a..a.a.a.','1999-06-07','23534534346',13),(5,'John','Bravo','123, Street A, Barangay A, City A, Province A','1999-11-13','09102030458',15),(6,'James','Rosquilla','555, Somewhere, Barangay, City, Probinsya','1999-09-04','09945621594',16);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +229,7 @@ CREATE TABLE `transaction` (
   KEY `item_id_idx` (`item_id`),
   CONSTRAINT `cust_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
   CONSTRAINT `item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,7 +238,7 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (1,4,'2017-05-01','2017-05-04',350,1,'a',1,5),(1,8,'2017-05-01','2017-05-04',210,1,'a',1,5),(2,5,'2017-05-01','2017-05-04',700,2,'a',1,6),(2,9,'2017-05-01','2017-05-04',430,1,'a',1,6),(3,5,'2018-05-21','2018-05-23',1750,5,'a',1,6),(4,6,'2018-05-23','2018-05-25',4023,6,'a',1,5);
+INSERT INTO `transaction` VALUES (1,4,'2017-05-01','2017-05-04',350,1,'a',1,5),(1,8,'2017-05-01','2017-05-04',210,1,'a',1,5),(2,5,'2017-05-01','2017-05-04',700,2,'a',1,6),(2,9,'2017-05-01','2017-05-04',430,1,'a',1,6),(3,5,'2018-05-21','2018-05-23',1750,5,'a',1,6),(4,6,'2018-05-23','2018-05-25',4023,6,'a',1,5),(5,4,'2018-05-23','2018-05-25',350,1,'p',0,5),(6,4,'2017-04-20','2017-04-23',700,2,'a',1,4),(6,8,'2017-04-20','2017-04-23',210,1,'a',1,4);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -251,4 +251,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-21 10:38:01
+-- Dump completed on 2018-05-21 11:19:19

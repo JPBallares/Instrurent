@@ -7,7 +7,7 @@ if (!isset($_SESSION)) {
 }
 $provider_id = $_SESSION['provider_id'];
 
-$sql = "SELECT *  FROM transaction NATURAL JOIN customer NATURAL JOIN items WHERE approved = 'p' AND provider_id = '$provider_id';";
+$sql = "SELECT *  FROM transaction NATURAL JOIN customer NATURAL JOIN items WHERE approved = 'p' AND provider_id = '$provider_id' ORDER BY date_rented;";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -53,7 +53,7 @@ if ($result->num_rows > 0) {
             "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>" .
             "<td><a class='accept' href='/php/accept.php?trans_id=" . $row['transaction_id'] . "'>Accept</a> |
             <a class='decline' href='/php/reject.php?trans_id=" . $row['transaction_id'] . "'>Reject</a></td>" .
-            "</tr>" . "<hr>";
+            "</tr>";
             $transac_id = $row['transaction_id'];
         } else {
             echo "<tr>" .

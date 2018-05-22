@@ -65,8 +65,6 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
 	<?php include 'php/view_transaction.php';?>
 	
 	
