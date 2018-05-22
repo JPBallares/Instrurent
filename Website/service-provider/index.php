@@ -30,9 +30,11 @@
     <!-- Fontawesome -->
     <link rel="stylesheet" href="style/web-fonts-with-css/css/fontawesome-all.min.css">
     <!-- Fontawesome -->
+    
 </head>
     
 <body>
+    <div id="alert-notif"></div>
     <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
     <a class="navbar-brand" href="/"><img src="./css/img/Logo.png" class="logo_s">TentERent</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,12 +70,16 @@
 					<span class="bubble" id="bubble"></span>
 				</a>
             </li>
+            <script>
+                $('#bubble').load('php/notification.php');
+                $('#alert-notif').load('php/notif_alert.php'); 
+            </script>
             
         </ul>
     </div>
     </nav>
 	
-	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	<!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -112,7 +118,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
+    </div> -->
 	
 	<div class="container sp-container">
 		<div class="row sp-row">
