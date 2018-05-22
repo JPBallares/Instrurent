@@ -65,7 +65,6 @@
 			<li class="nav-item nav-item-sp">
 				<a class="nav-link" href="view-transaction">
 					<i class="fas fa-bell"></i>
-					<span class="bubble" id="bubble">
 						<?php
 							$provider_id = $_SESSION['provider_id'];
 			
@@ -78,7 +77,6 @@
 							}
 							echo $total_notif;
 						?>
-					</span>
 				</a>
             	<a class="nav-link" href="view-transaction"><i class="fas fa-bell"><span id="pending"></span></i></a>
             </li>
