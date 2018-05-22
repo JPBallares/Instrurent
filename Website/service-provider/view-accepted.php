@@ -96,23 +96,27 @@
     <br>
     <br>
     <br>
-    <select id="query" onchange="getData(this.value,'res')">
-        <option value="0">All</option>
-        <option value="1">January</option>
-        <option value="2">February</option>
-        <option value="3">March</option>
-        <option value="4">April</option>
-        <option value="5">May</option>
-        <option value="6">June</option>
-        <option value="7">July</option>
-        <option value="8">August</option>
-        <option value="9">September</option>
-        <option value="10">October</option>
-        <option value="11">November</option>
-        <option value="12">December</option>
-    </select>
-    <div id="res"></div>
-	<script src="scripts/sp-randomizer.js"></script>
+    	<div class="container">
+	<label for="query">Sort by:</label>
+    		<select id="query" onchange="getData(this.value,'res')">
+       	 	<option value="0">All</option>
+        	<option value="1">January</option>
+        	<option value="2">February</option>
+        	<option value="3">March</option>
+        	<option value="4">April</option>
+        	<option value="5">May</option>
+        	<option value="6">June</option>
+        	<option value="7">July</option>
+        	<option value="8">August</option>
+        	<option value="9">September</option>
+        	<option value="10">October</option>
+        	<option value="11">November</option>
+        	<option value="12">December</option>
+    	</select>
+	<br>
+		
+	<div id="res"></div>
+	</div>
 </body>
 </html>
 <?php
