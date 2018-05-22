@@ -22,3 +22,12 @@
 	cursor: pointer;
 	background-color: rgba(52, 58, 64, 0.2);
 }
+
+.bubble {
+	background-color: #e02424;
+	position: absolute;
+	right: 5px;
+	top: -5px;
+	padding: 2px 6px;
+	color: #fff;
+}

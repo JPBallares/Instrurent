@@ -55,7 +55,23 @@
             	<a class="nav-link" href="view-accepted"><i class="fa fa-envelope"></i></a>
             </li>
 			<li class="nav-item nav-item-sp">
-            	<a class="nav-link" href="view-transaction"><i class="fas fa-bell"></i></a>
+				<a class="nav-link" href="view-transaction">
+					<i class="fas fa-bell"></i>
+					<span class="bubble" id="bubble">
+						<?php
+							$provider_id = $_SESSION['provider_id'];
+			
+							$condb = new mysqli("localhost", "root", "" , "tenterent");
+							$sql = "SELECT *  FROM transaction NATURAL JOIN customer NATURAL JOIN items WHERE approved = 'p' AND provider_id = '$provider_id';";
+							$res = $condb->query($sql);
+							$total_notif = 0;
+							while ($row = $res->fetch_assoc()) {
+								$total_notif++;
+							}
+							echo $total_notif;
+						?>
+					</span>
+				</a>
             </li>
         </ul>
     </div>
