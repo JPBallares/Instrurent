@@ -38,11 +38,11 @@
 }
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 1400px;
 }
 
 th, td {
-    text-align: left;
+    text-align: right;
     padding: 8px;
 }
 
