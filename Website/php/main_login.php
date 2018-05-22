@@ -65,7 +65,7 @@ if (isset($_POST['login'])) {
                             case "c":
                                 $password = $_POST['password'];
                                 echo "
-                                <form method='POST' action='http://www.tenterent.com:8081' id='login_form'>
+                                <form method='POST' action='http://client.tenterent.com:8081/login' id='login_form'>
                                     <input type='text' name='username' value='$username'>
                                     <input type='password' name='password' value='$password'>
                                     <input type='submit' value='login' name='login'>

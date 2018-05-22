@@ -25,27 +25,36 @@ body
                     a.dropdown-item(href='/edit_profile') Edit Profile
             li.nav-item
                 a.nav-link(href='/logout') Logout
-// Sign-up
-// Banner
-#rental_banner.jumbotron(style='margin-bottom: 0px;')
+                
+#rental_banner.jumbotron
   .container
-    h1.display-2 About Us
-br
-br
-br
+    h1.display-2 Edit Profile
 // Banner
-// -------------- About us main content --------------
+// -------------- Edit profile main content --------------
 .container
-  #about_us.jumbotron
-    img(src='/img/Logo.png', style='width: 30%; float: left')
-    h1.display-4 TenERent
-    p
-    .clear
-// -------------- About us main content --------------
+  h1.display-4 
+  hr.my-4
+  form(action='/edit_prof', method='post')
+    label First name
+    input#client_first_name.form-control(name='first_name', type='text', placeholder='First name', required='')
+    label Last name
+    input#client_last_name.form-control(name='last_name', type='text', placeholder='Last name', required='')
+    label Email Address
+    input#client_email.form-control(name='email', type='text', placeholder='Email Address', required='')
+    label Address
+    input#client_address.form-control(name='address', type='text', placeholder='Address', required='')
+    label Password
+    input#client_pass.form-control(name='password', type='password', placeholder='Password', required='')
+    label Contact number
+    input#client_contact.form-control(name='contact', type='text', placeholder='Contact number', required='')
+    input.btn.btn-primary.btn_cc(type='submit', value='Save Changes')
+  hr.my-4
+// -------------- Edit profile main content --------------
 // Footer
 .empty
 footer.footer
   .container
     span.text-muted WebTech 2018 &copy; Saint Louis University
 // Footer
-script(src='/catchphrase.js')
+
+

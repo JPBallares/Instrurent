@@ -7,15 +7,18 @@ nav.navbar.navbar-dark.bg-dark.fixed-top.navbar-expand-lg
 	div.collapse.navbar-collapse#navbarSupportedContent
 		ul.navbar-nav.mr-auto
 			li.nav-item
-				a.nav-link(href='/index.html') Home
+				a.nav-link(href='/') Home
 			li.nav-item
 				a.nav-link(href='/rental') Rentals
 			li.nav-item
 				a.nav-link(href='/contact') Contact
 			li.nav-item
 				a.nav-link(href='/aboutus') About Us
-		ul.navbar-nav#login_and_sign_up
-			i.nav-item
-				a.nav-link(href='#', data-toggle='modal', data-target='#login') Login
-			li.nav-item
-				a.nav-link(href='#', data-toggle='modal', data-target='#sign_up') Sign-up
+        ul#login_and_sign_up.navbar-nav
+            li.nav-item.dropdown
+                a#navbardrop.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') #{username}
+                .dropdown-menu
+                    a.dropdown-item(href='view_profile.html') View Profile
+                    a.dropdown-item(href='edit_profile.html') Edit Profile
+            li.nav-item
+                a.nav-link(href='/logout') Logout
