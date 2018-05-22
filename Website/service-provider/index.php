@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-	<script src="./js/popper.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/j-query.min.js"></script>
 	<!-- Bootstrap -->
     <!-- Fontawesome -->
     <link rel="stylesheet" href="style/web-fonts-with-css/css/fontawesome-all.min.css">
@@ -54,9 +55,17 @@
 			<li class="nav-item nav-item-sp">
             	<a class="nav-link" href="view-accepted"><i class="fa fa-envelope"></i></a>
             </li>
+            <script type="text/javascript">
+            var auto_refresh = setInterval(
+            function ()
+            {
+            $('#pending').load('php/notification.php');
+            }, 1);
+            </script>
 			<li class="nav-item nav-item-sp">
-            	<a class="nav-link" href="view-transaction"><i class="fas fa-bell"></i></a>
+            	<a class="nav-link" href="view-transaction"><i class="fas fa-bell"><span id="pending"></span></i></a>
             </li>
+            
         </ul>
     </div>
     </nav>
