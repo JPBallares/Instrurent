@@ -264,9 +264,8 @@ body {
 /* Rental Page */
 
 /* About Us */
-#about_us h1{
+#about_us_h1{
 	font-family: nature;
-	margin: 50px 0px 0px 350px;
 	font-size: 100px;
 }
 
