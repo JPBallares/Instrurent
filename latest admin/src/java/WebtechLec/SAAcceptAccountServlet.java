@@ -40,6 +40,8 @@ public class SAAcceptAccountServlet extends HttpServlet {
                 PreparedStatement ps = conn.prepareStatement(sql1);  
                 ps.executeUpdate();
                 response.sendRedirect("SendEmailServlet");
+                //RequestDispatcher rd = request.getRequestDispatcher("SendEmailServlet");
+                //rd.include(request, response);
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('THE USER HAS BEEN ACCEPTED.');");
                 out.println("</script>");

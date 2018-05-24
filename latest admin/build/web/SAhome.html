@@ -42,13 +42,32 @@
         </div>
     </nav>
     <br><br>
+        <script>
+        function getData(str, elementId) {
+           
+            if (str.length == 0) {
+                document.getElementById(elementId).innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById(elementId).innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "AAdminServlet?str=" + str, true);
+                xmlhttp.send();
+            }
+        }
+
+    </script>
     <div class="content main">
         <div class="content client-sp">
             <h1>Super Administrator</h1>
             <div id="useroptions">
                 <div class="form-group">
                     <form action="SAAdminServlet" method="post">
-                        <select  class="form-control" id="exampleFormControlSelect1" name="usertype">
+                        <select  class="form-control" id="exampleFormControlSelect1" name="usertype" onchange="getData(this.value,'res')">
                             <option value="" disabled selected id="placeholder">Choose user type...</option>
                                 <option value="All Accounts" name="all">Accounts Information</option>
                                 <option value="UAll Accounts" name="uall">User Information</option>
@@ -60,13 +79,12 @@
                                 <option value="Transaction" name="customers">Transaction</option>
                             </optgroup>  
                         </select>
-                        <button>Search</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="tresult">
+    <div class="tresult" id="res">
         </div>
     </body>
 </html>

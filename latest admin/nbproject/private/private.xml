@@ -3,8 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/AddAdminServlet.java</file>
+            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/ForgetPassword.java</file>
+            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/web/WEB-INF/pagefragments/forgetpassword.html</file>
+            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/web/forgetpassword.html</file>
             <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/SAAdminServlet.java</file>
-            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/AAdminServlet.java</file>
+            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/SAAcceptAccountServlet.java</file>
+            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/SendEmailServlet.java</file>
+            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/ConnectDB.java</file>
+            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/SAAcceptProviderServlet.java</file>
+            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/src/java/WebtechLec/LoginServlet.java</file>
+            <file>file:/C:/Users/okimw/Desktop/Tenterent/latest%20admin/web/index.html</file>
         </group>
     </open-files>
 </project-private>

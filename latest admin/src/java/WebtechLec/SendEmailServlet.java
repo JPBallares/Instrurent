@@ -41,24 +41,27 @@ public class SendEmailServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
+           //out.println("sadfads");
             String temp = request.getParameter("hiddenid");
+            String query = "Select * from accounts where account_id="+temp+";";
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
-            
-            
-            if("hiddenid".equals(temp)){
-            PreparedStatement ps = conn.prepareStatement(temp);
+            PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            String mail = rs.getString(temp);
+            
+            rs.next();
+            String email = rs.getString("email");
+ 
+            String mail = temp;
+            
             String host ="smtp.gmail.com" ;
             String user = "2161920@slu.edu.ph";
             String pass = "0k1mw4N4I9";
-            String to = mail;
+            String to = email;
             String from = "2161920@slu.edu.ph";
             String subject = "This is confirmation number for your expertprogramming account. Please insert this number to activate your account.";
             String messageText = "Your Is Test Email :";
             boolean sessionDebug = false;
-
             Properties props = System.getProperties();
 
             props.put("mail.smtp.starttls.enable", "true");
@@ -76,16 +79,15 @@ public class SendEmailServlet extends HttpServlet {
             msg.setRecipients(Message.RecipientType.TO, address);
             msg.setSubject(subject); msg.setSentDate(new Date());
             msg.setText(messageText);
-
+            
            Transport transport=mailSession.getTransport("smtp");
            transport.connect(host, user, pass);
+           //out.println(email);
            transport.sendMessage(msg, msg.getAllRecipients());
            transport.close();
-           RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
-                rd.include(request, response);
-            }else{
-                out.println("error");
-            }
+           //out.println(email);
+           response.sendRedirect("SAhome.html");
+                   
         }
     }
 

@@ -37,7 +37,7 @@ public class AAdminServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String clients = request.getParameter("clients");
         String sp = request.getParameter("sp");
-        String optionV = request.getParameter("usertype");
+        String optionV = request.getParameter("str");
         response.setContentType("text/html");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(false);
@@ -46,8 +46,7 @@ public class AAdminServlet extends HttpServlet {
             }else {
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/Aheader.html");
-            rd.include(request, response);
+            
             String stmt;
             if (optionV.equals("All Accounts")) {
                 out.println("<h1>All Accounts List</h1><br>");
@@ -217,7 +216,7 @@ public class AAdminServlet extends HttpServlet {
                 }
                 out.println("   </table>");
             }
-            rd = request.getRequestDispatcher("/WEB-INF/pagefragments/Afooter.html");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/Afooter.html");
             rd.include(request, response);
             }
         } catch (SQLException ex) {

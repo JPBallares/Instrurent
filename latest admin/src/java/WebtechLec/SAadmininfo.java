@@ -7,51 +7,42 @@ package WebtechLec;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "SAAcceptProviderServlet", urlPatterns = {"/SAAcceptProviderServlet"})
-public class SAAcceptProviderServlet extends HttpServlet {
+/**
+ *
+ * @author awmiko
+ */
+@WebServlet(name = "SAadmininfo", urlPatterns = {"/SAadmininfo"})
+public class SAadmininfo extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            ConnectDB db = new ConnectDB();
-            Connection conn = db.getConn();
-            String cID = request.getParameter("hiddenid");
-            String value = request.getParameter("accept");
-            String value1 = request.getParameter("reject");
-            if("accept".equals(value)){
-                String sql1 = "UPDATE `tenterent`.`accounts` SET `status`='a' WHERE `account_id`='"+ cID + "';"; 
-                PreparedStatement ps = conn.prepareStatement(sql1);  
-                ps.executeUpdate();
-                RequestDispatcher rd = request.getRequestDispatcher("SendEmailServlet");
-                rd.include(request, response);
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('THE SERVICE PROVIDER HAS BEEN ACCEPTED.');");
-                out.println("</script>");
-            }else if("reject".equals(value1)){
-                String sql1 = "UPDATE `tenterent`.`accounts` SET `status`='r' WHERE `account_id`='"+ cID + "';"; 
-                PreparedStatement ps = conn.prepareStatement(sql1);  
-                ps.executeUpdate();
-                RequestDispatcher rd = request.getRequestDispatcher("SAhome.html");
-                rd.include(request, response);
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('THE SERVICE PROVIDER HAS BEEN REJECTED.');");
-                out.println("</script>");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SAAcceptProviderServlet.class.getName()).log(Level.SEVERE, null, ex);
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SAadmininfo</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SAadmininfo at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

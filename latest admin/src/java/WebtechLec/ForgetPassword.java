@@ -3,6 +3,15 @@ package WebtechLec;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +22,44 @@ import javax.servlet.http.HttpServletResponse;
 public class ForgetPassword extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
         response.setContentType("text/html;charset=UTF-8");
+        ConnectDB db = new ConnectDB();
+        Connection conn = db.getConn();
         try (PrintWriter out = response.getWriter()) {
-            
+            String email = request.getParameter("email");
+            String password= request.getParameter("password");
+            password = sha1(password);
+            String query;            
+            query = "select * from accounts;";
+            PreparedStatement p2 = conn.prepareStatement(query);
+            ResultSet rs = p2.executeQuery();
+
+            while(rs.next()){
+                if(rs.getString("email").equals(email)){
+                    String query2 = "UPDATE `tenterent`.`accounts` SET `email`='"+email+"', `password`='"+password+"' WHERE `account_id`='"+rs.getString("account_id")+"';";
+                    p2.executeUpdate(query2);
+                    response.sendRedirect("index.html");
+                                        
+                }
+            }
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Incorrect email.');");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/forgetpassword.html");
+            rd.include(request, response);
         }
+    }
+        public String sha1(String input) throws NoSuchAlgorithmException {
+        MessageDigest mDigest;
+        mDigest = MessageDigest.getInstance("SHA1");
+        byte[] result = mDigest.digest(input.getBytes());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < result.length; i++) {
+            sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+        }
+
+        return sb.toString();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -32,7 +74,15 @@ public class ForgetPassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            try {
+                processRequest(request, response);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -46,7 +96,15 @@ public class ForgetPassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            try {
+                processRequest(request, response);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

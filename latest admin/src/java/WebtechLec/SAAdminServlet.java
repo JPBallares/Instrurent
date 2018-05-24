@@ -37,7 +37,7 @@ public class SAAdminServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String clients = request.getParameter("clients");
         String sp = request.getParameter("sp");
-        String optionV = request.getParameter("usertype");
+        String optionV = request.getParameter("str");
         response.setContentType("text/html");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(false);
@@ -46,8 +46,6 @@ public class SAAdminServlet extends HttpServlet {
             }else {
             ConnectDB db = new ConnectDB();
             Connection conn = db.getConn();
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAheader.html");
-            rd.include(request, response);
             String stmt;
             if (optionV.equals("All Accounts")){
                 out.println("<h1>All Accounts List</h1><br>");
@@ -75,11 +73,18 @@ public class SAAdminServlet extends HttpServlet {
                         out.println("               <td align=\"right\">"+rs.getString("email")+"</td>");
                         out.println("               <td align=\"right\">"+rs.getString("account_type")+"</td>");
                         out.println("               <td align=\"right\">"+rs.getString("activate")+"</td>");
-                        out.println("               <td align=\"right\">"+"<form method=\"post\" action=\"SAActivateAccountServlet\"><input type='text' value=" + rs.getString("email") + " style='display:none;' name='email'><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='activate' id='A' name='activate'><input type='submit' value='deactivate' id='DA' name='deactivate'></form></td>");
+                        out.println("               <td align=\"right\">"+"<form method=\"post\" action=\"SAActivateAccountServlet\"><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='activate' id='A' name='activate'><input type='submit' value='deactivate' id='DA' name='deactivate'></form></td>");
                         out.println("           </tr>");
                 }
                 out.println("   </table>");
             }else if(optionV.equals("UAll Accounts")) {
+                out.println("<h1>All Accounts List</h1><br>");
+                out.println("<form action=\"SAcust\" method=\"POST\">");
+                out.println("<input type=\"submit\" value=\"Customer\"></form>");
+                out.println("<form action=\"SAadmin\" method=\"POST\">");
+                out.println("<input type=\"submit\" value=\"Admin\"></form>");
+                out.println("<form action=\"SAsp\" method=\"POST\">");
+                out.println("<input type=\"submit\" value=\"Service Provider\"></form>");
                 stmt = "select first_name, last_name,address, birthdate, contact_number from customer;";
                 out.println("<h1>Customer User Information List</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
@@ -103,6 +108,7 @@ public class SAAdminServlet extends HttpServlet {
                     out.println("           </tr>");
                 }
                 out.println("   </table>");
+                
                 stmt = "select admin_name, admin_contact from admin;";
                 out.println("<h1>Admin User Information List</h1><br>");
                 PreparedStatement ps2 = conn.prepareStatement(stmt);
@@ -160,7 +166,7 @@ public class SAAdminServlet extends HttpServlet {
                         out.println("               <td>"+rs.getString("address")+"</td>");
                         out.println("               <td>"+rs.getString("birthdate")+"</td>");
                         out.println("               <td>"+rs.getString("contact_number")+"</td>");
-                        out.println("               <td>"+"<form method=\"post\" action=\"SAAcceptAccountServlet\"><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='accept' name='accept'><input type='submit' value='reject' name='reject'></form></td>");
+                        out.println("               <td>"+"<form method=\"post\" action=\"SAAcceptAccountServlet\"><input type='text' value='" + rs.getString("email") + "' name='email'><input type='text' value=" + rs.getString("account_id") + " style='display:none;' name='hiddenid'><input type='submit' value='accept' name='accept'><input type='submit' value='reject' name='reject'></form></td>");
                         out.println("           </tr>");
                 }
                 out.println("   </table>");
@@ -217,7 +223,7 @@ public class SAAdminServlet extends HttpServlet {
                 }
                 out.println("   </table>");
             }
-            rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAfooter.html");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAfooter.html");
             rd.include(request, response);
             }
         } catch (SQLException ex) {

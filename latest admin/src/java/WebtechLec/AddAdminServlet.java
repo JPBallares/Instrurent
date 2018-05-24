@@ -56,14 +56,14 @@ public class AddAdminServlet extends HttpServlet {
             String name = request.getParameter("name");
             String contact = request.getParameter("contact");
             response.setContentType("text/html");
-            sha1(password);
+            password=sha1(password);
             String stmt1;
             String stmt2;
             String stmt3;
             try (PrintWriter out = response.getWriter()) {
                 ConnectDB db = new ConnectDB();
                 Connection conn = db.getConn();
-                stmt1 = "INSERT INTO accounts(email, username, password, account_type, status, activate) VALUES ('" + email + "','" + username + "','" + password + "','" + acc_type + "', 'p','active');";
+                stmt1 = "INSERT INTO accounts(email, username, password, account_type, status, activate) VALUES ('" + email + "','" + username + "','" + password + "','" + acc_type + "', 'a','active');";
                 PreparedStatement p1 = conn.prepareStatement(stmt1);
                 p1.executeUpdate(stmt1);
                 stmt2 = "SELECT account_id from accounts order by account_id desc limit 1";
