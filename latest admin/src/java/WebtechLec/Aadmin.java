@@ -25,8 +25,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author james
  */
-@WebServlet(name = "SAcust", urlPatterns = {"/SAcust"})
-public class SAcust extends HttpServlet {
+@WebServlet(name = "Aadmin", urlPatterns = {"/Aadmin"})
+public class Aadmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,11 @@ public class SAcust extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-            response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+            
             response.setContentType("text/html");
             try (PrintWriter out = response.getWriter()) {
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAheader.html");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/Aheader.html");
             rd.include(request, response);
             HttpSession session = request.getSession(false);
             if(session == null){
@@ -52,13 +53,13 @@ public class SAcust extends HttpServlet {
             Connection conn = db.getConn();
             String stmt;
                 out.println("<h1>All Accounts List</h1><br>");
-                out.println("<form action=\"SAcust\" method=\"POST\">");
+                out.println("<form action=\"Acust\" method=\"POST\">");
                 out.println("<input type=\"submit\" value=\"Customer\"></form>");
-                out.println("<form action=\"SAadmin\" method=\"POST\">");
+                out.println("<form action=\"Aadmin\" method=\"POST\">");
                 out.println("<input type=\"submit\" value=\"Admin\"></form>");
-                out.println("<form action=\"SAsp\" method=\"POST\">");
+                out.println("<form action=\"Asp\" method=\"POST\">");
                 out.println("<input type=\"submit\" value=\"Service Provider\"></form>");
-                stmt = "select account_id, username, email, account_type, activate from accounts where status='a' and account_type='c';";
+                stmt = "select account_id, username, email, account_type, activate from accounts where status='a' and account_type='a' or account_type='sa';";
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
                 String table = "    <table>"
@@ -81,11 +82,11 @@ public class SAcust extends HttpServlet {
                 }
                 out.println("   </table>");
             
-            rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAfooter.html");
+            rd = request.getRequestDispatcher("/WEB-INF/pagefragments/Afooter.html");
             rd.include(request, response);
         }
     }
-  }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -102,7 +103,7 @@ public class SAcust extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(SAcust.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Aadmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -120,7 +121,7 @@ public class SAcust extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(SAcust.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Aadmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

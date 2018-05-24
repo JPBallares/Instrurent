@@ -49,7 +49,7 @@ public class SAAdminServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/SAheader.html");
             rd.include(request, response);
             String stmt;
-            if (optionV.equals("All Accounts")) {
+            if (optionV.equals("All Accounts")){
                 out.println("<h1>All Accounts List</h1><br>");
                 out.println("<form action=\"SAcust\" method=\"POST\">");
                 out.println("<input type=\"submit\" value=\"Customer\"></form>");
@@ -65,8 +65,8 @@ public class SAAdminServlet extends HttpServlet {
                         + "         <th align=\"right\">Username</th>"
                         + "         <th>Email</th>"
                         + "         <th>Account Type</th>"
-                        + "         <th>Active</th>"
-                        + "         <th>Activate/Deactivate</th>"
+                        + "         <th>Status</th>"
+                        + "         <th>Activate/Deactivate Account</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
@@ -189,7 +189,7 @@ public class SAAdminServlet extends HttpServlet {
                 
                 out.println("   </table>");
             }else if(optionV.equals("Transaction")){
-                stmt = "select first_name, last_name, item_name, amount, quantity, date_rented, provider_name from customer join transaction on customer.customer_id = transaction.customer_id join items on items.item_id = transaction.item_id join service_provider on items.provider_id = service_provider.provider_id;";
+                stmt = "select first_name, last_name, item_name, amount, quantity, date_rented, date_due, provider_name from customer join transaction on customer.customer_id = transaction.customer_id join items on items.item_id = transaction.item_id join service_provider on items.provider_id = service_provider.provider_id;";
                 out.println("<h1>Transactions</h1><br>");
                 PreparedStatement ps = conn.prepareStatement(stmt);
                 ResultSet rs = ps.executeQuery();
@@ -201,6 +201,7 @@ public class SAAdminServlet extends HttpServlet {
                         + "         <th>Quantity</th>"
                         + "         <th>Service Provider</th>"
                         + "         <th>Date Rented</th>"
+                        + "         <th>Date Due</th>"
                         + "     </tr>";
                 out.println(table);
                 while(rs.next()){
@@ -211,6 +212,7 @@ public class SAAdminServlet extends HttpServlet {
                         out.println("               <td>"+rs.getString("quantity")+"</td>");
                         out.println("               <td>"+rs.getString("provider_name")+"</td>");
                         out.println("               <td>"+rs.getString("date_rented")+"</td>");
+                        out.println("               <td>"+rs.getString("date_due")+"</td>");
                         out.println("           </tr>");
                 }
                 out.println("   </table>");

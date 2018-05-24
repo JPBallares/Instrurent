@@ -66,7 +66,7 @@ public class SAsp extends HttpServlet {
                         + "         <th>Username</th>"
                         + "         <th>Email</th>"
                         + "         <th>Account Type</th>"
-                        + "         <th>Active</th>"
+                        + "         <th>Status</th>"
                         + "         <th>Activate/Deactivate</th>"
                         + "     </tr>";
                 out.println(table);
