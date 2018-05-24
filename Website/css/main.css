@@ -37,7 +37,6 @@ body {
 
 /* Navbar */
 .navbar-brand {
-    font-family: nature;
     padding-left: 30px;
     padding-right: 50px;
 }
@@ -101,7 +100,6 @@ body {
 }
 
 #home_banner h1 {
-    font-family: nature;
     font-size: 110px;
     margin-top: 20px;
 }
@@ -265,7 +263,6 @@ body {
 
 /* About Us */
 #about_us_h1{
-	font-family: nature;
 	font-size: 100px;
 }
 

@@ -23,6 +23,20 @@ if (isset($_POST['login'])) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
             if ($row['password'] == $password) {
+                switch ($row['activate']) {
+                    case "inactive":
+                        echo "
+                        <script>
+                            alert('Your account is deactivated by the admin.');
+                            window.location.replace('/');
+                        </script>
+                        ";
+                        break;
+                    default:
+                        
+                        break;
+                }
+                
                 switch ($row['status']) {
                     case "r":
                         echo "
@@ -45,7 +59,7 @@ if (isset($_POST['login'])) {
                             case "sa":
                                 $password = $_POST['password'];
                                 echo "
-                                <form method='POST' action='http://admin.tenterent.com:8080/LoginServlet' id='login_form'>
+                                <form method='POST' action='http://admin.tenterent.com/WebtechLecFinals/LoginServlet' id='login_form'>
                                 <input type='text' name='username' value='$username'>
                                 <input type='password' name='password' value='$password'>
                                 <input type='submit' value='login' name='login'>
@@ -55,7 +69,7 @@ if (isset($_POST['login'])) {
                             case "sp":
                                 $password = $_POST['password'];
                                 echo "
-                                <form method='POST' action='http://provider.tenterent.com:8082/php/sp_login.php' id='login_form'>
+                                <form method='POST' action='http://provider.tenterent.com/php/sp_login.php' id='login_form'>
                                     <input type='text' name='username' value='$username'>
                                     <input type='password' name='password' value='$password'>
                                     <input type='submit' value='login' name='login'>
@@ -65,7 +79,7 @@ if (isset($_POST['login'])) {
                             case "c":
                                 $password = $_POST['password'];
                                 echo "
-                                <form method='POST' action='http://client.tenterent.com:8081/login' id='login_form'>
+                                <form method='POST' action='http://client.tenterent.com/login' id='login_form'>
                                     <input type='text' name='username' value='$username'>
                                     <input type='password' name='password' value='$password'>
                                     <input type='submit' value='login' name='login'>
@@ -75,7 +89,7 @@ if (isset($_POST['login'])) {
                             case "a":
                                 $password = $_POST['password'];
                                 echo "
-                                <form method='POST' action='http://admin.tenterent.com:8080/LoginServlet' id='login_form'>
+                                <form method='POST' action='http://admin.tenterent.com/WebtechLecFinals/LoginServlet' id='login_form'>
                                     <input type='text' name='username' value='$username'>
                                     <input type='password' name='password' value='$password'>
                                     <input type='submit' value='login' name='login'>

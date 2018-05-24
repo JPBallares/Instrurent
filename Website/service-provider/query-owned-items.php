@@ -1,5 +1,5 @@
 <?php
-$con_db = new mysqli("localhost", "root", "", "tenterent");
+$con_db = new mysqli("192.168.5.64", "root", "test", "tenterent");
 $sql = "SELECT * from items WHERE provider_id = " . $_SESSION['provider_id'];
 $res = $con_db->query($sql);
 

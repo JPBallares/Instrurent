@@ -27,6 +27,7 @@
         <script src="./js/jquery.min.js"></script>
         <script src="./js/bootstrap.min.js"></script>
         <script src="./js/popper.min.js"></script>
+        <script src="./js/j-query.min.js"></script>
         <!-- Bootstrap -->
         <!-- Fontawesome -->
         <link rel="stylesheet" href="style/web-fonts-with-css/css/fontawesome-all.min.css">
@@ -66,11 +67,23 @@
                             <i class="fa fa-envelope"></i>
                         </a>
                     </li>
+                    <script type="text/javascript">
+                    var auto_refresh = setInterval(
+                    function ()
+                    {
+                    $('#bubble').load('php/notification.php');
+                    }, 2000);
+                    </script>
                     <li class="nav-item nav-item-sp">
-                        <a class="nav-link" href="notifications.html">
+                        <a class="nav-link" href="view-transaction">
                             <i class="fas fa-bell"></i>
+                            <span id="bubble"></span>
                         </a>
                     </li>
+                    <script>
+                        $('#bubble').load('php/notification.php');
+                        $('#alert-notif').load('php/notif_alert.php'); 
+                    </script>
                 </ul>
             </div>
         </nav>

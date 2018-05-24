@@ -2,9 +2,9 @@
 
 function OpenCon()
  {
- $dbhost = "localhost";
+ $dbhost = "database";
  $dbuser = "root";
- $dbpass = "";
+ $dbpass = "test";
  $db = "tenterent";
 
 

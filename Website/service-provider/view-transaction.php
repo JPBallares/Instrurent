@@ -66,7 +66,7 @@
 			<li class="nav-item nav-item-sp">
 				<a class="nav-link" href="view-transaction">
 					<i class="fas fa-bell"></i>
-					<span class="bubble" id="bubble">
+					<span id="bubble">
 						
 					</span>
 				</a>
