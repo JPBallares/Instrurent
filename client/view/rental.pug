@@ -1,0 +1,80 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title TentERent | Rentals
+    link(rel='shortcut icon', href='img/Logo.png')
+    meta(name='viewport', content='width=device-width,initial-scale=1')
+    link(rel='stylesheet', href='/main.css')
+    // Bootstrap 
+    link(rel='stylesheet', href='bootstrap.min.css')
+    script(src='/js/jquery.min.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/popper.min.js')
+    // Bootstrap 
+  body
+    // Navbar 
+    nav.navbar.navbar-dark.bg-dark.fixed-top.navbar-expand-lg
+      a.navbar-brand(href='#')
+        img.logo_s(src='/img/Logo.png')
+        | TentERent
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarSupportedContent
+        ul.navbar-nav.mr-auto
+          li.nav-item
+            a.nav-link(href='/') Home
+          li.nav-item
+            a.nav-link(href='/item') Rentals
+          li.nav-item
+            a.nav-link(href='/contact') Contact
+          li.nav-item
+            a.nav-link(href='/aboutus') About Us
+        ul#login_and_sign_up.navbar-nav
+            li.nav-item.dropdown
+                a#navbardrop.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') #{username}
+                .dropdown-menu
+                    a.dropdown-item(href='/view_profile') View Profile
+                    a.dropdown-item(href='/edit_profile') Edit Profile
+            li.nav-item
+                a.nav-link(href='/logout') Logout
+    // Sign-up 
+    // Banner 
+    .jumbotron#rental_banner
+      .container
+        h1.display-2 Rentals
+    // Banner 
+
+    // Rental items 
+    //  -------------- Rentals main content --------------  
+    // Footer 
+    - var n = 0;
+    ul(style='list-style-type: none;')
+      while n < item_name.length
+        li.card 
+            form(method='post', action='/rent')
+                - var y = 'value="#{item_name[n]}"'
+                input(name='item_name', style='display: none;' value=`${item_name[n]}`)
+                input(name='provider', style='display: none;' value=`${provider[n]}`)
+                input(name='amount', style='display: none;' value=`${renting_fee[n]}`)
+                h1.display-4 #{item_name[n]}
+                img(src="data:image;base64," + image[n] )
+                p Renting Fee: #{renting_fee[n]}
+                p Provider: #{provider[n]}
+                p Provider Contact: #{provider_contact[n]}
+                p Stock: #{stock[n++]}
+                br
+                label Days to be rented:  
+                input(name='days', maxlength='2', size='2')
+                label Number of items:  
+                input(name='quantity', maxlength='2', size='2')
+                br
+                br
+                button.btn.btn-primary(type='submit') Rent
+    
+    .empty
+    footer.footer
+      .container
+        span.text-muted WebTech 2018 © Saint Louis University
+    // Footer 

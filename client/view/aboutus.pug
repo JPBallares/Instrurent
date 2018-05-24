@@ -1,0 +1,80 @@
+include header
+body
+    // Navbar 
+    nav.navbar.navbar-dark.bg-dark.fixed-top.navbar-expand-lg
+      a.navbar-brand(href='/')
+        img.logo_s(src='/img/Logo.png')
+        | TentERent
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarSupportedContent
+        ul.navbar-nav.mr-auto
+          li.nav-item
+            a.nav-link(href='/') Home
+          li.nav-item
+            a.nav-link(href='/rental') Rentals
+          li.nav-item
+            a.nav-link(href='/contact') Contact
+          li.nav-item
+            a.nav-link(href='/aboutus') About Us
+        ul#login_and_sign_up.navbar-nav
+            li.nav-item.dropdown
+                a#navbardrop.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') #{username}
+                .dropdown-menu
+                    a.dropdown-item(href='/view_profile') View Profile
+                    a.dropdown-item(href='/edit_profile') Edit Profile
+            li.nav-item
+                a.nav-link(href='/logout') Logout
+// Sign-up
+// Banner
+#rental_banner.jumbotron(style='margin-bottom: 0px;')
+  .container
+    h1.display-2 About Us
+br
+br
+br
+// Banner
+// -------------- About us main content --------------
+.container
+  br
+  br
+  .row.featurette(style='padding-bottom: 100px;')
+    .col-md-7(style='padding-top: 5%;')
+      h1#about_us_h1.display-4 TentERent
+      br
+      h2.display-4(style='font-size: 40px;') The Website: 
+      p.lead
+        | The website is a renting website where user can rent camping items from another user. Website user can also create their own page that other users of the website can see and rent their items.
+      br
+      h2.display-4(style='font-size: 40px;') The Developers: 
+      p.lead We are students of Saint Louis University currently taking Computer Science.
+    .col-md-5
+      img.featurette-image.img-fluid.mx-auto(src='img/Logo.png', alt='Web Scripting')
+  hr.my-4
+  br
+  br
+  br
+  h1.display-4 Team Members: 
+  br
+  ul(style='font-size: 20px; list-style-type: none;')
+    li Abuiza, Okimwa
+    li Ballares, Justine Paul
+    li Bayle, Zealbert
+    li Carvajal, Jaime
+    li Chinayog, Clint
+    li Gregorio, Marc Lawrence
+    li Panawan, Carville
+    li Pocaan, Dominic
+    li Sibaen, Jan Rei
+  br
+  br
+  br
+
+// -------------- About us main content --------------
+// Footer
+.empty
+footer.footer
+  .container
+    span.text-muted WebTech 2018 &copy; Saint Louis University
+// Footer
+script(src='/catchphrase.js')
