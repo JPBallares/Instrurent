@@ -12,7 +12,7 @@ body
           li.nav-item
             a.nav-link(href='/') Home
           li.nav-item
-            a.nav-link(href='/item') Rentals
+            a.nav-link(href='/rental') Rentals
           li.nav-item
             a.nav-link(href='/contact') Contact
           li.nav-item
@@ -23,8 +23,8 @@ body
                 .dropdown-menu
                     a.dropdown-item(href='/view_profile') View Profile
                     a.dropdown-item(href='/edit_profile') Edit Profile
-            li.nav-item
-                a.nav-link(href='/logout') Logout
+                    a.dropdown-item(href='/transaction') Transaction
+                    a.dropdown-item(href='/edit_profile') Logout
 
     // Navbar 
     // Login 
@@ -36,6 +36,4 @@ body
         #catchphrase
           p.lead Explore the Earth like nothing else.
         hr.my-4#hr_banner
-        p Create your free account now to get started.
-        a.btn.btn-primary.btn-lg.btn_cc(href='#', role='button', data-toggle='modal', data-target='#sign_up') Get Started
 include footer
