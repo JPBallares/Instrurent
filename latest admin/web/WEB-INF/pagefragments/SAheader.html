@@ -13,6 +13,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/j-query.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
+    <script src="js/j-query.min.js"></script>
 	<title> Super Admin </title>
 </head>
     <body>
@@ -34,17 +35,36 @@
                     <a class="nav-link" href="adduser.html">Add Admin</a>
                 </li>
             </ul>
+            <script type="text/javascript">
+            var auto_refresh = setInterval(
+            function ()
+            {
+            $('#bubble').load('NotifServlet');
+            }, 2000);
+            </script>
             <ul class="navbar-nav" id="login_and_sign_up">
+                <li class="nav-item nav-item-sp">
+                    <a class="nav-link" href="view-transaction">
+			Pending Accounts: 
+			<span id="bubble"></span>
+                    </a>
+                </li>
                 <li class="nav-item">
-                    <script>
-                        $('#bubble').load('php/notification.php');
-                        $('#alert-notif').load('php/notif_alert.php'); 
-                    </script>
                     <form method="post" action="LogoutServlet">
                         <button>Logout</button>
                     </form>
                 </li>
             </ul>
+            <script>
+                /*
+                function alertPending(){
+                    alert('There are pending accounts!');
+                }
+                */
+               
+                $('#bubble').load('php/notification.php');
+                window.onload = alertPending();
+            </script>
         </div>
     </nav>
     <br><br>
