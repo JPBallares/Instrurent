@@ -11,6 +11,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/popper.min.js"></script>
+    <script src="js/j-query.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
 	<title> Super Admin </title>
 </head>
@@ -35,6 +36,10 @@
             </ul>
             <ul class="navbar-nav" id="login_and_sign_up">
                 <li class="nav-item">
+                    <script>
+                        $('#bubble').load('php/notification.php');
+                        $('#alert-notif').load('php/notif_alert.php'); 
+                    </script>
                     <form method="post" action="LogoutServlet">
                         <button>Logout</button>
                     </form>
