@@ -225,6 +225,14 @@ app.post('/rent', function (req, res) {
             if (quantity > stock) {
                 res.send(reply1);
             } else {
+		//notification----
+                // Object
+                notifier.notify({
+                  'title': 'TenERent',
+                  'subtitle': 'Rental Request',
+                  'message': 'Your rental request is being evaluated.',
+                });
+                //----notification
                 var sql = "INSERT INTO transaction (item_id, date_rented, date_due, quantity,amount, approved, returned, customer_id) VALUES ('" + result1[0].item_id + "','" + rent_day + "','" + due_date + "','" + quantity + "','" + total_amount + "','p','0','" + result[0].customer_id + "')";
                 connection.query(sql, function (err, result2, field2) {
                     if (err) {
