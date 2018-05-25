@@ -43,16 +43,21 @@ public class ForgetPassword extends HttpServlet {
                         p2.executeUpdate(query2);
                         response.sendRedirect("index.html");
                     } else {
-                        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/forgetpassword.html");
-                        rd.include(request, response);
                         out.println("<script type=\"text/javascript\">");
                         out.println("alert('password not match.');");
                         out.println("</script>");
-                        
+                        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/forgetpassword.html");
+                        rd.include(request, response);
                         break;
                     }
-                }
+                } else {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Incorrect email.');");
+                    out.println("</script>");
+                    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/forgetpassword.html");
+                    rd.include(request, response);
 
+                }
             }
 
         }
@@ -85,15 +90,11 @@ public class ForgetPassword extends HttpServlet {
         try {
             try {
                 processRequest(request, response);
-
             } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(ForgetPassword.class
-                        .getName()).log(Level.SEVERE, null, ex);
-
+                Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ForgetPassword.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -111,15 +112,11 @@ public class ForgetPassword extends HttpServlet {
         try {
             try {
                 processRequest(request, response);
-
             } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(ForgetPassword.class
-                        .getName()).log(Level.SEVERE, null, ex);
-
+                Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ForgetPassword.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ForgetPassword.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
