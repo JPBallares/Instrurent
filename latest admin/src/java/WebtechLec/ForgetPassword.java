@@ -51,17 +51,17 @@ public class ForgetPassword extends HttpServlet {
                         out.println("<script type=\"text/javascript\">");
                         out.println("alert('PASSWORD DO NOT MATCH.');");
                         out.println("</script>");
+                        break;
                     }
 
-                }else{
+                }
+            }
                         RequestDispatcher rd = request.getRequestDispatcher("forgetpassword.html");
                         rd.include(request, response);
                         out.println("<script type=\"text/javascript\">");
                         out.println("alert('EMAIL INCORRECT.');");
                         out.println("</script>");
-                        break;
-                }
-            }
+            
             
 
         }
