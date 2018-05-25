@@ -120,29 +120,24 @@ app.get('/view_profile', function (request, response) {
     'use strict';
     if (request.session.username) {
         var username = request.session.username,
-            first_name = "",
-            last_name = "",
-            birthdate = "",
-            email = "",
-            address = "",
-            contact = "",
             sql = "SELECT * FROM accounts NATURAL JOIN customer WHERE username = '" + username + "';";
         connection.query(sql, function (err, result, field) {
-            first_name += result[0].first_name;
-            last_name += result[0].last_name;
-            birthdate += result[0].birthdate;
-            email += result[0].email;
-            address += result[0].address;
-            contact = result[0].contact_number;
-        });
-        response.render('view_profile', {
-            username: username,
-            first_name: first_name,
-            last_name: last_name,
-            birthdate: birthdate,
-            email: email,
-            address: address,
-            contact: contact
+            var first_name = result[0].first_name,
+                last_name = result[0].last_name,
+                temp = new Date(result[0].birthdate),
+                birthdate = temp.getFullYear() + "-" + temp.getMonth() + "-" + temp.getDate(),
+                email = result[0].email,
+                address = result[0].address,
+                contact = result[0].contact_number;
+            response.render('view_profile', {
+                username: username,
+                first_name: first_name,
+                last_name: last_name,
+                birthdate: birthdate,
+                email: email,
+                address: address,
+                contact: contact
+            });
         });
     }
 });
@@ -245,7 +240,7 @@ app.post('/rent', function (req, res) {
 app.get('/transaction', function (request, response) {
     'use strict';
     var username = request.session.username,
-        id = "SELECT * FROM cutomer NATURAL JOIN accounts where username = '" + username + "';",
+        id = "SELECT * FROM customer NATURAL JOIN accounts where username = '" + username + "';",
         transaction_id = [],
         item_name = [],
         item_type = [],
@@ -260,7 +255,7 @@ app.get('/transaction', function (request, response) {
         if (err) {
             console.log(err);
         }
-        var sql = "SELECT * FROM transaction NATURAL JOIN items NATURAL JOIN service_provider NATURAL JOIN item_type where customer_id = '" + result[0].customer_id;
+        var sql = "SELECT * FROM transaction NATURAL JOIN items NATURAL JOIN service_provider NATURAL JOIN item_type where customer_id = '" + result[0].customer_id + "';";
         connection.query(sql, function (err1, result1, field1) {
             Object.keys(result1).forEach(function (key) {
                 var row = result1[key];
@@ -304,7 +299,20 @@ app.get('/transaction', function (request, response) {
     });
 });
         
-
+app.post('/cancel', function (request, response) {
+    var username = request.session.username,
+        transac_id = request.body.transac_id,
+        item_id = request.body.item_id,
+        reply = "echo <script> alert('You have canceled a transaction'); window.history.back(); </script>"
+        sql = "UPDATE trnasaction SET approved = 'c' WHERE transac_id = '" + transac_id + "';";
+        
+    connection.query(sql, function (err, result, field) {
+       if(err) {
+           console.log(err);
+       }
+        response.send(reply);
+    });
+});
 
 
 
