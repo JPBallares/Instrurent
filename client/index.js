@@ -3,7 +3,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     sha1 = require('sha1'),
     mysql = require('mysql'),
-    url = require('url');
+    url = require('url'),
+    notifier = require('node-notifier');
 
 var app = express();
 
