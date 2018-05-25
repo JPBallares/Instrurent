@@ -1,4 +1,3 @@
-
 package WebtechLec;
 
 import java.io.IOException;
@@ -28,29 +27,41 @@ public class ForgetPassword extends HttpServlet {
         Connection conn = db.getConn();
         try (PrintWriter out = response.getWriter()) {
             String email = request.getParameter("email");
-            String password= request.getParameter("password");
-            password = sha1(password);
-            String query;            
+            String password = request.getParameter("password");
+            String confirmpass = request.getParameter("confirmpass");
+
+            String query;
             query = "select * from accounts;";
             PreparedStatement p2 = conn.prepareStatement(query);
             ResultSet rs = p2.executeQuery();
 
-            while(rs.next()){
-                if(rs.getString("email").equals(email)){
-                    String query2 = "UPDATE `tenterent`.`accounts` SET `email`='"+email+"', `password`='"+password+"' WHERE `account_id`='"+rs.getString("account_id")+"';";
-                    p2.executeUpdate(query2);
-                    response.sendRedirect("index.html");
-                                        
+            while (rs.next()) {
+                if (rs.getString("email").equals(email)) {
+                    if (password.equals(confirmpass)) {
+                        password = sha1(password);
+                        String query2 = "UPDATE `tenterent`.`accounts` SET `email`='" + email + "', `password`='" + password + "' WHERE `account_id`='" + rs.getString("account_id") + "';";
+                        p2.executeUpdate(query2);
+                        response.sendRedirect("index.html");
+                    } else {
+                        out.println("<script type=\"text/javascript\">");
+                        out.println("alert('password not match.');");
+                        out.println("</script>");
+                        break;
+                    }   
+                }else{
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Incorrect email.');");
+                    out.println("</script>");
+                    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/forgetpassword.html");
+                    rd.include(request, response);
+                    break;
                 }
             }
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Incorrect email.');");
-            out.println("</script>");
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/pagefragments/forgetpassword.html");
-            rd.include(request, response);
+
         }
     }
-        public String sha1(String input) throws NoSuchAlgorithmException {
+
+    public String sha1(String input) throws NoSuchAlgorithmException {
         MessageDigest mDigest;
         mDigest = MessageDigest.getInstance("SHA1");
         byte[] result = mDigest.digest(input.getBytes());
