@@ -3,16 +3,15 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     sha1 = require('sha1'),
     mysql = require('mysql'),
-    url = require('url'),
-    notifier = require('node-notifier');
+    url = require('url');
 
 var app = express();
 
 
 var connection = mysql.createConnection({
-    host     : 'localhost',
+    host     : 'database',
     user     : 'root',
-    password : '',
+    password : 'test',
     port     : 3306,
     database : 'tenterent'
 });
@@ -25,7 +24,7 @@ connection.connect(function (err) {
     }
 });
 
-app.listen(8081, '0.0.0.0');
+app.listen(80, '0.0.0.0');
 
 app.use(express.static('public'));
 app.use(session({ secret: 'somesecretcode', resave: false, saveUninitialized: false }));
@@ -98,11 +97,10 @@ app.post('/edit_profile', function (request, response) {
         last_name = request.body.last_name,
         email = request.body.email,
         address = request.body.address,
-        password = sha1(request.body.password),
         contact = request.body.contact,
         username = request.session.username,
         reply = "echo <script> alert('Successfully updated'); window.history.back(); </script>",
-        sql = "UPDATE accounts SET email = '" + email + "', password = '" + password + "' WHERE username = '" + username + "';",
+        sql = "UPDATE accounts SET email = '" + email + "' WHERE username = '" + username + "';",
         sql1 = "UPDATE customer NATURAL JOIN accounts SET first_name = '" + first_name + "', last_name = '" + last_name + "', address = '" + address + "', contact_number = '" + contact + "' WHERE username = '" + username + "';";
     connection.query(sql, function (err, result, field) {
         if (err) {
@@ -226,14 +224,6 @@ app.post('/rent', function (req, res) {
             if (quantity > stock) {
                 res.send(reply1);
             } else {
-		//notification----
-                // Object
-                notifier.notify({
-                  'title': 'TenERent',
-                  'subtitle': 'Rental Request',
-                  'message': 'Your rental request is being evaluated.',
-                });
-                //----notification
                 var sql = "INSERT INTO transaction (item_id, date_rented, date_due, quantity,amount, approved, returned, customer_id) VALUES ('" + result1[0].item_id + "','" + rent_day + "','" + due_date + "','" + quantity + "','" + total_amount + "','p','0','" + result[0].customer_id + "')";
                 connection.query(sql, function (err, result2, field2) {
                     if (err) {
@@ -259,30 +249,35 @@ app.get('/transaction', function (request, response) {
         quantity = [],
         approved = [],
         returned = [],
+        item_id = [],
         provider_name = [];
     connection.query(id, function (err, result, field) {
         if (err) {
             console.log(err);
         }
-        var sql = "SELECT * FROM transaction NATURAL JOIN items NATURAL JOIN service_provider NATURAL JOIN item_type where customer_id = '" + result[0].customer_id + "';";
+        var sql = "SELECT * FROM transaction NATURAL JOIN items NATURAL JOIN service_provider where customer_id = '" + result[0].customer_id + "';";
         connection.query(sql, function (err1, result1, field1) {
             Object.keys(result1).forEach(function (key) {
                 var row = result1[key];
                 transaction_id.push(row.transaction_id);
                 item_name.push(row.item_name);
-                item_type.push(row.item_type);
+                item_id.push(row.item_id);
                 date_rented.push(row.date_rented);
                 date_due.push(row.date_due);
                 amount.push(row.amount);
                 quantity.push(row.quantity);
+                console.log(row.approved);
                 if (row.approved === "p") {
                     approved.push("Pending");
                 } else if (row.approved === "r") {
                     approved.push("Rejected");
-                } else {
+                } else if (row.approved === "c") {
                     approved.push("Cancelled");
+                } else {
+                    approved.push("Accepted");
                 }
-                if (row.retuned === "0") {
+                console.log(row.returned);
+                if (row.returned === "0") {
                     returned.push("Not yet returned ");
                 } else {
                     returned.push("Returned");
@@ -294,14 +289,14 @@ app.get('/transaction', function (request, response) {
                     username: username,
                     transac_id: transaction_id,
                     item_name: item_name,
-                    item_type: item_type,
                     date_rented: date_rented,
                     date_due: date_due,
                     amount: amount,
                     quantity: quantity,
                     approved: approved,
                     returned: returned,
-                    provider: provider_name
+                    provider: provider_name,
+                    item_id: item_id
                 });
             }
         });
@@ -311,14 +306,13 @@ app.get('/transaction', function (request, response) {
 app.post('/cancel', function (request, response) {
     var username = request.session.username,
         transac_id = request.body.transac_id,
-        item_id = request.body.item_id,
-        reply = "echo <script> alert('You have canceled a transaction'); window.history.back(); </script>"
-        sql = "UPDATE trnasaction SET approved = 'c' WHERE transac_id = '" + transac_id + "';";
-        
+        item_id = request.body.item_id;
+        reply = "echo <script> alert('You have canceled a transaction'); window.location = '/transaction'; </script>";
+    var sql = "UPDATE transaction SET approved = 'c' WHERE transaction_id = '" + transac_id + "' and item_id = '" + item_id + "';";
     connection.query(sql, function (err, result, field) {
-       if(err) {
-           console.log(err);
-       }
+        if (err) {
+            console.log(err);
+        }
         response.send(reply);
     });
 });

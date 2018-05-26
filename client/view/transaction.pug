@@ -1,104 +1,40 @@
 include header
 body
-    nav.navbar.navbar-dark.bg-dark.fixed-top.navbar-expand-lg
-      a.navbar-brand(href='/')
-        img.logo_s(src='/img/Logo.png')
-        | TentERent
-      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-      .collapse.navbar-collapse#navbarSupportedContent
-        ul.navbar-nav.mr-auto
-          li.nav-item
-            a.nav-link(href='/') Home
-          li.nav-item
-            a.nav-link(href='/item') Rentals
-          li.nav-item
-            a.nav-link(href='/contact') Contact
-          li.nav-item
-            a.nav-link(href='/aboutus') About Us
-        ul#login_and_sign_up.navbar-nav
-            li.nav-item
-                a(href='/transaction')
-                  i.fa.fa-shopping-bag(style='font-size: 25px; color: white; margin: 6px 10px;')
-            li.nav-item.dropdown
-              a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') #{username}
-              .dropdown-menu.dropdown-menu-sp.dropdown-menu-right(aria-labelledby='navbarDropdown')
-                a.dropdown-item(href='/view_profile') View Profile 
-				a.dropdown-item(href='/transaction') Transactions
-                a.dropdown-item(href='/logout') Logout
-    .jumbotron#rental_banner
-      .container
-        h1.display-2 Transaction
+include navbar
+.jumbotron#rental_banner
+  .container
+    h1.display-2 Transaction
 		
-	.container-fluid
-	  table.table
-		thead.thead-dark
-		  tr
-			th ID
-			th Name
-			th Type
-			th Date Rented
-			th Date Due
-			th Amount
-			th Quantity
-			th Approved
-			th Returned
-			th Provider
-			th
-		tbody
-		  tr
-			td 123
-			td Tent
-			td Tent
-			td 05/20/2018
-			td
-			  | 05/24/2018&gt;
-			td 500
-			td 2
-			td Oh Yeah
-			td Hell No
-			td Papa M
-			td
-			  button.btn.btn-danger(type='button', style='font-size:14px; padding:5px;') Cancel
-		  tr
-			td 123
-			td Tent
-			td Tent
-			td 05/20/2018
-			td
-			  | 05/24/2018&gt;
-			td 500
-			td 2
-			td Oh Yeah
-			td Hell No
-			td Papa M
-			td
-			  button.btn.btn-danger(type='button', style='font-size:14px; padding:5px;') Cancel
-		  tr
-			td 123
-			td Tent
-			td Tent
-			td 05/20/2018
-			td
-			  | 05/24/2018&gt;
-			td 500
-			td 2
-			td Oh Yeah
-			td Hell No
-			td Papa M
-			td
-			  button.btn.btn-danger(type='button', style='font-size:14px; padding:5px;') Cancel
-
-    -var n = 0;
-    while n < transac_id.length
-        p #{transac_id[n]}
-        p #{item_name[n]}
-        p #{item_type[n]}
-        p #{date_rented[n]}
-        p #{date_due[n]}
-        p #{amount[n]}
-        p #{quantity[n]}
-        p #{provider[n]}
-        p #{approved[n]}
-        p #{returend[n]}
+.container-fluid
+    table.table
+        thead.thead-dark
+            tr
+                th ID
+                th Name
+                th Date Rented
+                th Date Due
+                th Amount
+                th Quantity
+                th Approved
+                th Returned
+                th Provider
+                th
+        tbody
+        -var n = 0;
+        while n < transac_id.length
+                tr
+                    td #{transac_id[n]}
+                    td #{item_name[n]}
+                    td #{date_rented[n]}
+                    td #{date_due[n]}
+                    td #{amount[n]}
+                    td #{quantity[n]}
+                    td #{provider[n]}
+                    td #{approved[n]}
+                    td #{returned[n]}
+                    form(method='post', action='/cancel')
+                        input(name='transac_id', style='display: none;' value=`${transac_id[n]}`)
+                        input(name='item_id', style='display: none;' value=`${item_id[n++]}`)
+                        td
+                            button.btn.btn-primary(type='submit') Cancel
 include footer
