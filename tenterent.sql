@@ -223,6 +223,7 @@ CREATE TABLE `transaction` (
   `quantity` int(11) NOT NULL,
   `approved` enum('a','r','p') NOT NULL,
   `returned` tinyint(1) NOT NULL DEFAULT '0',
+  `date_returned` date DEFAULT NULL,
   `customer_id` int(11) NOT NULL,
   PRIMARY KEY (`transaction_id`,`item_id`),
   KEY `cust_id_idx` (`customer_id`),
@@ -238,7 +239,7 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (1,4,'2017-05-01','2017-05-04',350,1,'a',1,5),(1,8,'2017-05-01','2017-05-04',210,1,'a',1,5),(2,5,'2017-05-01','2017-05-04',700,2,'a',1,6),(2,9,'2017-05-01','2017-05-04',430,1,'a',1,6),(3,5,'2018-05-21','2018-05-23',1750,5,'a',1,6),(4,6,'2018-05-23','2018-05-25',4023,6,'a',1,5),(5,4,'2018-05-23','2018-05-25',350,1,'p',0,5),(6,4,'2017-04-20','2017-04-23',700,2,'a',1,4),(6,8,'2017-04-20','2017-04-23',210,1,'a',1,4);
+INSERT INTO `transaction` VALUES (1,4,'2017-05-01','2017-05-04',350,1,'a',1,'2017-05-04',5),(1,8,'2017-05-01','2017-05-04',210,1,'a',1,'2017-05-04',5),(2,5,'2017-05-01','2017-05-04',700,2,'a',1,'2017-05-04',6),(2,9,'2017-05-01','2017-05-04',430,1,'a',1,'2017-05-04',6),(3,5,'2018-05-21','2018-05-23',1750,5,'a',1,'2018-05-23',6),(4,6,'2018-05-23','2018-05-25',4023,6,'a',1,'2018-05-25',5),(5,4,'2018-05-23','2018-05-25',350,1,'p',0,NULL,5),(6,4,'2017-04-20','2017-04-23',700,2,'a',1,'2017-04-23',4),(6,8,'2017-04-20','2017-04-23',210,1,'a',1,'2017-04-23',4);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -251,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-21 11:19:19
+-- Dump completed on 2018-05-28 15:21:28
