@@ -24,7 +24,7 @@ connection.connect(function (err) {
     }
 });
 
-app.listen(8081, '0.0.0.0');
+app.listen(8095, 'localhost');
 
 app.use(express.static('public'));
 app.use(session({ secret: 'somesecretcode', resave: false, saveUninitialized: false }));

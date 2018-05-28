@@ -2,75 +2,93 @@ include header
 body
 include navbar
 .jumbotron#rental_banner
-    .container
+  .container
     h1.display-2 Rentals
-.container
+.container#items_category
   h1.display-4(style='padding-bottom: 30px;') Categories
   ul#category_rental_page(style='list-style-type: none;')
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='axe')
-        button.btn.btn-primary(type='submit') Axe
+        button(type='submit') Axe
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='bag')
-        button.btn.btn-primary(type='submit') Bag
+        button(type='submit') Bag
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='blanket')
-        button.btn.btn-primary(type='submit') Blanket
+        button(type='submit') Blanket
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='chair')
-        button.btn.btn-primary(type='submit') Chair
+        button(type='submit') Chair
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='fishing rod')
-        button.btn.btn-primary(type='submit') Fishing Rod
+        button(type='submit') Fishing Rod
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='grill')
-        button.btn.btn-primary(type='submit') Grill
+        button(type='submit') Grill
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='hammer')
-        button.btn.btn-primary(type='submit') Hammer
+        button(type='submit') Hammer
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='lantern')
-        button.btn.btn-primary(type='submit') Lantern
+        button(type='submit') Lantern
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='pickaxe')
-        button.btn.btn-primary(type='submit') Pick Axe
+        button(type='submit') Pick Axe
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='pillow')
-        button.btn.btn-primary(type='submit') Pillow
+        button(type='submit') Pillow
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='shovel')
-        button.btn.btn-primary(type='submit') Shovel
+        button(type='submit') Shovel
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='sleeping bag')
-        button.btn.btn-primary(type='submit') Sleeping Bag
+        button(type='submit') Sleeping Bag
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='table')
-        button.btn.btn-primary(type='submit') Table
+        button(type='submit') Table
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='tent')
-        button.btn.btn-primary(type='submit') Tent
+        button(type='submit') Tent
     li
       form(method='post', action='/type')
         input(name='type_name', style='display: none;' value='thermos')
-        button.btn.btn-primary(type='submit') Thermos
+        button(type='submit') Thermos
     li
-        form(method='get' action='/rental')
-            button.btn.btn-primary(type='submit') Show All
+      form(method='get' action='/rental')
+        button(type='submit') Show All
+
+.container#sort_by(style='clear: both;')
+  h1.display-4 Sort by:
+  label Price:
+  button.btn.btn-primary Low to High
+  button.btn.btn-primary High to Low
+  label Item Name:
+  button.btn.btn-primary A to Z
+  button.btn.btn-primary Z to A
+  hr
+
+  div#search(style='float: right;')
+    .input-group(style='width: 250px;')
+      input.form-control(placeholder='Search item')
+      .input-group-addon
+        i.fa.fa-search(style='font-size: 30px; margin-left: 10px;')
+        
 - var n = 0;
+  .container(style='clear: both;')
     ul(style='list-style-type: none;')
       while n < item_name.length
         li.card 

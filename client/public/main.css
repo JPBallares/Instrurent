@@ -22,7 +22,7 @@ body {
 }
 
 
-/* Fonts */
+/* ----------Fonts---------- */
 @font-face {
     font-family: 'nature';
     src: url(../fonts/nature.ttf);
@@ -32,12 +32,11 @@ body {
     font-family: 'roboto';
     src: url(../fonts/roboto.ttf);
 }
-/* Fonts */
+/* ----------Fonts---------- */
 
 
-/* Navbar */
+/* ----------Navbar---------- */
 .navbar-brand {
-    font-family: nature;
     padding-left: 30px;
     padding-right: 50px;
 }
@@ -45,10 +44,10 @@ body {
 #login_and_sign_up {
     padding-right: 30px;
 }
-/* Navbar */
+/* ----------Navbar---------- */
 
 
-/* Slider */
+/* ----------Slider---------- */
 .carousel-item {
     height: 60vh;
 }
@@ -70,10 +69,10 @@ body {
     background-repeat: no-repeat;
 }
 
-/* Slider */
+/* ----------Slider---------- */
 
 
-/* Forms */
+/* ----------Forms---------- */
 .btn_cc {
     background-color: rgb(158, 6, 57) !important;
     border-color: rgb(158, 6, 57) !important;
@@ -86,10 +85,10 @@ body {
 #sign_up_nav {
     margin-left: 20px;
 }
-/* Forms */
+/* ----------Forms---------- */
 
 
-/* Banner */
+/* ----------Banner---------- */
 #home_banner {
     margin-bottom: 0px;
     text-align: center;
@@ -101,7 +100,6 @@ body {
 }
 
 #home_banner h1 {
-    font-family: nature;
     font-size: 110px;
     margin-top: 20px;
 }
@@ -118,158 +116,25 @@ body {
 #rental_banner h1 {
     margin-top: 30px;
 }
-/* Banner */
+/* ----------Banner---------- */
 
-
-/* Home Page */
-.box-shadow { 
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+/* ----------About Us---------- */
+#about_us_h1{
+	font-size: 100px;
 }
 
-.items_small_pic {
-    background-color: rgb(56, 56, 56);
-    height: 200px;
+#about_us p {
+	margin: 50px 0px 0px 350px;
+	font-size: 100px;
 }
-/* Home Page */ 
-
-
-/* Rental Page */
-#rentals_content {
-    padding: 0 13% 0 13%;
-}
-
-#rentals_side_nav {
-    float: left;
-    width: 24%;
-    height: 100vh;
-    padding: 1%;
-}
-
-#rentals_main_content {
-    float: left;
-    width: 76%;
-}
-
-#rentals_side_nav h2 {
-    font-size: 30px !important;
-}
-
-#view_rental {
-    padding: 8% 0 8% 0;
-}
-
-#view {
-    padding: 1%;
-    background-color: #fff;
-}
-
-#view hr {
-    display: block !important;
-    height: 1px !important;
-    border: 0 !important;
-    border-top: 1px solid #ccc !important;
-    margin: 1em 0 !important;
-    padding: 0 !important; 
-}
-
-#item {
-    float: left;
-    width: 60%;
-}
-
-#item_img {
-    width: 100%;
-    height: 400px;
-    background-color: rgb(51, 51, 51);
-}
-
-#item_details {
-    clear: both;
-    padding-top: 30px;
-}
-
-#description {
-    float: left;
-    width: 32%;
-    margin: 2%;
-    background-color: rgb(158, 6, 57);
-    margin-top: -1px;
-    color: white;
-    padding: 2%;
-    border-radius: 5px;
-}
-
-#description h1 {
-    font-size: 25px;
-}
-
-#category_rental_page li {
-	float: left;
-	margin-right: 20px;
-	margin-bottom: 10px;
-}
-
-#category_rental_page li a {
-	display: block;
-	text-align: center;
-	padding: 5px 34px 5px 34px;
-	border-radius: 15px;
-	text-decoration: none;
-	color: white;
-	background-color: rgb(170, 166, 167);
-}
-
-#category_rental_page li a:visited {
-	color: white;
-}
-
-#category_rental_page li a:hover {
-	color: white;
-	background-color: rgb(191, 150, 160);
-}
-
-.item {
-	width: 100%;
-	clear: both;
-}
-
-.item_description {
-	padding-left: 100px;
-}
-
-.item_space {
-	height: 10px;
-	clear: both;
-}
-
-.item_img {
-	float: left;
-	width: 80px;
-	height: 70px;
-	background-color: black;
-}
-
-.item_left {
-	width: 40%;
-	height: 80px;
-	float: left;
-}
-
-.item_rigth {
-	width: 40%;
-	height: 80px;
-	float: right;
-	text-align: right;
-}
-/* Rental Page */
-
+/* ----------About Us---------- */
 
 .clear {
 	clear: both;
 }
 
 
-/* Footer */
+/* ----------Footer---------- */
 .empty{
     height: 10vh;
     clear: both;
@@ -283,10 +148,51 @@ body {
     line-height: 60px;
     background-color: #f5f5f5;
 }
-/* Footer */
+/* ----------Footer---------- */
+
+/* ----------Rental---------- */
+#items_category {
+    margin-bottom: 200px;
+}
+
+#items_category ul li {
+    float: left;
+    margin: 0px 20px 15px 0px;
+}
+
+#items_category button {
+    background-color: rgb(170, 166, 167);
+    border-color: rgb(170, 166, 167);
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 34px 5px 34px;
+    border-style: solid;
+}
+
+#items_category button:hover {
+	background-color: rgb(191, 150, 160);
+}
+
+#sort_by {
+    padding-bottom: 50px;
+}
+
+#sort_by h1 {
+    font-size: 30px;
+}
+
+#sort_by label {
+    margin-left: 50px;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+#sort_by button {
+    margin-right: 10px;
+}
 
 .card {
-    width: 330px;
+    width: 305px;
     float: left;
     margin: 0 20px 50px 20px;
     padding: 20px;
@@ -310,3 +216,4 @@ body {
     display: block;
     margin: auto;
 }
+/* ----------Rental---------- */
