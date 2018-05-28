@@ -1,5 +1,6 @@
 <?php
-$con_db = new mysqli("192.168.5.64", "root", "test", "tenterent");
+include 'php/access_db.php';
+$con_db = OpenCon();
 $sql = "SELECT * from items WHERE provider_id = " . $_SESSION['provider_id'];
 $res = $con_db->query($sql);
 
