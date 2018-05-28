@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
         "<th>Amount</th>" .
         "<th>Quantity</th>" .
         "<th>Customer Name</th>" .
-        "<th>Status</th>" .
+        "<th>Date Returned</th>" .
         "</tr>" .
         "</thead>";
     $transac_id = 0;
@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
             "<td>" . $row['quantity'] . "</td>" .
             "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
         if ($row['returned'] == 1) {
-            echo "<td>Item Returned</td>";
+            echo "<td>" . $row['date_returned'] . "</td>";
         } else {
             echo "<td><a class='accept' href='/php/return.php?trans_id=" . $row['transaction_id'] . "'>Mark as Returned</a></td>";
         }
@@ -59,7 +59,7 @@ if ($result->num_rows > 0) {
                 "<td>" . $row['quantity'] . "</td>" .
                 "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
             if ($row['returned'] == 1) {
-                echo "<td>Item Returned</td>";
+                echo "<td>" . $row['date_returned'] . "</td>";
             } else {
                 echo "<td><a class='accept' href='/php/return.php?trans_id=" . $row['transaction_id'] . "'>Mark as Returned</a></td>";
             }

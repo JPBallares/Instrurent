@@ -20,7 +20,7 @@ while ($row = $result->fetch_assoc()) {
     }
 }
 
-$sql = "UPDATE `transaction` SET `returned` = '1' WHERE `transaction_id` = $transaction_id;";
+$sql = "UPDATE `transaction` SET `returned` = '1', `date_returned` = CURDATE() WHERE `transaction_id` = $transaction_id;";
 if ($conn->query($sql) === TRUE) {
     echo "
     <script>
