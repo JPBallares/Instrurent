@@ -1,0 +1,99 @@
+include header
+body
+include navbar
+.jumbotron#rental_banner
+    .container
+    h1.display-2 Rentals
+.container
+  h1.display-4(style='padding-bottom: 30px;') Categories
+  ul#category_rental_page(style='list-style-type: none;')
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='axe')
+        button.btn.btn-primary(type='submit') Axe
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='bag')
+        button.btn.btn-primary(type='submit') Bag
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='blanket')
+        button.btn.btn-primary(type='submit') Blanket
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='chair')
+        button.btn.btn-primary(type='submit') Chair
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='fishing rod')
+        button.btn.btn-primary(type='submit') Fishing Rod
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='grill')
+        button.btn.btn-primary(type='submit') Grill
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='hammer')
+        button.btn.btn-primary(type='submit') Hammer
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='lantern')
+        button.btn.btn-primary(type='submit') Lantern
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='pickaxe')
+        button.btn.btn-primary(type='submit') Pick Axe
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='pillow')
+        button.btn.btn-primary(type='submit') Pillow
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='shovel')
+        button.btn.btn-primary(type='submit') Shovel
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='sleeping bag')
+        button.btn.btn-primary(type='submit') Sleeping Bag
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='table')
+        button.btn.btn-primary(type='submit') Table
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='tent')
+        button.btn.btn-primary(type='submit') Tent
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='thermos')
+        button.btn.btn-primary(type='submit') Thermos
+    li
+        form(method='get' action='/rental')
+            button.btn.btn-primary(type='submit') Show All
+- var n = 0;
+    ul(style='list-style-type: none;')
+      while n < item_name.length
+        li.card 
+            form(method='post', action='/rent')
+                - var y = 'value="#{item_name[n]}"'
+                input(name='item_name', style='display: none;' value=`${item_name[n]}`)
+                input(name='provider', style='display: none;' value=`${provider[n]}`)
+                input(name='amount', style='display: none;' value=`${renting_fee[n]}`)
+                h1.display-4 #{item_name[n]}
+                img(src="data:image;base64," + image[n] )
+                p Renting Fee: #{renting_fee[n]}
+                p Provider: #{provider[n]}
+                p Provider Contact: #{provider_contact[n]}
+                p Type: #{item_type[n]}
+                p Stock: #{stock[n++]}
+                br
+                label Date to be rented:
+                input(name='rent_date', type='date', required='')
+                label Days to be rented:  
+                input(name='days', maxlength='2', size='2', required='')
+                label Number of items:  
+                input(name='quantity', maxlength='2', size='2', required='')
+                br
+                br
+                button.btn.btn-primary(type='submit') Rent
+include footer

@@ -9,9 +9,9 @@ var app = express();
 
 
 var connection = mysql.createConnection({
-    host     : 'database',
+    host     : 'localhost',
     user     : 'root',
-    password : 'test',
+    password : '',
     port     : 3306,
     database : 'tenterent'
 });
@@ -24,7 +24,7 @@ connection.connect(function (err) {
     }
 });
 
-app.listen(80, '0.0.0.0');
+app.listen(8081, '0.0.0.0');
 
 app.use(express.static('public'));
 app.use(session({ secret: 'somesecretcode', resave: false, saveUninitialized: false }));
@@ -190,6 +190,51 @@ app.get('/rental', function (request, response) {
         }
     });
 });
+
+app.post('/type', function (request, response) {
+    'use strict';
+    var type_name= request.body.type_name,
+        sql = "SELECT * FROM items NATURAL JOIN item_type NATURAL join service_provider where type_name = '" + type_name + "';",
+        image = [],
+        item_name = [],
+        renting_fee = [],
+        provider = [],
+        provider_contact = [],
+        item_type = [],
+        stock = [];
+    connection.query(sql, function (err1, result, field1) {
+        if (err1) {
+            throw err1;
+        }
+        console.log(result);
+        Object.keys(result).forEach(function (key) {
+            var row = result[key],
+                buffer = new Buffer(row.item_image, 'binary'),
+                imahe = buffer.toString('base64');
+            image.push(imahe);
+            item_name.push(row.item_name);
+            renting_fee.push(row.renting_fee);
+            stock.push(row.stock);
+            provider.push(row.provider_name);
+            provider_contact.push(row.provider_contact);
+            item_type.push(row.type_name);
+        });
+        if (request.session.username) {
+            var username = request.session.username;
+            response.render('type', {
+                username: username,
+                image : image,
+                item_name: item_name,
+                renting_fee: renting_fee,
+                provider: provider,
+                provider_contact: provider_contact,
+                stock : stock,
+                item_type: item_type
+            });
+        }
+    });
+});
+
 
 app.post('/rent', function (req, res) {
     'use strict';
