@@ -1,20 +1,30 @@
-var itemsFullList = document.getElementById('items_container').querySelectorAll('li');
+var bttn = document.getElementById('searchBttn');
+bttn.addEventListener('click', searchItem);
 
-var searhForm = document.getElementById('item_search').querySelector('input');
-
-searhForm.addEventListener('clik', findItem);
-var searchTxt = searhForm.value;
-
+var itemsContainer = document.getElementById('items_container');
+var items = itemsContainer.querySelectorAll('li');
 
 
-function findItem() {
-    console.log(searchTxt);
-    for (i = 0; i < itemsFullList.length; i++) {
-        if (searchTxt.toLocaleLowerCase() === itemsFullList[i].attributes['data-con'].value) {
-            itemsFullList[i].style.display = 'block';
+function searchItem() {
+    document.getElementById('itemA').style.display = 'none';
+    document.getElementById('itemB').style.display = 'none';
+
+    var txt = document.getElementById('searchTxt').value;
+    var flag = 0;
+    for (i = 0; i < items.length; i++) {
+        var currItem = items[i].attributes['data-con'].value + "";
+       
+        if (currItem.toLocaleLowerCase().search(txt.toLocaleLowerCase()) == -1) {
+            items[i].style.display = 'none';
         } else {
-            itemsFullList[i].style.display = 'none';
+            items[i].style.display = 'block';
+            flag++;
         }
     }
-}
 
+    if (flag == 0) {
+        document.getElementById('itemB').style.display = 'block';
+    } else {
+        document.getElementById('itemA').style.display = 'block';
+    }
+}

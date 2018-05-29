@@ -82,16 +82,18 @@ include navbar
   hr
 
   div#search(style='float: right;')
-    .input-group(style='width: 250px;')
-      input.form-control(placeholder='Search item')
+    .input-group(style='width: 350px;')
+      input#searchTxt.form-control(placeholder='Search item')
       .input-group-addon
-        i.fa.fa-search(style='font-size: 30px; margin-left: 10px;')
-        
+        button#searchBttn.btn.btn-primary Search
+
 - var n = 0;
-  .container(style='clear: both;')
+  .container#items_container
+    h3#itemA(style='display: none;') Search results:
+    h3#itemB(style='display: none;') Sorry, no item match to your search
     ul(style='list-style-type: none;')
       while n < item_name.length
-        li.card(data-con=`${item_name}`)
+        li.card(data-con=`${item_name[n]}`)
             form(method='post', action='/rent')
                 - var y = 'value="#{item_name[n]}"'
                 input(name='item_name', style='display: none;' value=`${item_name[n]}`)
@@ -132,5 +134,6 @@ include navbar
                 br
                 br
                 button.btn.btn-primary(type='submit' style='float: right; padding: 5px 35px 5px 35px;') Rent
-            
+
+script(src='/main.js')            
 include footer
