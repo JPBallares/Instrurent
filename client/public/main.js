@@ -28,3 +28,63 @@ function searchItem() {
         document.getElementById('itemA').style.display = 'block';
     }
 }
+
+var itemsContainerUL = itemsContainer.querySelector('ul');
+
+var az = document.getElementById('AZBttn');
+az.addEventListener('click', sortAZ);
+
+var az = document.getElementById('ZABttn');
+az.addEventListener('click', sortZA);
+
+function sortAZ() {
+    var switching = true;
+    var temp, shouldSwitch;
+
+    while (switching) {
+        switching = false;
+        temp = itemsContainerUL.getElementsByTagName('li');
+        
+        for (i = 0; i < (temp.length - 1); i++) {
+
+            shouldSwitch = false;
+            
+            if (temp[i].innerHTML.toLowerCase() > temp[i + 1].innerHTML.toLowerCase()) {
+             
+              shouldSwitch = true;
+              break;
+            }
+        }
+
+          if (shouldSwitch) {
+            temp[i].parentNode.insertBefore(temp[i + 1], temp[i]);
+            switching = true;
+          }
+    }
+}
+
+function sortZA() {
+    var switching = true;
+    var temp, shouldSwitch;
+
+    while (switching) {
+        switching = false;
+        temp = itemsContainerUL.getElementsByTagName('li');
+        
+        for (i = 0; i < (temp.length - 1); i++) {
+
+            shouldSwitch = false;
+            
+            if (temp[i].innerHTML.toLowerCase() < temp[i + 1].innerHTML.toLowerCase()) {
+             
+              shouldSwitch = true;
+              break;
+            }
+        }
+
+          if (shouldSwitch) {
+            temp[i].parentNode.insertBefore(temp[i + 1], temp[i]);
+            switching = true;
+          }
+    }
+}
