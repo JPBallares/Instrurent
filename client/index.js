@@ -24,7 +24,7 @@ connection.connect(function (err) {
     }
 });
 
-app.listen(8095, 'localhost');
+app.listen(8081, '0.0.0.0');
 
 app.use(express.static('public'));
 app.use(session({ secret: 'somesecretcode', resave: false, saveUninitialized: false }));
@@ -206,7 +206,6 @@ app.post('/type', function (request, response) {
         if (err1) {
             throw err1;
         }
-        console.log(result);
         Object.keys(result).forEach(function (key) {
             var row = result[key],
                 buffer = new Buffer(row.item_image, 'binary'),
@@ -294,6 +293,7 @@ app.get('/transaction', function (request, response) {
         quantity = [],
         approved = [],
         returned = [],
+        date_returned = [],
         item_id = [],
         provider_name = [];
     connection.query(id, function (err, result, field) {
@@ -309,9 +309,9 @@ app.get('/transaction', function (request, response) {
                 item_id.push(row.item_id);
                 date_rented.push(row.date_rented);
                 date_due.push(row.date_due);
+                date_returned.push(row.date_returned);
                 amount.push(row.amount);
                 quantity.push(row.quantity);
-                console.log(row.approved);
                 if (row.approved === "p") {
                     approved.push("Pending");
                 } else if (row.approved === "r") {
@@ -321,12 +321,7 @@ app.get('/transaction', function (request, response) {
                 } else {
                     approved.push("Accepted");
                 }
-                console.log(row.returned);
-                if (row.returned === "0") {
-                    returned.push("Not yet returned ");
-                } else {
-                    returned.push("Returned");
-                }
+                returned.push(row.returned);
                 provider_name.push(row.provider_name);
             });
             if (request.session.username) {
@@ -341,6 +336,136 @@ app.get('/transaction', function (request, response) {
                     approved: approved,
                     returned: returned,
                     provider: provider_name,
+                    date_returned: date_returned,
+                    item_id: item_id
+                });
+            }
+        });
+    });
+});
+
+app.post('/accepted', function (request, response) {
+    'use strict';
+    var username = request.session.username,
+        id = "SELECT * FROM customer NATURAL JOIN accounts where username = '" + username + "';",
+        accepted = request.body.accepted,
+        transaction_id = [],
+        item_name = [],
+        item_type = [],
+        date_rented = [],
+        date_due = [],
+        amount = [],
+        quantity = [],
+        approved = [],
+        returned = [],
+        date_returned = [],
+        item_id = [],
+        provider_name = [];
+    connection.query(id, function (err, result, field) {
+        if (err) {
+            console.log(err);
+        }
+        var sql = "SELECT * FROM transaction NATURAL JOIN items NATURAL JOIN service_provider where customer_id = '" + result[0].customer_id + "' and approved = '" + accepted + "';";
+        connection.query(sql, function (err1, result1, field1) {
+            Object.keys(result1).forEach(function (key) {
+                var row = result1[key];
+                transaction_id.push(row.transaction_id);
+                item_name.push(row.item_name);
+                item_id.push(row.item_id);
+                date_rented.push(row.date_rented);
+                date_due.push(row.date_due);
+                date_returned.push(row.date_returned);
+                amount.push(row.amount);
+                quantity.push(row.quantity);
+                if (row.approved === "p") {
+                    approved.push("Pending");
+                } else if (row.approved === "r") {
+                    approved.push("Rejected");
+                } else if (row.approved === "c") {
+                    approved.push("Cancelled");
+                } else {
+                    approved.push("Accepted");
+                }
+                returned.push(row.returned);
+                provider_name.push(row.provider_name);
+            });
+            if (request.session.username) {
+                response.render('transaction', {
+                    username: username,
+                    transac_id: transaction_id,
+                    item_name: item_name,
+                    date_rented: date_rented,
+                    date_due: date_due,
+                    amount: amount,
+                    quantity: quantity,
+                    approved: approved,
+                    returned: returned,
+                    provider: provider_name,
+                    date_returned: date_returned,
+                    item_id: item_id
+                });
+            }
+        });
+    });
+});
+
+app.post('/returned', function (request, response) {
+    'use strict';
+    var username = request.session.username,
+        id = "SELECT * FROM customer NATURAL JOIN accounts where username = '" + username + "';",
+        transaction_id = [],
+        item_name = [],
+        item_type = [],
+        date_rented = [],
+        date_due = [],
+        amount = [],
+        quantity = [],
+        approved = [],
+        returned = [],
+        date_returned = [],
+        item_id = [],
+        provider_name = [];
+    connection.query(id, function (err, result, field) {
+        if (err) {
+            console.log(err);
+        }
+        var sql = "SELECT * FROM transaction NATURAL JOIN items NATURAL JOIN service_provider where customer_id = '" + result[0].customer_id + "' and returned = '" + request.body.returned + "';";
+        connection.query(sql, function (err1, result1, field1) {
+            Object.keys(result1).forEach(function (key) {
+                var row = result1[key];
+                transaction_id.push(row.transaction_id);
+                item_name.push(row.item_name);
+                item_id.push(row.item_id);
+                date_rented.push(row.date_rented);
+                date_due.push(row.date_due);
+                date_returned.push(row.date_returned);
+                amount.push(row.amount);
+                quantity.push(row.quantity);
+                if (row.approved === "p") {
+                    approved.push("Pending");
+                } else if (row.approved === "r") {
+                    approved.push("Rejected");
+                } else if (row.approved === "c") {
+                    approved.push("Cancelled");
+                } else {
+                    approved.push("Accepted");
+                }
+                returned.push(row.returned);
+                provider_name.push(row.provider_name);
+            });
+            if (request.session.username) {
+                response.render('transaction', {
+                    username: username,
+                    transac_id: transaction_id,
+                    item_name: item_name,
+                    date_rented: date_rented,
+                    date_due: date_due,
+                    amount: amount,
+                    quantity: quantity,
+                    approved: approved,
+                    returned: returned,
+                    provider: provider_name,
+                    date_returned: date_returned,
                     item_id: item_id
                 });
             }
@@ -352,6 +477,7 @@ app.post('/cancel', function (request, response) {
     var username = request.session.username,
         transac_id = request.body.transac_id,
         item_id = request.body.item_id;
+    console.log(transac_id + " " + item_id);
         reply = "echo <script> alert('You have canceled a transaction'); window.location = '/transaction'; </script>";
     var sql = "UPDATE transaction SET approved = 'c' WHERE transaction_id = '" + transac_id + "' and item_id = '" + item_id + "';";
     connection.query(sql, function (err, result, field) {

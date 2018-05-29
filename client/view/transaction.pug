@@ -4,6 +4,45 @@ include navbar
 .jumbotron#rental_banner
   .container
     h1.display-2 Transaction
+
+.container#items_category
+      h1.display-4(style='padding-bottom: 30px;') Categories
+      ul#category_rental_page(style='list-style-type: none;')
+        li
+          form(method='post', action='/accepted')
+            input(name='accepted', style='display: none;' value='a')
+            button(type='submit') Accepted
+        li
+          form(method='post', action='/accepted')
+            input(name='accepted', style='display: none;' value='c')
+            button(type='submit') Cancelled
+        li
+          form(method='post', action='/accepted')
+            input(name='accepted', style='display: none;' value='p')
+            button(type='submit') Pending
+        li
+          form(method='post', action='/accepted')
+            input(name='accepted', style='display: none;' value='r')
+            button(type='submit') Rejected
+            
+.container#items_category
+    h1.display-4(style='padding-bottom: 30px;') Categories
+    ul#category_rental_page(style='list-style-type: none;')
+        li
+          form(method='post', action='/returned')
+            input(name='returned', style='display: none;' value=1)
+            button(type='submit') Returned
+        li
+          form(method='post', action='/returned')
+            input(name='returned', style='display: none;' value=0)
+            button(type='submit') Not Returned
+
+.container#items_category
+    h1.display-4(style='padding-bottom: 30px;') Categories
+    ul#category_rental_page(style='list-style-type: none;')
+        li
+          form(method='get' action='/transaction')
+              button(type='submit') Show All
 		
 .container-fluid
     table.table
@@ -15,9 +54,9 @@ include navbar
                 th Date Due
                 th Amount
                 th Quantity
+                th Provider
                 th Approved
                 th Returned
-                th Provider
                 th
         tbody
         -var n = 0;
@@ -31,10 +70,15 @@ include navbar
                     td #{quantity[n]}
                     td #{provider[n]}
                     td #{approved[n]}
-                    td #{returned[n]}
-                    form(method='post', action='/cancel')
-                        input(name='transac_id', style='display: none;' value=`${transac_id[n]}`)
-                        input(name='item_id', style='display: none;' value=`${item_id[n++]}`)
-                        td
-                            button.btn.btn-primary(type='submit') Cancel
+                    if returned[n] === 0
+                        td Not yet returned
+                    else
+                        td #{date_returned[n]}
+                    if approved[n] === 'Pending'
+                        form(method='post', action='/cancel')
+                            input(name='transac_id', style='display: none;' value=`${transac_id[n]}`)
+                            input(name='item_id', style='display: none;' value=`${item_id[n]}`)
+                            td
+                                button.btn.btn-primary(type='submit') Cancel
+                    -n++;
 include footer
