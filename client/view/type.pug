@@ -91,27 +91,46 @@ include navbar
   .container(style='clear: both;')
     ul(style='list-style-type: none;')
       while n < item_name.length
-        li.card 
+        li.card(data-con=`${item_name}`)
             form(method='post', action='/rent')
                 - var y = 'value="#{item_name[n]}"'
                 input(name='item_name', style='display: none;' value=`${item_name[n]}`)
                 input(name='provider', style='display: none;' value=`${provider[n]}`)
                 input(name='amount', style='display: none;' value=`${renting_fee[n]}`)
-                h1.display-4 #{item_name[n]}
+                div.item_name
+                  h1.display-4 #{item_name[n]}
+                hr
                 img(src="data:image;base64," + image[n] )
-                p Renting Fee: #{renting_fee[n]}
-                p Provider: #{provider[n]}
-                p Provider Contact: #{provider_contact[n]}
-                p Type: #{item_type[n]}
-                p Stock: #{stock[n++]}
                 br
-                label Date to be rented:
+                p 
+                  b Renting Fee: 
+                    span #{renting_fee[n]}
+                p 
+                  b Provider: 
+                    span #{provider[n]}
+                p 
+                  b Provider Contact: 
+                    span #{provider_contact[n]}
+                p 
+                  b Type: 
+                    span #{item_type[n]}
+                p 
+                  b Stock: 
+                    span #{stock[n++]}
+                br
+                label 
+                  b Date to be rented:
                 input(name='rent_date', type='date', required='')
-                label Days to be rented:  
+                br
+                br
+                label 
+                  b Days to be rented:  
                 input(name='days', maxlength='2', size='2', required='')
-                label Number of items:  
+                label 
+                  b Number of items:  
                 input(name='quantity', maxlength='2', size='2', required='')
                 br
                 br
-                button.btn.btn-primary(type='submit') Rent
+                button.btn.btn-primary(type='submit' style='float: right; padding: 5px 35px 5px 35px;') Rent
+            
 include footer
