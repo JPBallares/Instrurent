@@ -85,6 +85,10 @@ body {
 #sign_up_nav {
     margin-left: 20px;
 }
+
+#edit_bttn {
+    float: right;
+}
 /* ----------Forms---------- */
 
 
@@ -223,6 +227,15 @@ body {
 
 .item_name {
     height: 50px;
+}
+
+.vl {
+    background-color: rgb(158, 6, 57);
+    width: 4px;
+    height: 20px;
+    float: left;
+    margin-right: 20px;
+    margin-top: 10px;
 }
 
 /* ----------Rental---------- */

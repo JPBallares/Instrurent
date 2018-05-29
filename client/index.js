@@ -15,6 +15,7 @@ var connection = mysql.createConnection({
     port     : 3306,
     database : 'tenterent'
 });
+
 connection.connect(function (err) {
     'use strict';
     if (!err) {
@@ -24,7 +25,7 @@ connection.connect(function (err) {
     }
 });
 
-app.listen(8081, '0.0.0.0');
+app.listen(8095, 'localhost');
 
 app.use(express.static('public'));
 app.use(session({ secret: 'somesecretcode', resave: false, saveUninitialized: false }));
