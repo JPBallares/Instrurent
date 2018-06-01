@@ -239,3 +239,22 @@ body {
 }
 
 /* ----------Rental---------- */
+
+/* ----------View Profile---------- */
+.edit {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    float: left;
+    margin-left: 20px;
+}
+
+.prof {
+    float: left;
+}
+
+#view_prof_form input {
+    width: 500px;
+    display: none;
+}
+/* ----------View Profile---------- */
