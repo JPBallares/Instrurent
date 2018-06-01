@@ -1,0 +1,139 @@
+include header
+body
+include navbar
+.jumbotron#rental_banner
+  .container
+    h1.display-2 Rentals
+.container#items_category
+  h1.display-4(style='padding-bottom: 30px;') Categories
+  ul#category_rental_page(style='list-style-type: none;')
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='axe')
+        button(type='submit') Axe
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='bag')
+        button(type='submit') Bag
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='blanket')
+        button(type='submit') Blanket
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='chair')
+        button(type='submit') Chair
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='fishing rod')
+        button(type='submit') Fishing Rod
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='grill')
+        button(type='submit') Grill
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='hammer')
+        button(type='submit') Hammer
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='lantern')
+        button(type='submit') Lantern
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='pickaxe')
+        button(type='submit') Pick Axe
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='pillow')
+        button(type='submit') Pillow
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='shovel')
+        button(type='submit') Shovel
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='sleeping bag')
+        button(type='submit') Sleeping Bag
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='table')
+        button(type='submit') Table
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='tent')
+        button(type='submit') Tent
+    li
+      form(method='post', action='/type')
+        input(name='type_name', style='display: none;' value='thermos')
+        button(type='submit') Thermos
+    li
+      form(method='get' action='/rental')
+        button(type='submit') Show All
+
+.container#sort_by(style='clear: both;')
+  h1.display-4 Sort by:
+  label Price:
+  button.btn.btn-primary Low to High
+  button.btn.btn-primary High to Low
+  label Item Name:
+  button#AZBttn.btn.btn-primary A to Z
+  button#ZABttn.btn.btn-primary Z to A
+  hr
+
+  div#search(style='float: right;')
+    .input-group(style='width: 350px;')
+      input#searchTxt.form-control(placeholder='Search item')
+      .input-group-addon
+        button#searchBttn.btn.btn-primary Search
+
+- var n = 0;
+  .container#items_container
+    h3#itemA(style='display: none;') Search results:
+    h3#itemB(style='display: none;') Sorry, no item match to your search
+    ul(style='list-style-type: none;')
+      while n < item_name.length
+        li.card(data-con=`${item_name[n]}`)
+            form(method='post', action='/rent')
+                - var y = 'value="#{item_name[n]}"'
+                input(name='item_name', style='display: none;' value=`${item_name[n]}`)
+                input(name='provider', style='display: none;' value=`${provider[n]}`)
+                input(name='amount', style='display: none;' value=`${renting_fee[n]}`)
+                div.item_name
+                  h1.display-4 #{item_name[n]}
+                hr
+                img(src="data:image;base64," + image[n] )
+                br
+                p 
+                  b Renting Fee: 
+                    span #{renting_fee[n]}
+                p 
+                  b Provider: 
+                    span #{provider[n]}
+                p 
+                  b Provider Contact: 
+                    span #{provider_contact[n]}
+                p 
+                  b Type: 
+                    span #{item_type[n]}
+                p 
+                  b Stock: 
+                    span #{stock[n++]}
+                br
+                label 
+                  b Date to be rented:
+                input(name='rent_date', type='date', required='')
+                br
+                br
+                label 
+                  b Days to be rented:  
+                input(name='days', maxlength='2', size='2', required='')
+                label 
+                  b Number of items:  
+                input(name='quantity', maxlength='2', size='2', required='')
+                br
+                br
+                button.btn.btn-primary(type='submit' style='float: right; padding: 5px 35px 5px 35px;') Rent
+
+script(src='/main.js')            
+include footer

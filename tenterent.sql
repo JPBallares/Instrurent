@@ -221,7 +221,7 @@ CREATE TABLE `transaction` (
   `date_due` date NOT NULL,
   `amount` double NOT NULL,
   `quantity` int(11) NOT NULL,
-  `approved` enum('a','r','p') NOT NULL,
+  `approved` enum('a','r','p','c') NOT NULL,
   `returned` tinyint(1) NOT NULL DEFAULT '0',
   `date_returned` date DEFAULT NULL,
   `customer_id` int(11) NOT NULL,

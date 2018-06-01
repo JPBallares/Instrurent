@@ -9,12 +9,13 @@ var app = express();
 
 
 var connection = mysql.createConnection({
-    host     : 'database',
+    host     : 'localhost',
     user     : 'root',
-    password : 'test',
+    password : '',
     port     : 3306,
     database : 'tenterent'
 });
+
 connection.connect(function (err) {
     'use strict';
     if (!err) {
@@ -24,7 +25,7 @@ connection.connect(function (err) {
     }
 });
 
-app.listen(80, '0.0.0.0');
+app.listen(8081, 'localhost');
 
 app.use(express.static('public'));
 app.use(session({ secret: 'somesecretcode', resave: false, saveUninitialized: false }));
@@ -71,15 +72,7 @@ app.post('/login', function (request, response) {
         }
         if (result.length === 1) {
             if (result[0].password === password) {
-                request.session.loggedin = true;
                 request.session.username = username;
-                request.session.email = result[0].email;
-                request.session.password = password;
-                request.session.first_name = result[0].first_name;
-                request.session.last_name = result[0].last_name;
-                request.session.address = result[0].address;
-                request.session.birthdate = result[0].birthdate;
-                request.session.contact = result[0].contact_number;
                 response.redirect('/');
             } else {
                 response.send(reply2);
@@ -91,30 +84,7 @@ app.post('/login', function (request, response) {
     });
 });
 
-app.post('/edit_profile', function (request, response) {
-    'use strict';
-    var first_name = request.body.first_name,
-        last_name = request.body.last_name,
-        email = request.body.email,
-        address = request.body.address,
-        contact = request.body.contact,
-        username = request.session.username,
-        reply = "echo <script> alert('Successfully updated'); window.history.back(); </script>",
-        sql = "UPDATE accounts SET email = '" + email + "' WHERE username = '" + username + "';",
-        sql1 = "UPDATE customer NATURAL JOIN accounts SET first_name = '" + first_name + "', last_name = '" + last_name + "', address = '" + address + "', contact_number = '" + contact + "' WHERE username = '" + username + "';";
-    connection.query(sql, function (err, result, field) {
-        if (err) {
-            console.log(err);
-        }
-        connection.query(sql1, function (err, result, field) {
-            if (err) {
-                console.log(err);
-            }
-        });
-    });
-    response.send(reply);
-});
-
+//profile
 app.get('/view_profile', function (request, response) {
     'use strict';
     if (request.session.username) {
@@ -141,14 +111,78 @@ app.get('/view_profile', function (request, response) {
     }
 });
 
-app.get('/logout', function (request, response) {
+app.post('/edit_profile', function (request, response) {
     'use strict';
-    if (request.session.username) {
-        request.session.destroy();
-        response.redirect('http://www.tenterent.com');
-    }
+    var first_name = request.body.first_name,
+        last_name = request.body.last_name,
+        email = request.body.email,
+        address = request.body.address,
+        contact = request.body.contact,
+        username = request.session.username,
+        sql = "UPDATE accounts SET email = '" + email + "' WHERE username = '" + username + "';",
+        sql1 = "UPDATE customer NATURAL JOIN accounts SET first_name = '" + first_name + "', last_name = '" + last_name + "', address = '" + address + "', contact_number = '" + contact + "' WHERE username = '" + username + "';",
+        sql2 = "SELECT * FROM accounts NATURAL JOIN customer where useername = '" + username + "';",
+        reply = "echo <script> alert('Successfully updated'); window.history.back(); </script>",
+        reply1 = "echo <script> alert('Email already exists'); window.history.back(); </script>",
+        reply2 = "echo <script> alert('Contact number already exists'); window.history.back(); </script>";
+    connection.query(sql2, function (err, result, field) {
+        if (err) {
+            console.log(err);
+        }
+        if (email === result[0].email) {
+            response.send(reply1);
+        } else if (contact === result[0].contact_number) {
+            response.send(reply2);
+        } else {
+            connection.query(sql, function (err, result, field) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+            connection.query(sql1, function (err, result, field) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+            response.send(reply);
+        }
+    });
 });
 
+app.post('/edit_password', function (request, response) {
+   var current = sha1(request.body.current),
+       pass1 = request.body.pass1,
+       pass2 = request.body.pass2,
+       username = request.session.username,
+       sql = "SELECT password FROM accounts where username = '" + username + "';",
+       reply = "echo <script> alert('Successfully updated'); window.history.back(); </script>",
+       reply1 = "echo <script> alert('Wrong password'); window.history.back(); </script>",
+       reply1 = "echo <script> alert('Password does not match'); window.history.back(); </script>";
+    if (pass1 === pass2) {
+        connection.query (sql, function (err, result) {
+            if (err) {
+                throw err;
+            }
+            if (current === result[0].password){
+                var password = sha1(pass1),
+                    sql1 = "UPDATE accounts SET password = '" + password + "';";
+                connection.query(sql1, function (err1, result1) {
+                    if (err1) {
+                        throw err1;
+                    }
+                    response.send(reply);
+                });
+            } else {
+                response.send(reply1);
+            }
+        });
+    } else {
+        response.send(reply2);
+    }
+});
+//profile
+
+//rental
 app.get('/rental', function (request, response) {
     'use strict';
     var sql = "SELECT * FROM items NATURAL JOIN item_type NATURAL join service_provider",
@@ -190,6 +224,50 @@ app.get('/rental', function (request, response) {
         }
     });
 });
+
+app.post('/type', function (request, response) {
+    'use strict';
+    var type_name = request.body.type_name,
+        sql = "SELECT * FROM items NATURAL JOIN item_type NATURAL join service_provider where type_name = '" + type_name + "';",
+        image = [],
+        item_name = [],
+        renting_fee = [],
+        provider = [],
+        provider_contact = [],
+        item_type = [],
+        stock = [];
+    connection.query(sql, function (err1, result, field1) {
+        if (err1) {
+            throw err1;
+        }
+        Object.keys(result).forEach(function (key) {
+            var row = result[key],
+                buffer = new Buffer(row.item_image, 'binary'),
+                imahe = buffer.toString('base64');
+            image.push(imahe);
+            item_name.push(row.item_name);
+            renting_fee.push(row.renting_fee);
+            stock.push(row.stock);
+            provider.push(row.provider_name);
+            provider_contact.push(row.provider_contact);
+            item_type.push(row.type_name);
+        });
+        if (request.session.username) {
+            var username = request.session.username;
+            response.render('type', {
+                username: username,
+                image : image,
+                item_name: item_name,
+                renting_fee: renting_fee,
+                provider: provider,
+                provider_contact: provider_contact,
+                stock : stock,
+                item_type: item_type
+            });
+        }
+    });
+});
+
 
 app.post('/rent', function (req, res) {
     'use strict';
@@ -235,7 +313,9 @@ app.post('/rent', function (req, res) {
         });
     });
 });
+//rental
 
+//transaction
 app.get('/transaction', function (request, response) {
     'use strict';
     var username = request.session.username,
@@ -249,6 +329,7 @@ app.get('/transaction', function (request, response) {
         quantity = [],
         approved = [],
         returned = [],
+        date_returned = [],
         item_id = [],
         provider_name = [];
     connection.query(id, function (err, result, field) {
@@ -264,9 +345,9 @@ app.get('/transaction', function (request, response) {
                 item_id.push(row.item_id);
                 date_rented.push(row.date_rented);
                 date_due.push(row.date_due);
+                date_returned.push(row.date_returned);
                 amount.push(row.amount);
                 quantity.push(row.quantity);
-                console.log(row.approved);
                 if (row.approved === "p") {
                     approved.push("Pending");
                 } else if (row.approved === "r") {
@@ -276,12 +357,7 @@ app.get('/transaction', function (request, response) {
                 } else {
                     approved.push("Accepted");
                 }
-                console.log(row.returned);
-                if (row.returned === "0") {
-                    returned.push("Not yet returned ");
-                } else {
-                    returned.push("Returned");
-                }
+                returned.push(row.returned);
                 provider_name.push(row.provider_name);
             });
             if (request.session.username) {
@@ -296,6 +372,136 @@ app.get('/transaction', function (request, response) {
                     approved: approved,
                     returned: returned,
                     provider: provider_name,
+                    date_returned: date_returned,
+                    item_id: item_id
+                });
+            }
+        });
+    });
+});
+
+app.post('/accepted', function (request, response) {
+    'use strict';
+    var username = request.session.username,
+        id = "SELECT * FROM customer NATURAL JOIN accounts where username = '" + username + "';",
+        accepted = request.body.accepted,
+        transaction_id = [],
+        item_name = [],
+        item_type = [],
+        date_rented = [],
+        date_due = [],
+        amount = [],
+        quantity = [],
+        approved = [],
+        returned = [],
+        date_returned = [],
+        item_id = [],
+        provider_name = [];
+    connection.query(id, function (err, result, field) {
+        if (err) {
+            console.log(err);
+        }
+        var sql = "SELECT * FROM transaction NATURAL JOIN items NATURAL JOIN service_provider where customer_id = '" + result[0].customer_id + "' and approved = '" + accepted + "';";
+        connection.query(sql, function (err1, result1, field1) {
+            Object.keys(result1).forEach(function (key) {
+                var row = result1[key];
+                transaction_id.push(row.transaction_id);
+                item_name.push(row.item_name);
+                item_id.push(row.item_id);
+                date_rented.push(row.date_rented);
+                date_due.push(row.date_due);
+                date_returned.push(row.date_returned);
+                amount.push(row.amount);
+                quantity.push(row.quantity);
+                if (row.approved === "p") {
+                    approved.push("Pending");
+                } else if (row.approved === "r") {
+                    approved.push("Rejected");
+                } else if (row.approved === "c") {
+                    approved.push("Cancelled");
+                } else {
+                    approved.push("Accepted");
+                }
+                returned.push(row.returned);
+                provider_name.push(row.provider_name);
+            });
+            if (request.session.username) {
+                response.render('transaction', {
+                    username: username,
+                    transac_id: transaction_id,
+                    item_name: item_name,
+                    date_rented: date_rented,
+                    date_due: date_due,
+                    amount: amount,
+                    quantity: quantity,
+                    approved: approved,
+                    returned: returned,
+                    provider: provider_name,
+                    date_returned: date_returned,
+                    item_id: item_id
+                });
+            }
+        });
+    });
+});
+
+app.post('/returned', function (request, response) {
+    'use strict';
+    var username = request.session.username,
+        id = "SELECT * FROM customer NATURAL JOIN accounts where username = '" + username + "';",
+        transaction_id = [],
+        item_name = [],
+        item_type = [],
+        date_rented = [],
+        date_due = [],
+        amount = [],
+        quantity = [],
+        approved = [],
+        returned = [],
+        date_returned = [],
+        item_id = [],
+        provider_name = [];
+    connection.query(id, function (err, result, field) {
+        if (err) {
+            console.log(err);
+        }
+        var sql = "SELECT * FROM transaction NATURAL JOIN items NATURAL JOIN service_provider where customer_id = '" + result[0].customer_id + "' and returned = '" + request.body.returned + "';";
+        connection.query(sql, function (err1, result1, field1) {
+            Object.keys(result1).forEach(function (key) {
+                var row = result1[key];
+                transaction_id.push(row.transaction_id);
+                item_name.push(row.item_name);
+                item_id.push(row.item_id);
+                date_rented.push(row.date_rented);
+                date_due.push(row.date_due);
+                date_returned.push(row.date_returned);
+                amount.push(row.amount);
+                quantity.push(row.quantity);
+                if (row.approved === "p") {
+                    approved.push("Pending");
+                } else if (row.approved === "r") {
+                    approved.push("Rejected");
+                } else if (row.approved === "c") {
+                    approved.push("Cancelled");
+                } else {
+                    approved.push("Accepted");
+                }
+                returned.push(row.returned);
+                provider_name.push(row.provider_name);
+            });
+            if (request.session.username) {
+                response.render('transaction', {
+                    username: username,
+                    transac_id: transaction_id,
+                    item_name: item_name,
+                    date_rented: date_rented,
+                    date_due: date_due,
+                    amount: amount,
+                    quantity: quantity,
+                    approved: approved,
+                    returned: returned,
+                    provider: provider_name,
+                    date_returned: date_returned,
                     item_id: item_id
                 });
             }
@@ -304,9 +510,10 @@ app.get('/transaction', function (request, response) {
 });
         
 app.post('/cancel', function (request, response) {
+    'use strict';
     var username = request.session.username,
         transac_id = request.body.transac_id,
-        item_id = request.body.item_id;
+        item_id = request.body.item_id,
         reply = "echo <script> alert('You have canceled a transaction'); window.location = '/transaction'; </script>";
     var sql = "UPDATE transaction SET approved = 'c' WHERE transaction_id = '" + transac_id + "' and item_id = '" + item_id + "';";
     connection.query(sql, function (err, result, field) {
@@ -315,6 +522,15 @@ app.post('/cancel', function (request, response) {
         }
         response.send(reply);
     });
+});
+//transaction
+
+app.get('/logout', function (request, response) {
+    'use strict';
+    if (request.session.username) {
+        request.session.destroy();
+        response.redirect('http://www.tenterent.com');
+    }
 });
 
 
