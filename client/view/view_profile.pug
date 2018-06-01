@@ -10,20 +10,60 @@ include navbar
 .container
   h1.display-4 
   hr.my-4
-  form(action='/edit_profile', method='post')
+  form#view_prof_form(action='/edit_profile', method='post')
     label First name
+    div(style='clear: both;')
+    div#first_name.prof
+      b #{first_name}
     input#client_first_name.form-control(name='first_name', type='text', placeholder='First name', value = `${first_name}`)
+    div#edit_firstname.edit Edit first name
+    div(style='clear: both;')
+    br 
     label Last name
+    div(style='clear: both;')
+    div#last_name.prof
+      b #{last_name}
     input#client_last_name.form-control(name='last_name', type='text', placeholder='Last name', value = `${last_name}`)
+    div#edit_lastname.edit Edit last name
+    div(style='clear: both;')
+    br 
     label Email Address
+    div(style='clear: both;')
+    div#email.prof
+      b #{email}
     input#client_email.form-control(name='email', type='text', placeholder='Email Address', value = `${email}`)
+    div#edit_emailaddress.edit Change email address
+    div(style='clear: both;')
+    br 
     label Address
+    div(style='clear: both;')  
+    div#address.prof
+      b #{address}
     input#client_address.form-control(name='address', type='text', placeholder='Address', value = `${address}`)
+    div#edit_address.edit Edit address
+    div(style='clear: both;')
+    br 
     label Contact number
+    div(style='clear: both;')
+    div#number.prof
+      b #{contact}
     input#client_contact.form-control(name='contact', type='text', placeholder='Contact number', value = `${contact}`)
-    input.btn.btn-primary.btn_cc(type='submit', value='Save changes' style='margin: 20px; float: right;')
+    div#edit_contactnumber.edit Edit contact number
+    div(style='clear: both;')
+    br
+    label Password
+    div(style='clear: both;') 
+    div#edit_pass.edit Edit password
+    div(style='clear: both;')
+    div#edit_passwordcon(style='display: none;')
+       input#client_oldpass.form-control(name='oldpass', type='password', placeholder='Old password')
+       br
+       input#client_newpass.form-control(name='newpass', type='password', placeholder='New password')
+       input#client_renewpass.form-control(name='renewpass', type='password', placeholder='Retype new password')
+    input.btn.btn-primary.btn_cc(type='submit', value='Save changes' style='margin: 20px; float: right; width: 150px; display: block;')
   div(style='clear: both;')
   hr.my-4
+script(src='/view_profile.js')
 // -------------- Edit profile main content --------------
 // Footer
 .empty
