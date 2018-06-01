@@ -10,57 +10,156 @@ include navbar
 .container
   h1.display-4 
   hr.my-4
-  form#view_prof_form(action='/edit_profile', method='post')
+  form#view_prof_form
     label First name
     div(style='clear: both;')
     div#first_name.prof
       b #{first_name}
-    input#client_first_name.form-control(name='first_name', type='text', placeholder='First name', value = `${first_name}`)
-    div#edit_firstname.edit Edit first name
+    input(value = `${first_name}`)
+    br
+    a.nav-link(href='#', data-toggle='modal', data-target='#first') Edit first name
     div(style='clear: both;')
     br 
     label Last name
     div(style='clear: both;')
     div#last_name.prof
       b #{last_name}
-    input#client_last_name.form-control(name='last_name', type='text', placeholder='Last name', value = `${last_name}`)
-    div#edit_lastname.edit Edit last name
+    input(value = `${last_name}`)
+    br
+    a.nav-link(href='#', data-toggle='modal', data-target='#last') Edit last name
     div(style='clear: both;')
     br 
     label Email Address
     div(style='clear: both;')
     div#email.prof
       b #{email}
-    input#client_email.form-control(name='email', type='text', placeholder='Email Address', value = `${email}`)
-    div#edit_emailaddress.edit Change email address
+    input(value = `${email}`)
+    br
+    a.nav-link(href='#', data-toggle='modal', data-target='#emailadd') Change email address
     div(style='clear: both;')
     br 
     label Address
     div(style='clear: both;')  
     div#address.prof
       b #{address}
-    input#client_address.form-control(name='address', type='text', placeholder='Address', value = `${address}`)
-    div#edit_address.edit Edit address
-    div(style='clear: both;')
+    input(value = `${address}`)
+    br
+    a.nav-link(href='#', data-toggle='modal', data-target='#address1') Edit address
     br 
     label Contact number
     div(style='clear: both;')
     div#number.prof
       b #{contact}
-    input#client_contact.form-control(name='contact', type='text', placeholder='Contact number', value = `${contact}`)
-    div#edit_contactnumber.edit Edit contact number
-    div(style='clear: both;')
+    input(value = `${contact}`)
+    br
+    a.nav-link(href='#', data-toggle='modal', data-target='#contact') Edit Contact Number
+
     br
     label Password
-    div(style='clear: both;') 
-    div#edit_pass.edit Edit password
-    div(style='clear: both;')
-    div#edit_passwordcon(style='display: none;')
-       input#client_oldpass.form-control(name='oldpass', type='password', placeholder='Old password')
-       br
-       input#client_newpass.form-control(name='newpass', type='password', placeholder='New password')
-       input#client_renewpass.form-control(name='renewpass', type='password', placeholder='Retype new password')
-    input.btn.btn-primary.btn_cc(type='submit', value='Save changes' style='margin: 20px; float: right; width: 150px; display: block;')
+    a.nav-link(href='#', data-toggle='modal', data-target='#login') Edit Password
+
+#login.modal.fade(tabindex='-1', role='dialog', aria-labelledby='login', aria-hidden='true')
+  .modal-dialog.modal-dialog-centered(role='document')
+    .modal-content
+      .modal-header
+        h5#user_login.modal-title Edit Password
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      form(action='/edit_password', method='POST')
+        .modal-body
+          .form-group
+            label(for='user_pass') Old Password
+            input#user_pass.form-control(name='oldpass', type='password', placeholder='Old Password',required='')
+          .form-group
+            label(for='user_pass') New Password
+            input#user_pass.form-control(name='newpass', type='password', placeholder='New Password',required='')
+          .form-group
+            label(for='user_pass') Confirm Password
+            input#user_pass.form-control(name='conpass', type='password', placeholder='New Password',required='')
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+          input.btn.btn-primary.btn_cc(name='login', type='submit', value='Save')
+          
+#first.modal.fade(tabindex='-1', role='dialog', aria-labelledby='login', aria-hidden='true')
+  .modal-dialog.modal-dialog-centered(role='document')
+    .modal-content
+      .modal-header
+        h5#user_login.modal-title Edit First Name
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      form(action='/edit_first', method='POST')
+        .modal-body
+          .form-group
+            label(for='user_login') First Name
+            input#user_pass.form-control(name='first_name', type='text', placeholder='First Name',required='')
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+          input.btn.btn-primary.btn_cc(name='login', type='submit', value='Save')
+          
+#last.modal.fade(tabindex='-1', role='dialog', aria-labelledby='login', aria-hidden='true')
+  .modal-dialog.modal-dialog-centered(role='document')
+    .modal-content
+      .modal-header
+        h5#user_login.modal-title Edit Last Name
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      form(action='/edit_last', method='POST')
+        .modal-body
+          .form-group
+            label(for='user_login') Last Name
+            input#user_pass.form-control(name='last_name', type='text', placeholder='Last Name',required='')
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+          input.btn.btn-primary.btn_cc(name='login', type='submit', value='Save') 
+
+#emailadd.modal.fade(tabindex='-1', role='dialog', aria-labelledby='login', aria-hidden='true')
+  .modal-dialog.modal-dialog-centered(role='document')
+    .modal-content
+      .modal-header
+        h5#user_login.modal-title Change Email Address
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      form(action='/edit_email', method='POST')
+        .modal-body
+          .form-group
+            label(for='user_login') Email Address
+            input#user_pass.form-control(name='email', type='text', placeholder='Email Address',required='')
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+          input.btn.btn-primary.btn_cc(name='login', type='submit', value='Save') 
+          
+#address1.modal.fade(tabindex='-1', role='dialog', aria-labelledby='login', aria-hidden='true')
+  .modal-dialog.modal-dialog-centered(role='document')
+    .modal-content
+      .modal-header
+        h5#user_login.modal-title Edit Address
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      form(action='/edit_address', method='POST')
+        .modal-body
+          .form-group
+            label(for='user_login') Address
+            input#user_pass.form-control(name='address', type='text', placeholder='Address',required='')
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+          input.btn.btn-primary.btn_cc(name='login', type='submit', value='Save') 
+          
+#contact.modal.fade(tabindex='-1', role='dialog', aria-labelledby='login', aria-hidden='true')
+  .modal-dialog.modal-dialog-centered(role='document')
+    .modal-content
+      .modal-header
+        h5#user_login.modal-title Edit Contact Number
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      form(action='/edit_contact', method='POST')
+        .modal-body
+          .form-group
+            label(for='user_login') Contact Number
+            input#user_pass.form-control(name='contact', type='text', placeholder='Contact Number',required='')
+        .modal-footer
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+          input.btn.btn-primary.btn_cc(name='login', type='submit', value='Save') 
+          
   div(style='clear: both;')
   hr.my-4
 script(src='/view_profile.js')

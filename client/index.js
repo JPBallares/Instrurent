@@ -149,15 +149,127 @@ app.post('/edit_profile', function (request, response) {
     });
 });
 
+app.post('/edit_first', function (request, response) {
+   'use strict';
+    var username = request.session.username,
+        first_name = request.body.first_name,
+        sql = "UPDATE customer NATURAL JOIN accounts SET first_name = '" + first_name + "' WHERE username = '" + username + "';",
+        reply = "echo <script> alert('Successfully updated'); window.history.back(); </script>";
+    connection.query(sql, function (err, result) {
+       if (err) {
+           throw err;
+       }
+        response.send(reply);
+    });
+});
+
+app.post('/edit_last', function (request, response) {
+   'use strict';
+    var username = request.session.username,
+        last_name = request.body.last_name,
+        sql = "UPDATE customer NATURAL JOIN accounts SET last_name = '" + last_name + "' WHERE username = '" + username + "';",
+        reply = "echo <script> alert('Successfully updated'); window.history.back(); </script>";
+    connection.query(sql, function (err, result) {
+       if (err) {
+           throw err;
+       }
+        response.send(reply);
+    });
+});
+
+app.post('/edit_address', function (request, response) {
+   'use strict';
+    var username = request.session.username,
+        address = request.body.address,
+        sql = "UPDATE customer NATURAL JOIN accounts SET address = '" + address + "' WHERE username = '" + username + "';",
+        reply = "echo <script> alert('Successfully updated'); window.history.back(); </script>";
+    connection.query(sql, function (err, result) {
+       if (err) {
+           throw err;
+       }
+        response.send(reply);
+    });
+});
+
+
+app.post('/edit_email', function (request, response) {
+   'use strict';
+    var username = request.session.username,
+        email = request.body.email,
+        sql = "UPDATE accounts SET email = '" + email + "' WHERE username = '" + username + "';",
+        checker = "Select email From accounts where username <> '" + username + "';",
+        reply = "echo <script> alert('Successfully updated'); window.history.back(); </script>",
+        check = "",
+        reply1 = "echo <script> alert('Email already exists'); window.history.back(); </script>";
+    connection.query(checker, function (err, result) {
+       if (err) {
+           throw err;
+       }
+        Object.keys(result).forEach(function (key) {
+            var row = result[key];
+                if (row.email === email){
+                    check += "1";
+                } else {
+                    check += "0";
+                }
+        });
+        if (check.includes("1")) {
+            response.send(reply1);
+        } else {
+            connection.query(sql, function (err, result) {
+               if (err) {
+                   throw err;
+               }
+                response.send(reply);
+            });
+        }
+    });
+});
+
+app.post('/edit_contact', function (request, response) {
+   'use strict';
+    var username = request.session.username,
+        contact = request.body.contact,
+        sql = "UPDATE customer NATURAL JOIN accounts SET contact_number = '" + contact + "' WHERE username = '" + username + "';",
+        checker = "Select contact_number From customer NATURAL JOIN accounts where username <> '" + username + "';",
+        reply = "echo <script> alert('Successfully updated'); window.history.back(); </script>",
+        check = "",
+        reply1 = "echo <script> alert('Contact Number already exists'); window.history.back(); </script>";
+    connection.query(checker, function (err, result) {
+       if (err) {
+           throw err;
+       }
+        Object.keys(result).forEach(function (key) {
+            var row = result[key];
+                if (row.contact_number === contact){
+                    check += "1";
+                } else {
+                    check += "0";
+                }
+        });
+        if (check.includes("1")) {
+            response.send(reply1);
+        } else {
+            connection.query(sql, function (err, result) {
+               if (err) {
+                   throw err;
+               }
+                response.send(reply);
+            });
+        }
+    });
+});
+
+
 app.post('/edit_password', function (request, response) {
-   var current = sha1(request.body.current),
-       pass1 = request.body.pass1,
-       pass2 = request.body.pass2,
+   var current = sha1(request.body.oldpass),
+       pass1 = request.body.newpass,
+       pass2 = request.body.conpass,
        username = request.session.username,
        sql = "SELECT password FROM accounts where username = '" + username + "';",
        reply = "echo <script> alert('Successfully updated'); window.history.back(); </script>",
        reply1 = "echo <script> alert('Wrong password'); window.history.back(); </script>",
-       reply1 = "echo <script> alert('Password does not match'); window.history.back(); </script>";
+       reply2 = "echo <script> alert('Password does not match'); window.history.back(); </script>";
     if (pass1 === pass2) {
         connection.query (sql, function (err, result) {
             if (err) {
@@ -270,9 +382,8 @@ app.post('/type', function (request, response) {
 
 app.post('/sort_price', function (request, response) {
     'use strict';
-    var type_name = request.body.type_name,
-        order = request.body.order,
-        sql = "",
+    var order = request.body.order,
+        sql = "SELECT * FROM items NATURAL JOIN item_type NATURAL join service_provider ORDER BY price " + order + ";",
         image = [],
         item_name = [],
         renting_fee = [],
@@ -280,11 +391,6 @@ app.post('/sort_price', function (request, response) {
         provider_contact = [],
         item_type = [],
         stock = [];
-    if (type === undefined) {
-        sql += "SELECT * FROM items NATURAL JOIN item_type NATURAL join service_provider ORDER BY price " + order + ";";
-    } else {
-        sql += "SELECT * FROM items NATURAL JOIN item_type NATURAL join service_provider where type_name = '" + type_name + "' ORDER BY price " + order + ";";
-    }
     connection.query(sql, function (err1, result, field1) {
         if (err1) {
             throw err1;
