@@ -72,20 +72,24 @@ include navbar
           button(type='submit') Show All
 
 .container#sort_by(style='clear: both;')
-  h1.display-4 Sort by:
-  label Price:
-  button.btn.btn-primary Low to High
-  button.btn.btn-primary High to Low
-  label Item Name:
-  button#AZBttn.btn.btn-primary A to Z
-  button#ZABttn.btn.btn-primary Z to A
-  hr
+    h1.display-4 Sort by:
+    label Price:
+    form(method='post' action='/sort_price')
+        input(name='order', style='display: none;' value='ASC')
+        button.btn.btn-primary Low to High
+    form(method='post' action='/sort_price')
+        input(name='order', style='display: none;' value='DESC')
+        button.btn.btn-primary High to Low
+    label Item Name:
+    button#AZBttn.btn.btn-primary A to Z
+    button#ZABttn.btn.btn-primary Z to A
+    hr
 
-  div#search(style='float: right;')
-    .input-group(style='width: 350px;')
-      input#searchTxt.form-control(placeholder='Search item')
-      .input-group-addon
-        button#searchBttn.btn.btn-primary Search
+    div#search(style='float: right;')
+        .input-group(style='width: 350px;')
+            input#searchTxt.form-control(placeholder='Search item')
+            .input-group-addon
+                button#searchBttn.btn.btn-primary Search
 
 - var n = 0;
   .container#items_container

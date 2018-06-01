@@ -254,7 +254,56 @@ app.post('/type', function (request, response) {
         });
         if (request.session.username) {
             var username = request.session.username;
-            response.render('type', {
+            response.render('rental', {
+                username: username,
+                image : image,
+                item_name: item_name,
+                renting_fee: renting_fee,
+                provider: provider,
+                provider_contact: provider_contact,
+                stock : stock,
+                item_type: item_type
+            });
+        }
+    });
+});
+
+app.post('/sort_price', function (request, response) {
+    'use strict';
+    var type_name = request.body.type_name,
+        order = request.body.order,
+        sql = "",
+        image = [],
+        item_name = [],
+        renting_fee = [],
+        provider = [],
+        provider_contact = [],
+        item_type = [],
+        stock = [];
+    if (type === undefined) {
+        sql += "SELECT * FROM items NATURAL JOIN item_type NATURAL join service_provider ORDER BY price " + order + ";";
+    } else {
+        sql += "SELECT * FROM items NATURAL JOIN item_type NATURAL join service_provider where type_name = '" + type_name + "' ORDER BY price " + order + ";";
+    }
+    connection.query(sql, function (err1, result, field1) {
+        if (err1) {
+            throw err1;
+        }
+        Object.keys(result).forEach(function (key) {
+            var row = result[key],
+                buffer = new Buffer(row.item_image, 'binary'),
+                imahe = buffer.toString('base64');
+            image.push(imahe);
+            item_name.push(row.item_name);
+            renting_fee.push(row.renting_fee);
+            stock.push(row.stock);
+            provider.push(row.provider_name);
+            provider_contact.push(row.provider_contact);
+            item_type.push(row.type_name);
+        });
+        if (request.session.username) {
+            var username = request.session.username;
+            response.render('rental', {
                 username: username,
                 image : image,
                 item_name: item_name,
